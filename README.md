@@ -1,1 +1,1 @@
-# Activity_1-week-7
+# groupProject-1
