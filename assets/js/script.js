@@ -9,6 +9,7 @@ const userInputEl = document.querySelector("#user-input");
 const searchButtonEl = document.querySelector("#search-button")
 
 function formSubmitHandler() {
+
     //this prevents the refreshing of the page
     //if user hits ENTER key while focused on the user-input element
     //or if the user clicks search-button element
