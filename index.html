@@ -5,18 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Nomad Web Developer</title>
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
     </head>
     <body class="bg-gray-100">
         <header class="flex">
             <a href="#" class="text-5xl m-6 pl-10">Nomad Web Developer</a>
 
         </header>
-        <p class="text-xl text-center">Search Where The Best Place To Live As A Web Developer Is:</p>
-        <form class="flex items-center h-24 justify-center space-x-4">
-            <input name="user-input" id="user-input" type="text" autofocus="true" class="focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 w-100"/>
-            <button type="submit" class="bg-blue-400 p-2 border rounded-lg">Search</button>
-        </form>
-        
+        <div class="hero">
+            <p class="text-xl text-center">Search Where The Best Place To Live As A Web Developer:</p>
+            <form id="user-form" class="flex items-center h-24 justify-center space-x-4">
+                <input name="user-input" id="user-input" type="text" autofocus="true" class="focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 w-100"/>
+                <button type="submit" class="bg-blue-400 p-2 border rounded-lg">Search</button>
+            </form>
+        </div>
+        <div class="content">
+
+        </div>
 
         <script src="./assets/js/getCountryCodeOrName.js"></script>
         <script src="./assets/js/script.js"></script>
