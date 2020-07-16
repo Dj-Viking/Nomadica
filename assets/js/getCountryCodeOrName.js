@@ -255,7 +255,7 @@ function getCountryCodeOrName (inputValue) {
               return ["ErrorCode 5555: Unsupported Data, return input value in array 1",inputValue];
       }
     
-      if ( inlength === 2){
+      if (inlength === 2){
         var outValue = inputValue.toUpperCase();
         var countryName = "";
         for ( var name in nameCountries){
@@ -275,7 +275,7 @@ function getCountryCodeOrName (inputValue) {
     
       }
     
-      if ( inlength > 2) {
+      if (inlength > 2) {
       var outValue = inputValue.toLowerCase();
     
       switch (true){
@@ -305,7 +305,6 @@ function getCountryCodeOrName (inputValue) {
       break;
     }
     
-      console.log("country Searched displayed below")
       return [
       (nameCountries.hasOwnProperty(outValue)?outValue:"Input country doesn't match database: returned input in array 1"),
       (nameCountries.hasOwnProperty(outValue)?nameCountries[outValue]:inputValue)
