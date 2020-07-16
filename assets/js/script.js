@@ -8,6 +8,7 @@ const userFormEl = document.querySelector("#user-form");
 const userInputEl = document.querySelector("#user-input");
 
 function formSubmitHandler() {
+    event.preventDefault();
 
     // this will hold the value of the user's search
     let searchTerm = userInputEl.value;
