@@ -32,7 +32,8 @@ function formSubmitHandler() {
     //      before its console logged at the moment of the submit or click events
     //console.log(`currency code: ${currencyCode}`);
     
-    getMedianSalary(countryCode);
+    /***probably have to call median salary inside getCurrencyCode */
+    //getMedianSalary(countryCode);
     //let medianSalary = getMedianSalary(countryCode);
     // this console.logs undefined since getMedianSalary is an async function. not sure how to fix.
     // (Anders) yeah medianSalary isn't defined at the moment of the submit or click events
@@ -56,13 +57,14 @@ function getCurrencyCode(countryCode){
         .then((data) => {
             console.log("currency conversion from USD into searched country's currency:");
             console.log("for every 1 USD will equal the target currency");
-            
-            console.log(data.rates[currencyCode]);
+            let conversionRate = data.rates[currencyCode];
+            console.log(conversionRate);
+            getMedianSalary(countryCode, conversionRate, currencyCode)
         })
     });
 }
 
-function getMedianSalary(countryCode){
+function getMedianSalary(countryCode,conversionRate, currencyCode){
     fetch( `https://api.teleport.org/api/countries/iso_alpha2:${countryCode}/salaries/` )
     .then( (response) => response.json() )
     .then( ({salaries}) => {
@@ -73,7 +75,15 @@ function getMedianSalary(countryCode){
             if (salaries[i].job.id == "WEB-DEVELOPER" || salaries[i].job.id == "Web Developer") {
                 let medianSalary = salaries[i].salary_percentiles.percentile_50
                 console.log(`median salary for web developers in the searched country: ${medianSalary}`);
-                return medianSalary;
+                //convert the salary into the currency code conversion rate
+                let convertedSalary = Math.floor(medianSalary * conversionRate);
+                //place this number on the document as the salary in that country
+                //  for web developers
+                console.log(convertedSalary);
+                //place this currency code next to the number 
+                console.log(currencyCode);
+                //place this text as to explain that its a yearly salary
+                console.log("Median yearly salaries for the searched job in this country: " + convertedSalary + " " + currencyCode);
             }
         }
     });
