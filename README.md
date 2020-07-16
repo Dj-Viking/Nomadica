@@ -4,8 +4,8 @@
 Have you ever thought about packing your bags and starting over somewhere new? Web developers have the luxury of being able to work almost anywhere, but it can be distressing not knowing what the standard of living for web developers is in a foreign land. This app allows you to search the average annual salary for web developers in over 200 countries. The salary is displayed in the searched country's currency.
 
 ## User Story
-AS A web developer
-I WANT to know what web developers live like in other countries
+AS A web developer</br>
+I WANT to know what web developers live like in other countries</br>
 SO THAT I can make an informed decision about moving there
 
 ## Screenshots
