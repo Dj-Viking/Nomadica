@@ -21,6 +21,11 @@ function formSubmitHandler() {
     // this function returns an array with country code and country name index flipped depending on search term
     let countryCode = getCountryCodeOrName(searchTerm);
 
+    // if the country code was searched, the country name will be index [1]. if country name was searched, the country code will be index [0]
+    let countryName = searchTerm.length === 2 ? countryCode[1] : countryCode [0];
+
+    console.log(`country name: ${countryName}`);
+
     // if the country code was searched, the country code will be index [0]. if country name was searched, the country code will be index [1]
     countryCode = searchTerm.length === 2 ? countryCode[0] : countryCode[1];
     console.log(`country code: ${countryCode}`);
@@ -107,3 +112,5 @@ function getCountryList(){
 }
 
 userFormEl.addEventListener("submit", formSubmitHandler);
+
+console.log(medianIncomeArr);
