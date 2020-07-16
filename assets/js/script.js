@@ -50,19 +50,16 @@ function getCurrencyCode(countryCode){
         // get currency code
         console.log(`country currency code: ${currencyCode}`);
         fetch(`https://api.ratesapi.io/api/latest?base=USD&symbols=${currencyCode}`)
-        .then(response => {
+        .then((response) => {
             return response.json();
         })
-        .then(data => {
+        .then((data) => {
             console.log("currency conversion from USD into searched country's currency:");
             console.log("for every 1 USD will equal the target currency");
-            let currencyObject; 
             
-            console.log(data.rates.HRK);
+            console.log(data.rates[currencyCode]);
         })
-
     });
-    
 }
 
 function getMedianSalary(countryCode){
@@ -73,7 +70,7 @@ function getMedianSalary(countryCode){
         console.log(salaries);
 
         for (let i = 0; i < salaries.length; i++) {
-            if (salaries[i].job.id == "WEB-DEVELOPER") {
+            if (salaries[i].job.id == "WEB-DEVELOPER" || salaries[i].job.id == "Web Developer") {
                 let medianSalary = salaries[i].salary_percentiles.percentile_50
                 console.log(`median salary for web developers in the searched country: ${medianSalary}`);
                 return medianSalary;
