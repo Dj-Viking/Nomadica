@@ -6,15 +6,21 @@
         <title>Nomad Web Developer</title>
     </head>
     <body>
-        <form>
+        <form id="user-form">
             <input
-
+                name="cityName" 
+                id="user-input" 
+                type="text" 
+                autofocus="true" 
+                class="form-input"
+                placeholder="Country Name or Code"
+                autocomplete="off"
             />
         </form>
-        <button>
-            search
+        <button type="submit" id="search-button">
+            Search
         </button>
-
+        <script src="./assets/js/money.js"></script>
         <script src="./assets/js/getCountryCodeOrName.js"></script>
         <script src="./assets/js/script.js"></script>
     </body>
