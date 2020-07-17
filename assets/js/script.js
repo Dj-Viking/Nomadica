@@ -1,8 +1,5 @@
-//  Sickest group of all time code for Teleport API calls
-//      * currently used to get the countryCode iso_alpha2 format i.e. "US" based on user prompt input of the country name "United States" or "united states"
-//      * gets country currency code from the country name entered
-//      * gets median annual salary (USD) of web developers in that country
-//      * unused function getCountryList() is declared at the bottom here to show the country list in a for loop console logged
+// Nomad Web Developer
+//      * all country codes are in iso_alpha2 format i.e. "US" for "United States" or "JP" for "Japan"
 
 const userFormEl = document.querySelector("#user-form");
 const userInputEl = document.querySelector("#user-input");
@@ -44,7 +41,7 @@ function getMedianHouseholdIncome(countryName) {
     let medianHouseholdIncome;
     for (let i = 0; i < medianIncomeArr.length; i++) {
         if (medianIncomeArr[i].country == countryName) {
-            medianHouseholdIncome = medianIncomeArr[i].medianPerCapitaIncome;
+            medianHouseholdIncome = medianIncomeArr[i].medianHouseholdIncome;
         }
     }
     return medianHouseholdIncome;
@@ -103,47 +100,18 @@ function getConvertedValues(countryInfo) {
     //convert the salary into the currency code conversion rate
     let convertedSalary = Math.floor(countryInfo.medianSalary * countryInfo.conversionRate);
     countryInfo.convertedSalary = convertedSalary;
-    //place this number on the document as the salary in that country
-    console.log(countryInfo.convertedSalary);
-    //place this currency code next to the number
-    console.log(countryInfo.currencyCode);
-    //place this text as to explain that its a yearly salary
     console.log(`converted median web developer annual salary in ${countryInfo.countryCode}: ${countryInfo.convertedSalary} ${countryInfo.currencyCode}`);
+    
+    let convertedMedianHouseholdIncome = Math.floor(countryInfo.medianHouseholdIncome * countryInfo.conversionRate);
+    countryInfo.convertedMedianHouseholdIncome = convertedMedianHouseholdIncome;
+    console.log(`converted median household income in ${countryInfo.countryCode}: ${countryInfo.convertedMedianHouseholdIncome} ${countryInfo.currencyCode}`);
+
     renderCountryInfo(countryInfo);
 }
 
 function renderCountryInfo(countryInfo) {
     // render values to DOM once we know which elements they're being appended to
     console.log(countryInfo);
-}
-
-// this function is just going to display all the countries in the console
-// each country will have links that need to be fetched to obtain
-// this function is currently not being used
-function getCountryList() {
-    // search for country salaries based on country name
-    fetch( `https://api.teleport.org/api/countries/` )
-        .then( (response) => {
-            console.log("here is the first response from the country name api call");
-            console.log(response);
-            return response.json();
-        })
-        .then( (data) => {
-            console.log("here is the second response from the country name api call");
-            console.log(data);
-
-            console.log("below displaying the json objects for each country..trying to get salaries from this")
-            // displaying all the countries just as a test of this loop
-            for (let i = 0; i < data._links["country:items"].length; i++){
-                fetch( data._links["country:items"][i].href )
-                    .then( (response) => {
-                        return response.json();
-                    })
-                    .then( (data) => {
-                        console.log(data);
-                    });
-            }
-        });
 }
 
 userFormEl.addEventListener("submit", formSubmitHandler);
