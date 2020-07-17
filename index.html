@@ -8,19 +8,38 @@
         <link href="assets/css/style.css" rel="stylesheet">
     </head>
     <body class="bg-gray-100">
-        <header class="flex">
-            <a href="#" class="text-5xl m-6 pl-10">Nomad Web Developer</a>
-
-        </header>
-        <div class="hero">
-            <p class="text-xl text-center">Search Where The Best Place To Live As A Web Developer:</p>
-            <form id="user-form" class="flex items-center h-24 justify-center space-x-4">
-                <input name="user-input" id="user-input" type="text" autofocus="true" class="focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 w-100"/>
-                <button type="submit" class="bg-blue-400 p-2 border rounded-lg">Search</button>
-            </form>
+        <div class="bg-cover bg-center" style="background-image: url(./assets/images/background-img.jpg); height: 60vh; min-height: 460px;">
+            <header class="container flex border-double border-b-4 mx-auto">
+                <a href="#" class="text-5xl my-4 pl-20">Nomad Web Developer</a>
+            </header>
+            <div id="form-container" class="container flex border rounded-lg bg-white mx-auto my-10 p-10" style="min-height: 27vh;">
+                <div class="w-3/4 h-12 mt-8">
+                    <p class="text-2xl text-center">Search Where The Best Place To Live As A Web Developer:</p>
+                    <form id="user-form" class="flex items-center h-24 justify-center space-x-4">
+                        <input name="user-input" id="user-input" type="text" autofocus="true" class="focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4" style="min-width: 350px;"/>
+                        <button type="submit" class="bg-blue-400 hover:bg-blue-700 text-white p-2 rounded-lg">Search</button>
+                    </form>
+                </div>
+                <div id="search-history" class="w-1/4 h-12 text-center">
+                    hi
+                </div>
+            </div>
         </div>
-        <div class="content">
-
+        <div class="container items-center rounded overflow-hidden shadow-lg mx-auto my-10 pb-10 space-y-5 bg-white">
+            <div id="country-title" class="flex text-center space-x-4 justify-center mt-5 items-center">
+                <p class="text-3xl">United States</p><img src="https://www.countryflags.io/us/shiny/64.png">
+            </div>
+            <div id="country-currency" class="flex justify-center text-center -space-x-1">
+                <p><img src="https://www.countryflags.io/us/shiny/32.png">$</p>
+                <p><img src="https://www.countryflags.io/eu/shiny/32.png">€</p>
+                <p><img src="https://www.countryflags.io/jp/shiny/32.png">¥</p>
+                <p><img src="https://www.countryflags.io/gb/shiny/32.png">£</p>
+                <p><img src="https://www.countryflags.io/ca/shiny/32.png">$</p>
+            </div>
+            <div id="country-info" class="text-center">
+                <p class="font-medium">The median income for Web Developers in the United States: <span id="dev-income">$61,616.10</span></p>
+                <p>The median per Capita income in the United States is: <span id="median-income">$15,480</span></p>
+            </div>
         </div>
 
         <script src="./assets/js/getCountryCodeOrName.js"></script>
