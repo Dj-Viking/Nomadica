@@ -1,3 +1,4 @@
+// data aggregated from 2006-2012 gallup poll with at least 2000 responses from each country. Find source here: https://news.gallup.com/poll/166211/worldwide-median-household-income-000.aspx
 const medianIncomeArr = [
     {
       "country": "Afghanistan",
