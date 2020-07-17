@@ -22,19 +22,29 @@ function formSubmitHandler() {
 
     // if the country code was searched, the country name will be index [1]. if country name was searched, the country code will be index [0]
     let countryName = searchTerm.length === 2 ? countryCode[1] : countryCode [0];
-    console.log(`country name: ${countryName}`);
     countryInfo.countryName = countryName;
+    console.log(`country name: ${countryInfo.countryName}`);
 
     // if the country code was searched, the country code will be index [0]. if country name was searched, the country code will be index [1]
     countryCode = searchTerm.length === 2 ? countryCode[0] : countryCode[1];
-    console.log(`country code: ${countryCode}`);
     countryInfo.countryCode = countryCode;
+    console.log(`country code: ${countryInfo.countryCode}`);
+    
+    let flagUrl = getFlagUrl(countryCode);
+    countryInfo.flagUrl = flagUrl;
+    console.log(`flag url: ${countryInfo.flagUrl}`);
 
     let medianHouseholdIncome = getMedianHouseholdIncome(countryName);
-    console.log(`Overall median income in searched country: ${medianHouseholdIncome} USD`);
     countryInfo.medianHouseholdIncome = medianHouseholdIncome;
+    console.log(`median household income in ${countryInfo.countryName}: ${countryInfo.medianHouseholdIncome} USD`);
     
     getCurrencyCode(countryInfo);
+}
+
+// returns img src link from country flags api
+function getFlagUrl(countryCode) {
+    let flagUrl = `https://www.countryflags.io/${countryCode}/shiny/64.png`;
+    return flagUrl;
 }
 
 function getMedianHouseholdIncome(countryName) {
@@ -55,7 +65,7 @@ function getCurrencyCode(countryInfo) {
             // get currency code
             let currencyCode = data.currency_code;
             countryInfo.currencyCode = currencyCode;
-            console.log(`country currency code: ${countryInfo.currencyCode}`);
+            console.log(`currency code: ${countryInfo.currencyCode}`);
             getMedianSalary(countryInfo);
         });
 }
@@ -64,14 +74,14 @@ function getMedianSalary(countryInfo) {
     fetch( `https://api.teleport.org/api/countries/iso_alpha2:${countryInfo.countryCode}/salaries/` )
         .then( (response) => response.json() )
         .then( ({salaries}) => {
-            console.log("salary info for various jobs in the searched country:");
+            console.log(`salary info for various jobs in ${countryInfo.countryName}:`);
             console.log(salaries);
 
             for (let i = 0; i < salaries.length; i++) {
                 if (salaries[i].job.id == "WEB-DEVELOPER" || salaries[i].job.id == "Web Developer") {
                     let medianSalary = salaries[i].salary_percentiles.percentile_50;
                     countryInfo.medianSalary = medianSalary;
-                    console.log(`median web developer annual salary in ${countryInfo.countryCode}: ${countryInfo.medianSalary} USD`);
+                    console.log(`median web developer annual salary in ${countryInfo.countryName}: ${countryInfo.medianSalary} USD`);
                 }
             }
             getConversionRate(countryInfo);
@@ -100,11 +110,11 @@ function getConvertedValues(countryInfo) {
     //convert the salary into the currency code conversion rate
     let convertedSalary = Math.floor(countryInfo.medianSalary * countryInfo.conversionRate);
     countryInfo.convertedSalary = convertedSalary;
-    console.log(`converted median web developer annual salary in ${countryInfo.countryCode}: ${countryInfo.convertedSalary} ${countryInfo.currencyCode}`);
+    console.log(`converted median web developer annual salary in ${countryInfo.countryName}: ${countryInfo.convertedSalary} ${countryInfo.currencyCode}`);
     
     let convertedMedianHouseholdIncome = Math.floor(countryInfo.medianHouseholdIncome * countryInfo.conversionRate);
     countryInfo.convertedMedianHouseholdIncome = convertedMedianHouseholdIncome;
-    console.log(`converted median household income in ${countryInfo.countryCode}: ${countryInfo.convertedMedianHouseholdIncome} ${countryInfo.currencyCode}`);
+    console.log(`converted median household income in ${countryInfo.countryName}: ${countryInfo.convertedMedianHouseholdIncome} ${countryInfo.currencyCode}`);
 
     renderCountryInfo(countryInfo);
 }
