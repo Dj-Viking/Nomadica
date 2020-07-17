@@ -1,10 +1,39 @@
-.hero-section-custom {
+.bg-img-custom {
     background-image: url("https://images.unsplash.com/photo-1561781563-2027669731c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
-    background-size: contain;
-    background-attachment: fixed;
+    height: 600px !important;
+    width: 100% !important;
 }
 
 .text-light {
     color: white;
 
+}
+
+.width-custom-350{
+    min-width: 350px !important;
+}
+
+.min-height-custom-300 {
+    min-height: 300px !important;
+}
+
+.text-center-custom {
+    text-align: center !important;
+}
+
+.rounded-border-custom {
+    border-radius: 15px !important;
+}
+
+.text-center-custom {
+    text-align: center !important;
+}
+
+.align-items-center-custom {
+    -ms-flex-align: center !important;
+}
+
+.margin-left-right-custom {
+    margin-left: 20%;
+    margin-right: 20%;
 }
