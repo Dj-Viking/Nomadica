@@ -1,527 +1,527 @@
 // data aggregated from 2006-2012 gallup poll with at least 2000 responses from each country. Find source here: https://news.gallup.com/poll/166211/worldwide-median-household-income-000.aspx
 const medianIncomeArr = [
     {
-      "country": "Afghanistan",
-      "medianPerCapitaIncome": 378
+        "country": "Afghanistan",
+        "medianHouseholdIncome": 4121
     },
     {
-      "country": "Albania",
-      "medianPerCapitaIncome": 1902
+        "country": "Albania",
+        "medianHouseholdIncome": 7314
     },
     {
-      "country": "Algeria",
-      "medianPerCapitaIncome": 1392
+        "country": "Algeria",
+        "medianHouseholdIncome": 7849
     },
     {
-      "country": "Angola",
-      "medianPerCapitaIncome": 720
+        "country": "Angola",
+        "medianHouseholdIncome": 3534
     },
     {
-      "country": "Argentina",
-      "medianPerCapitaIncome": 4109
+        "country": "Argentina",
+        "medianHouseholdIncome": 14432
     },
     {
-      "country": "Armenia",
-      "medianPerCapitaIncome": 926
+        "country": "Armenia",
+        "medianHouseholdIncome": 3865
     },
     {
-      "country": "Australia",
-      "medianPerCapitaIncome": 15026
+        "country": "Australia",
+        "medianHouseholdIncome": 46555
     },
     {
-      "country": "Austria",
-      "medianPerCapitaIncome": 12284
+        "country": "Austria",
+        "medianHouseholdIncome": 34911
     },
     {
-      "country": "Azerbaijan",
-      "medianPerCapitaIncome": 2430
+        "country": "Azerbaijan",
+        "medianHouseholdIncome": 11446
     },
     {
-      "country": "Bahrain",
-      "medianPerCapitaIncome": 4778
+        "country": "Bahrain",
+        "medianHouseholdIncome": 24693
     },
     {
-      "country": "Bangladesh",
-      "medianPerCapitaIncome": 567
+        "country": "Bangladesh",
+        "medianHouseholdIncome": 2819
     },
     {
-      "country": "Belarus",
-      "medianPerCapitaIncome": 5236
+        "country": "Belarus",
+        "medianHouseholdIncome": 15085
     },
     {
-      "country": "Belgium",
-      "medianPerCapitaIncome": 10189
+        "country": "Belgium",
+        "medianHouseholdIncome": 26703
     },
     {
-      "country": "Benin",
-      "medianPerCapitaIncome": 237
+        "country": "Benin",
+        "medianHouseholdIncome": 1502
     },
     {
-      "country": "Bolivia",
-      "medianPerCapitaIncome": 1403
+        "country": "Bolivia",
+        "medianHouseholdIncome": 6399
     },
     {
-      "country": "Bosnia and Herzegovina",
-      "medianPerCapitaIncome": 2553
+        "country": "Bosnia and Herzegovina",
+        "medianHouseholdIncome": 7383
     },
     {
-      "country": "Botswana",
-      "medianPerCapitaIncome": 740
+        "country": "Botswana",
+        "medianHouseholdIncome": 3603
     },
     {
-      "country": "Brazil",
-      "medianPerCapitaIncome": 2247
+        "country": "Brazil",
+        "medianHouseholdIncome": 7522
     },
     {
-      "country": "Bulgaria",
-      "medianPerCapitaIncome": 2829
+        "country": "Bulgaria",
+        "medianHouseholdIncome": 8487
     },
     {
-      "country": "Burkina Faso",
-      "medianPerCapitaIncome": 168
+        "country": "Burkina Faso",
+        "medianHouseholdIncome": 1530
     },
     {
-      "country": "Burundi",
-      "medianPerCapitaIncome": 129
+        "country": "Burundi",
+        "medianHouseholdIncome": 673
     },
     {
-      "country": "Cambodia",
-      "medianPerCapitaIncome": 451
+        "country": "Cambodia",
+        "medianHouseholdIncome": 2308
     },
     {
-      "country": "Cameroon",
-      "medianPerCapitaIncome": 403
+        "country": "Cameroon",
+        "medianHouseholdIncome": 2075
     },
     {
-      "country": "Canada",
-      "medianPerCapitaIncome": 15181
+        "country": "Canada",
+        "medianHouseholdIncome": 41280
     },
     {
-      "country": "Chad",
-      "medianPerCapitaIncome": 338
+        "country": "Chad",
+        "medianHouseholdIncome": 2394
     },
     {
-      "country": "Chile",
-      "medianPerCapitaIncome": 2040
+        "country": "Chile",
+        "medianHouseholdIncome": 8098
     },
     {
-      "country": "China",
-      "medianPerCapitaIncome": 1786
+        "country": "China",
+        "medianHouseholdIncome": 6180
     },
     {
-      "country": "Colombia",
-      "medianPerCapitaIncome": 1534
+        "country": "Colombia",
+        "medianHouseholdIncome": 6544
     },
     {
-      "country": "Comoros",
-      "medianPerCapitaIncome": 598
+        "country": "Comoros",
+        "medianHouseholdIncome": 3912
     },
     {
-      "country": "Costa Rica",
-      "medianPerCapitaIncome": 2032
+        "country": "Costa Rica",
+        "medianHouseholdIncome": 8929
     },
     {
-      "country": "Croatia",
-      "medianPerCapitaIncome": 5177
+        "country": "Croatia",
+        "medianHouseholdIncome": 16231
     },
     {
-      "country": "Cyprus",
-      "medianPerCapitaIncome": 4932
+        "country": "Cyprus",
+        "medianHouseholdIncome": 18242
     },
     {
-      "country": "Czech Republic",
-      "medianPerCapitaIncome": 7821
+        "country": "Czech Republic",
+        "medianHouseholdIncome": 22913
     },
     {
-      "country": "Denmark",
-      "medianPerCapitaIncome": 18262
+        "country": "Denmark",
+        "medianHouseholdIncome": 44360
     },
     {
-      "country": "Dominican Republic",
-      "medianPerCapitaIncome": 1623
+        "country": "Dominican Republic",
+        "medianHouseholdIncome": 6302
     },
     {
-      "country": "DR Congo",
-      "medianPerCapitaIncome": 308
+        "country": "DR Congo",
+        "medianHouseholdIncome": 1988
     },
     {
-      "country": "Ecuador",
-      "medianPerCapitaIncome": 1682
+        "country": "Ecuador",
+        "medianHouseholdIncome": 6858
     },
     {
-      "country": "Egypt",
-      "medianPerCapitaIncome": 623
+        "country": "Egypt",
+        "medianHouseholdIncome": 3111
     },
     {
-      "country": "El Salvador",
-      "medianPerCapitaIncome": 1114
+        "country": "El Salvador",
+        "medianHouseholdIncome": 4828
     },
     {
-      "country": "Estonia",
-      "medianPerCapitaIncome": 5031
+        "country": "Estonia",
+        "medianHouseholdIncome": 12577
     },
     {
-      "country": "Finland",
-      "medianPerCapitaIncome": 15725
+        "country": "Finland",
+        "medianHouseholdIncome": 24615
     },
     {
-      "country": "France",
-      "medianPerCapitaIncome": 12445
+        "country": "France",
+        "medianHouseholdIncome": 31112
     },
     {
-      "country": "Georgia",
-      "medianPerCapitaIncome": 734
+        "country": "Georgia",
+        "medianHouseholdIncome": 2591
     },
     {
-      "country": "Germany",
-      "medianPerCapitaIncome": 14098
+        "country": "Germany",
+        "medianHouseholdIncome": 33333
     },
     {
-      "country": "Ghana",
-      "medianPerCapitaIncome": 47
+        "country": "Ghana",
+        "medianHouseholdIncome": 2050
     },
     {
-      "country": "Greece",
-      "medianPerCapitaIncome": 6086
+        "country": "Greece",
+        "medianHouseholdIncome": 17777
     },
     {
-      "country": "Guatemala",
-      "medianPerCapitaIncome": 898
+        "country": "Guatemala",
+        "medianHouseholdIncome": 4516
     },
     {
-      "country": "Haiti",
-      "medianPerCapitaIncome": 627
+        "country": "Haiti",
+        "medianHouseholdIncome": 2735
     },
     {
-      "country": "Honduras",
-      "medianPerCapitaIncome": 821
+        "country": "Honduras",
+        "medianHouseholdIncome": 4848
     },
     {
-      "country": "Hong Kong",
-      "medianPerCapitaIncome": 9705
+        "country": "Hong Kong",
+        "medianHouseholdIncome": 35443
     },
     {
-      "country": "Hungary",
-      "medianPerCapitaIncome": 4493
+        "country": "Hungary",
+        "medianHouseholdIncome": 12445
     },
     {
-      "country": "India",
-      "medianPerCapitaIncome": 616
+        "country": "India",
+        "medianHouseholdIncome": 3168
     },
     {
-      "country": "Indonesia",
-      "medianPerCapitaIncome": 541
+        "country": "Indonesia",
+        "medianHouseholdIncome": 2199
     },
     {
-      "country": "Iran",
-      "medianPerCapitaIncome": 3115
+        "country": "Iran",
+        "medianHouseholdIncome": 12046
     },
     {
-      "country": "Iraq",
-      "medianPerCapitaIncome": 617
+        "country": "Iraq",
+        "medianHouseholdIncome": 4917
     },
     {
-      "country": "Ireland",
-      "medianPerCapitaIncome": 8048
+        "country": "Ireland",
+        "medianHouseholdIncome": 25085
     },
     {
-      "country": "Israel",
-      "medianPerCapitaIncome": 7847
+        "country": "Israel",
+        "medianHouseholdIncome": 30364
     },
     {
-      "country": "Italy",
-      "medianPerCapitaIncome": 6874
+        "country": "Italy",
+        "medianHouseholdIncome": 20085
     },
     {
-      "country": "Japan",
-      "medianPerCapitaIncome": 10840
+        "country": "Japan",
+        "medianHouseholdIncome": 33822
     },
     {
-      "country": "Jordan",
-      "medianPerCapitaIncome": 1550
+        "country": "Jordan",
+        "medianHouseholdIncome": 8276
     },
     {
-      "country": "Kazakhstan",
-      "medianPerCapitaIncome": 1958
+        "country": "Kazakhstan",
+        "medianHouseholdIncome": 7492
     },
     {
-      "country": "Kenya",
-      "medianPerCapitaIncome": 402
+        "country": "Kenya",
+        "medianHouseholdIncome": 1870
     },
     {
-      "country": "Kuwait",
-      "medianPerCapitaIncome": 7487
+        "country": "Kuwait",
+        "medianHouseholdIncome": 40854
     },
     {
-      "country": "Kyrgyzstan",
-      "medianPerCapitaIncome": 828
+        "country": "Kyrgyzstan",
+        "medianHouseholdIncome": 4034
     },
     {
-      "country": "Laos",
-      "medianPerCapitaIncome": 615
+        "country": "Laos",
+        "medianHouseholdIncome": 3379
     },
     {
-      "country": "Latvia",
-      "medianPerCapitaIncome": 4000
+        "country": "Latvia",
+        "medianHouseholdIncome": 10461
     },
     {
-      "country": "Lebanon",
-      "medianPerCapitaIncome": 2960
+        "country": "Lebanon",
+        "medianHouseholdIncome": 13004
     },
     {
-      "country": "Liberia",
-      "medianPerCapitaIncome": 118
+        "country": "Liberia",
+        "medianHouseholdIncome": 781
     },
     {
-      "country": "Libya",
-      "medianPerCapitaIncome": 1012
+        "country": "Libya",
+        "medianHouseholdIncome": 6398
     },
     {
-      "country": "Lithuania",
-      "medianPerCapitaIncome": 4719
+        "country": "Lithuania",
+        "medianHouseholdIncome": 12375
     },
     {
-      "country": "Luxembourg",
-      "medianPerCapitaIncome": 18418
+        "country": "Luxembourg",
+        "medianHouseholdIncome": 52493
     },
     {
-      "country": "Macedonia",
-      "medianPerCapitaIncome": 1990
+        "country": "Macedonia",
+        "medianHouseholdIncome": 8606
     },
     {
-      "country": "Madagascar",
-      "medianPerCapitaIncome": 205
+        "country": "Madagascar",
+        "medianHouseholdIncome": 1013
     },
     {
-      "country": "Malaysia",
-      "medianPerCapitaIncome": 2267
+        "country": "Malaysia",
+        "medianHouseholdIncome": 11207
     },
     {
-      "country": "Mali",
-      "medianPerCapitaIncome": 165
+        "country": "Mali",
+        "medianHouseholdIncome": 1983
     },
     {
-      "country": "Malta",
-      "medianPerCapitaIncome": 6869
+        "country": "Malta",
+        "medianHouseholdIncome": 21141
     },
     {
-      "country": "Mauritania",
-      "medianPerCapitaIncome": 778
+        "country": "Mauritania",
+        "medianHouseholdIncome": 6679
     },
     {
-      "country": "Mexico",
-      "medianPerCapitaIncome": 2900
+        "country": "Mexico",
+        "medianHouseholdIncome": 11680
     },
     {
-      "country": "Moldova",
-      "medianPerCapitaIncome": 1329
+        "country": "Moldova",
+        "medianHouseholdIncome": 4158
     },
     {
-      "country": "Mongolia",
-      "medianPerCapitaIncome": 1440
+        "country": "Mongolia",
+        "medianHouseholdIncome": 5922
     },
     {
-      "country": "Montenegro",
-      "medianPerCapitaIncome": 3123
+        "country": "Montenegro",
+        "medianHouseholdIncome": 11519
     },
     {
-      "country": "Morocco",
-      "medianPerCapitaIncome": 1135
+        "country": "Morocco",
+        "medianHouseholdIncome": 6634
     },
     {
-      "country": "Nepal",
-      "medianPerCapitaIncome": 519
+        "country": "Nepal",
+        "medianHouseholdIncome": 2718
     },
     {
-      "country": "Netherlands",
-      "medianPerCapitaIncome": 14450
+        "country": "Netherlands",
+        "medianHouseholdIncome": 38584
     },
     {
-      "country": "New Zealand",
-      "medianPerCapitaIncome": 12147
+        "country": "New Zealand",
+        "medianHouseholdIncome": 35562
     },
     {
-      "country": "Nicaragua",
-      "medianPerCapitaIncome": 1173
+        "country": "Nicaragua",
+        "medianHouseholdIncome": 6488
     },
     {
-      "country": "Niger",
-      "medianPerCapitaIncome": 307
+        "country": "Niger",
+        "medianHouseholdIncome": 2708
     },
     {
-      "country": "Nigeria",
-      "medianPerCapitaIncome": 493
+        "country": "Nigeria",
+        "medianHouseholdIncome": 2667
     },
     {
-      "country": "Norway",
-      "medianPerCapitaIncome": 19308
+        "country": "Norway",
+        "medianHouseholdIncome": 51489
     },
     {
-      "country": "Pakistan",
-      "medianPerCapitaIncome": 480
+        "country": "Pakistan",
+        "medianHouseholdIncome": 4060
     },
     {
-      "country": "Panama",
-      "medianPerCapitaIncome": 2011
+        "country": "Panama",
+        "medianHouseholdIncome": 8356
     },
     {
-      "country": "Paraguay",
-      "medianPerCapitaIncome": 1292
+        "country": "Paraguay",
+        "medianHouseholdIncome": 6179
     },
     {
-      "country": "Peru",
-      "medianPerCapitaIncome": 1077
+        "country": "Peru",
+        "medianHouseholdIncome": 5161
     },
     {
-      "country": "Philippines",
-      "medianPerCapitaIncome": 478
+        "country": "Philippines",
+        "medianHouseholdIncome": 2401
     },
     {
-      "country": "Poland",
-      "medianPerCapitaIncome": 4578
+        "country": "Poland",
+        "medianHouseholdIncome": 15338
     },
     {
-      "country": "Portugal",
-      "medianPerCapitaIncome": 5519
+        "country": "Portugal",
+        "medianHouseholdIncome": 16186
     },
     {
-      "country": "Qatar",
-      "medianPerCapitaIncome": 5117
+        "country": "Qatar",
+        "medianHouseholdIncome": 26555
     },
     {
-      "country": "Republic of the Congo",
-      "medianPerCapitaIncome": 416
+        "country": "Republic of the Congo",
+        "medianHouseholdIncome": 2106
     },
     {
-      "country": "Romania",
-      "medianPerCapitaIncome": 2618
+        "country": "Romania",
+        "medianHouseholdIncome": 7922
     },
     {
-      "country": "Russia",
-      "medianPerCapitaIncome": 4129
+        "country": "Russia",
+        "medianHouseholdIncome": 11724
     },
     {
-      "country": "Rwanda",
-      "medianPerCapitaIncome": 235
+        "country": "Rwanda",
+        "medianHouseholdIncome": 1101
     },
     {
-      "country": "Saudi Arabia",
-      "medianPerCapitaIncome": 4762
+        "country": "Saudi Arabia",
+        "medianHouseholdIncome": 24980
     },
     {
-      "country": "Senegal",
-      "medianPerCapitaIncome": 402
+        "country": "Senegal",
+        "medianHouseholdIncome": 3897
     },
     {
-      "country": "Serbia",
-      "medianPerCapitaIncome": 3020
+        "country": "Serbia",
+        "medianHouseholdIncome": 8921
     },
     {
-      "country": "Sierra Leone",
-      "medianPerCapitaIncome": 233
+        "country": "Sierra Leone",
+        "medianHouseholdIncome": 2330
     },
     {
-      "country": "Singapore",
-      "medianPerCapitaIncome": 7345
+        "country": "Singapore",
+        "medianHouseholdIncome": 32360
     },
     {
-      "country": "Slovakia",
-      "medianPerCapitaIncome": 5455
+        "country": "Slovakia",
+        "medianHouseholdIncome": 17415
     },
     {
-      "country": "Slovenia",
-      "medianPerCapitaIncome": 8656
+        "country": "Slovenia",
+        "medianHouseholdIncome": 25969
     },
     {
-      "country": "South Africa",
-      "medianPerCapitaIncome": 1217
+        "country": "South Africa",
+        "medianHouseholdIncome": 5217
     },
     {
-      "country": "South Korea",
-      "medianPerCapitaIncome": 11950
+        "country": "South Korea",
+        "medianHouseholdIncome": 40861
     },
     {
-      "country": "Spain",
-      "medianPerCapitaIncome": 7284
+        "country": "Spain",
+        "medianHouseholdIncome": 21959
     },
     {
-      "country": "Sri Lanka",
-      "medianPerCapitaIncome": 719
+        "country": "Sri Lanka",
+        "medianHouseholdIncome": 3242
     },
     {
-      "country": "Sudan",
-      "medianPerCapitaIncome": 579
+        "country": "Sudan",
+        "medianHouseholdIncome": 3640
     },
     {
-      "country": "Sweden",
-      "medianPerCapitaIncome": 18632
+        "country": "Sweden",
+        "medianHouseholdIncome": 50514
     },
     {
-      "country": "Syria",
-      "medianPerCapitaIncome": 1431
+        "country": "Syria",
+        "medianHouseholdIncome": 8193
     },
     {
-      "country": "Taiwan",
-      "medianPerCapitaIncome": 6882
+        "country": "Taiwan",
+        "medianHouseholdIncome": 32762
     },
     {
-      "country": "Tajikistan",
-      "medianPerCapitaIncome": 713
+        "country": "Tajikistan",
+        "medianHouseholdIncome": 5137
     },
     {
-      "country": "Tanzania",
-      "medianPerCapitaIncome": 384
+        "country": "Tanzania",
+        "medianHouseholdIncome": 2154
     },
     {
-      "country": "Thailand",
-      "medianPerCapitaIncome": 1795
+        "country": "Thailand",
+        "medianHouseholdIncome": 7029
     },
     {
-      "country": "Togo",
-      "medianPerCapitaIncome": 279
+        "country": "Togo",
+        "medianHouseholdIncome": 571
     },
     {
-      "country": "Tunisia",
-      "medianPerCapitaIncome": 1646
+        "country": "Tunisia",
+        "medianHouseholdIncome": 8966
     },
     {
-      "country": "Turkey",
-      "medianPerCapitaIncome": 2538
+        "country": "Turkey",
+        "medianHouseholdIncome": 8955
     },
     {
-      "country": "Uganda",
-      "medianPerCapitaIncome": 296
+        "country": "Uganda",
+        "medianHouseholdIncome": 1775
     },
     {
-      "country": "Ukraine",
-      "medianPerCapitaIncome": 3876
+        "country": "Ukraine",
+        "medianHouseholdIncome": 11074
     },
     {
-      "country": "United Kingdom",
-      "medianPerCapitaIncome": 12399
+        "country": "United Kingdom",
+        "medianHouseholdIncome": 31617
     },
     {
-      "country": "United States",
-      "medianPerCapitaIncome": 15480
+        "country": "United States",
+        "medianHouseholdIncome": 43585
     },
     {
-      "country": "Uruguay",
-      "medianPerCapitaIncome": 2488
+        "country": "Uruguay",
+        "medianHouseholdIncome": 7949
     },
     {
-      "country": "Venezuela",
-      "medianPerCapitaIncome": 2328
+        "country": "Venezuela",
+        "medianHouseholdIncome": 11299
     },
     {
-      "country": "Vietnam",
-      "medianPerCapitaIncome": 1124
+        "country": "Vietnam",
+        "medianHouseholdIncome": 4783
     },
     {
-      "country": "Yemen",
-      "medianPerCapitaIncome": 400
+        "country": "Yemen",
+        "medianHouseholdIncome": 3178
     },
     {
-      "country": "Zambia",
-      "medianPerCapitaIncome": 287
+        "country": "Zambia",
+        "medianHouseholdIncome": 1501
     }
 ];
