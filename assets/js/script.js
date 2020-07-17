@@ -17,49 +17,54 @@ function formSubmitHandler() {
 
     userFormEl.reset();
 
+    let countryInfo = {};
+
     // this function is in a different JS file!! must place it above script.js!!
     // this function returns an array with country code and country name index flipped depending on search term
     let countryCode = getCountryCodeOrName(searchTerm);
 
     // if the country code was searched, the country name will be index [1]. if country name was searched, the country code will be index [0]
     let countryName = searchTerm.length === 2 ? countryCode[1] : countryCode [0];
-
     console.log(`country name: ${countryName}`);
+    countryInfo.countryName = countryName;
 
     // if the country code was searched, the country code will be index [0]. if country name was searched, the country code will be index [1]
     countryCode = searchTerm.length === 2 ? countryCode[0] : countryCode[1];
     console.log(`country code: ${countryCode}`);
+    countryInfo.countryCode = countryCode;
+
+    let medianHouseholdIncome = getMedianHouseholdIncome(countryName);
+    console.log(`Overall median income in searched country: ${medianHouseholdIncome} USD`);
+    countryInfo.medianHouseholdIncome = medianHouseholdIncome;
     
-    getCurrencyCode(countryCode);
+    getCurrencyCode(countryInfo);
+}
+
+function getMedianHouseholdIncome(countryName) {
+    let medianHouseholdIncome;
+    for (let i = 0; i < medianIncomeArr.length; i++) {
+        if (medianIncomeArr[i].country == countryName) {
+            medianHouseholdIncome = medianIncomeArr[i].medianPerCapitaIncome;
+        }
+    }
+    return medianHouseholdIncome;
 }
 
 // get the currency code from the country code for conversion API
-function getCurrencyCode(countryCode){
-    fetch( `https://api.teleport.org/api/countries/iso_alpha2:${countryCode}/` )
+function getCurrencyCode(countryInfo) {
+    fetch( `https://api.teleport.org/api/countries/iso_alpha2:${countryInfo.countryCode}/` )
         .then( (response) => response.json() )
         .then( (data) => {
             // get currency code
             let currencyCode = data.currency_code;
-            console.log(`country currency code: ${currencyCode}`);
-            getConversionRate(countryCode, currencyCode);
+            countryInfo.currencyCode = currencyCode;
+            console.log(`country currency code: ${countryInfo.currencyCode}`);
+            getMedianSalary(countryInfo);
         });
 }
 
-function getConversionRate(countryCode, currencyCode) {
-    fetch(`https://api.ratesapi.io/api/latest?base=USD&symbols=${currencyCode}`)
-        .then( (response) => {
-            return response.json();
-        })
-        .then( ({rates}) => {
-            // currency conversion from USD into searched country's currency
-            let conversionRate = rates[currencyCode];
-            console.log(`1 USD = ${conversionRate} ${currencyCode}`);
-            getMedianSalary(countryCode, conversionRate, currencyCode);
-        })
-}
-
-function getMedianSalary(countryCode, conversionRate, currencyCode){
-    fetch( `https://api.teleport.org/api/countries/iso_alpha2:${countryCode}/salaries/` )
+function getMedianSalary(countryInfo) {
+    fetch( `https://api.teleport.org/api/countries/iso_alpha2:${countryInfo.countryCode}/salaries/` )
         .then( (response) => response.json() )
         .then( ({salaries}) => {
             console.log("salary info for various jobs in the searched country:");
@@ -68,24 +73,50 @@ function getMedianSalary(countryCode, conversionRate, currencyCode){
             for (let i = 0; i < salaries.length; i++) {
                 if (salaries[i].job.id == "WEB-DEVELOPER" || salaries[i].job.id == "Web Developer") {
                     let medianSalary = salaries[i].salary_percentiles.percentile_50;
-                    console.log(`median web developer annual salary in ${countryCode}: ${medianSalary} USD`);
-                    //convert the salary into the currency code conversion rate
-                    let convertedSalary = Math.floor(medianSalary * conversionRate);
-                    //place this number on the document as the salary in that country
-                    console.log(convertedSalary);
-                    //place this currency code next to the number 
-                    console.log(currencyCode);
-                    //place this text as to explain that its a yearly salary
-                    console.log(`converted median web developer annual salary in ${countryCode}: ${convertedSalary} ${currencyCode}`);
+                    countryInfo.medianSalary = medianSalary;
+                    console.log(`median web developer annual salary in ${countryInfo.countryCode}: ${countryInfo.medianSalary} USD`);
                 }
             }
+            getConversionRate(countryInfo);
         });
+}
+
+function getConversionRate(countryInfo) {
+    fetch( `https://api.ratesapi.io/api/latest?base=USD&symbols=${countryInfo.currencyCode}` )
+        .then( (response) => {
+            return response.json();
+        })
+        .then( ({rates}) => {
+            // currency conversion from USD into searched country's currency
+            let conversionRate = rates[countryInfo.currencyCode];
+            countryInfo.conversionRate = conversionRate;
+            console.log(`1 USD = ${countryInfo.conversionRate} ${countryInfo.currencyCode}`);
+            getConvertedValues(countryInfo);
+        });
+}
+
+function getConvertedValues(countryInfo) {
+    //convert the salary into the currency code conversion rate
+    let convertedSalary = Math.floor(countryInfo.medianSalary * countryInfo.conversionRate);
+    countryInfo.convertedSalary = convertedSalary;
+    //place this number on the document as the salary in that country
+    console.log(countryInfo.convertedSalary);
+    //place this currency code next to the number
+    console.log(countryInfo.currencyCode);
+    //place this text as to explain that its a yearly salary
+    console.log(`converted median web developer annual salary in ${countryInfo.countryCode}: ${countryInfo.convertedSalary} ${countryInfo.currencyCode}`);
+    renderCountryInfo(countryInfo);
+}
+
+function renderCountryInfo(countryInfo) {
+    // render values to DOM once we know which elements they're being appended to
+    console.log(countryInfo);
 }
 
 // this function is just going to display all the countries in the console
 // each country will have links that need to be fetched to obtain
 // this function is currently not being used
-function getCountryList(){
+function getCountryList() {
     // search for country salaries based on country name
     fetch( `https://api.teleport.org/api/countries/` )
         .then( (response) => {
@@ -112,5 +143,3 @@ function getCountryList(){
 }
 
 userFormEl.addEventListener("submit", formSubmitHandler);
-
-console.log(medianIncomeArr);
