@@ -17,8 +17,7 @@ function formSubmitHandler() {
 
     let countryInfo = {};
 
-    // this function is in a different JS file!! must place it above script.js!!
-    // this function returns an array with country code and country name index flipped depending on search term
+    // this function returns an array with country code and country name index flipped depending on search term. returns false if country not found.
     let countryCode = getCountryCodeOrName(searchTerm);
 
     // if the country code was searched, the country name will be index [1]. if country name was searched, the country code will be index [0]
@@ -75,7 +74,8 @@ function getCurrencyCode(countryInfo) {
             countryInfo.currencyCode = currencyCode;
             console.log(`currency code: ${countryInfo.currencyCode}`);
             getMedianSalary(countryInfo);
-        });
+        })
+        .catch( (error) => errorMessageEl.textContent = "Unable to connect to database.");
 }
 
 function getMedianSalary(countryInfo) {
@@ -93,7 +93,8 @@ function getMedianSalary(countryInfo) {
                 }
             }
             getConversionRate(countryInfo);
-        });
+        })
+        .catch( (error) => errorMessageEl.textContent = "Unable to connect to database.");
 }
 
 function getConversionRate(countryInfo) {
@@ -111,10 +112,11 @@ function getConversionRate(countryInfo) {
             countryInfo.conversionRate = conversionRate;
             console.log(`1 USD = ${countryInfo.conversionRate} ${countryInfo.currencyCode}`);
             getConvertedValues(countryInfo);
-        });
+        })
+        .catch( (error) => errorMessageEl.textContent = "Unable to connect to database.");
 }
 
-//convert medianSalary and medianHouseholdIncome usingconversionRate
+//convert medianSalary and medianHouseholdIncome using conversionRate
 function getConvertedValues(countryInfo) {
     let convertedSalary = Math.floor(countryInfo.medianSalary * countryInfo.conversionRate);
     countryInfo.convertedSalary = convertedSalary ? convertedSalary : "No salary data found ☹️";
