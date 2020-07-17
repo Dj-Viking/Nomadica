@@ -1,16 +1,75 @@
 .bg-img-custom {
     background-image: url("https://images.unsplash.com/photo-1561781563-2027669731c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
-    height: 600px !important;
+    height: 100% !important;
     width: 100% !important;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+}
+
+.margin-bottom-custom {
+    margin-bottom: 50%;
+}
+
+.flex-custom-column {
+    flex-direction: column !important;
+    
+}
+
+.margin-left-right-custom {
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.border-radius-custom {
+    border-radius: 15px;
+}
+
+.padding-left-right-custom {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.padding-left-right-custom2 {
+    padding-left: 40% !important;
+    padding-right: 40% !important;
+}
+
+
+
+.height-full {
+    height: 100%;
 }
 
 .text-light {
     color: white;
+}
 
+.opacity-light {
+    opacity: .8;
+}
+
+.z-index-high {
+    z-index: 9999;
+}
+
+.z-index-low {
+    z-index: 9998;
+}
+
+.opacity-full {
+    opacity: 1 !important;
 }
 
 .width-custom-350{
     min-width: 350px !important;
+}
+
+.width-custom-50perc {
+    width: 50%
+}
+
+.width-custom-100perc {
+    width: 100px !important;
 }
 
 .min-height-custom-300 {
@@ -36,4 +95,8 @@
 .margin-left-right-custom {
     margin-left: 20%;
     margin-right: 20%;
+}
+.margin-left-right-custom2 {
+    margin-left: 10%;
+    margin-right: 10%;
 }
