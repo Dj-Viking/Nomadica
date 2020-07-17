@@ -1,5 +1,5 @@
 function getCountryCodeOrName(inputValue) {
-    var nameCountries = {
+    let nameCountries = {
         'Afghanistan': 'AF',
         'Aland Islands': 'AX',
         'Albania': 'AL',
@@ -251,9 +251,9 @@ function getCountryCodeOrName(inputValue) {
 
     let inlength = inputValue.length;
     if (inlength === 2) {
-        var outValue = inputValue.toUpperCase();
-        var countryName = "";
-        for (var name in nameCountries) {
+        let outValue = inputValue.toUpperCase();
+        let countryName = "";
+        for (let name in nameCountries) {
             if (nameCountries[name] === outValue) countryName = name;
         }
         switch (true) {
@@ -267,7 +267,7 @@ function getCountryCodeOrName(inputValue) {
     }
 
     if (inlength > 2) {
-        var outValue = inputValue.toLowerCase();
+        let outValue = inputValue.toLowerCase();
 
         switch (true) {
             case Boolean(outValue.match(/^[Gg][Uu][Ii][Nn][Ee][Aa][-][Bb][Ii][Ss][Ss][Aa][Uu]$/)):
@@ -287,9 +287,9 @@ function getCountryCodeOrName(inputValue) {
                 break;
 
             default:
-                var arrCName = outValue.split(" ");
-                var cNameJoin = "";
-                for (var i in arrCName) {
+                let arrCName = outValue.split(" ");
+                let cNameJoin = "";
+                for (let i in arrCName) {
                     cNameJoin += arrCName[i].charAt(0).toUpperCase() + arrCName[i].slice(1) + " ";
                 }
                 outValue = cNameJoin.trim();
