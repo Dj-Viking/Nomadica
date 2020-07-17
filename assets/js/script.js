@@ -114,14 +114,14 @@ function getConversionRate(countryInfo) {
         });
 }
 
+//convert medianSalary and medianHouseholdIncome usingconversionRate
 function getConvertedValues(countryInfo) {
-    //convert the salary into the currency code conversion rate
     let convertedSalary = Math.floor(countryInfo.medianSalary * countryInfo.conversionRate);
-    countryInfo.convertedSalary = convertedSalary;
+    countryInfo.convertedSalary = convertedSalary ? convertedSalary : "No salary data found ☹️";
     console.log(`converted median web developer annual salary in ${countryInfo.countryName}: ${countryInfo.convertedSalary} ${countryInfo.currencyCode}`);
     
     let convertedMedianHouseholdIncome = Math.floor(countryInfo.medianHouseholdIncome * countryInfo.conversionRate);
-    countryInfo.convertedMedianHouseholdIncome = convertedMedianHouseholdIncome;
+    countryInfo.convertedMedianHouseholdIncome = convertedMedianHouseholdIncome ? convertedMedianHouseholdIncome : "No median household income data found ☹️";
     console.log(`converted median household income in ${countryInfo.countryName}: ${countryInfo.convertedMedianHouseholdIncome} ${countryInfo.currencyCode}`);
 
     renderCountryInfo(countryInfo);
