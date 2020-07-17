@@ -252,7 +252,7 @@ function getCountryCodeOrName (inputValue) {
       if (inputValue === undefined || Boolean(inputValue.match(/^[^,'& ()-]{1}([a-zA-Z\s',&()-]){0,80}$/)) === false){errorCode = "5555"}
       var inlength = inputValue.length ;
       if (errorCode === "5555"){
-              return ["ErrorCode 5555: Unsupported Data, return input value in array 1",inputValue];
+              return [false,inputValue];
       }
     
       if (inlength === 2){
@@ -265,7 +265,7 @@ function getCountryCodeOrName (inputValue) {
         }
         switch (true){
         case Boolean(countryName === ""):
-        return ["Country code does not match database record: return input value in array 1",inputValue];
+        return [false,inputValue];
         break;
     
         default:
@@ -306,7 +306,7 @@ function getCountryCodeOrName (inputValue) {
     }
     
       return [
-      (nameCountries.hasOwnProperty(outValue)?outValue:"Input country doesn't match database: returned input in array 1"),
+      (nameCountries.hasOwnProperty(outValue)?outValue:false),
       (nameCountries.hasOwnProperty(outValue)?nameCountries[outValue]:inputValue)
       ];
       

@@ -3,6 +3,7 @@
 
 const userFormEl = document.querySelector("#user-form");
 const userInputEl = document.querySelector("#user-input");
+const errorMessageEl = document.querySelector("#search-error-message");
 
 function formSubmitHandler() {
 
@@ -29,6 +30,13 @@ function formSubmitHandler() {
     countryCode = searchTerm.length === 2 ? countryCode[0] : countryCode[1];
     countryInfo.countryCode = countryCode;
     console.log(`country code: ${countryInfo.countryCode}`);
+
+    // country search validation
+    if (!countryInfo.countryCode || !countryInfo.countryName) {
+        errorMessageEl.textContent = "We couldn't find that country. Please try again.";
+        return;
+    }
+    errorMessageEl.textContent = "";
     
     let flagUrl = getFlagUrl(countryCode);
     countryInfo.flagUrl = flagUrl;
