@@ -4,6 +4,11 @@
 const userFormEl = document.querySelector("#user-form");
 const userInputEl = document.querySelector("#user-input");
 const errorMessageEl = document.querySelector("#search-error-message");
+const firstCountryNameEl = document.querySelector("#country-name1");
+const secondCountryNameEl = document.querySelector("#country-name2")
+const countryTitleEl = document.querySelector("#country-title");
+const developerIncomeEl = document.querySelector("#dev-income");
+const medianIncomeEl = document.querySelector("#median-income");
 
 function formSubmitHandler() {
 
@@ -130,6 +135,28 @@ function getConvertedValues(countryInfo) {
 function renderCountryInfo(countryInfo) {
     // render values to DOM once we know which elements they're being appended to
     console.log(countryInfo);
+    let flagEl = "<img src='" + countryInfo.flagUrl + "'>";
+    countryTitleEl.innerHTML = "<p class='text-3xl'>" + countryInfo.countryName + "</p>" + flagEl;
+    firstCountryNameEl.innerHTML = countryInfo.countryName;
+    secondCountryNameEl.innerHTML = countryInfo.countryName;
+
+    switch (countryInfo.currencyCode) {
+        case "GBP":  
+            developerIncomeEl.innerHTML = "£" + countryInfo.convertedSalary;
+            medianIncomeEl.innerHTML = "£" + countryInfo.convertedMedianHouseholdIncome;
+            break;
+        case "EUR":
+            developerIncomeEl.innerHTML = "€" + countryInfo.convertedSalary;
+            medianIncomeEl.innerHTML = "€" + countryInfo.convertedMedianHouseholdIncome;
+            break;
+        case "JPY":
+            developerIncomeEl.innerHTML = "¥" + countryInfo.convertedSalary;
+            medianIncomeEl.innerHTML = "¥" + countryInfo.convertedMedianHouseholdIncome;
+            break;
+        default: 
+            developerIncomeEl.innerHTML = "$" + countryInfo.convertedSalary + " " + countryInfo.currencyCode;
+            medianIncomeEl.innerHTML = "$" + countryInfo.convertedMedianHouseholdIncome + " " + countryInfo.currencyCode;
+    }
 }
 
 userFormEl.addEventListener("submit", formSubmitHandler);
