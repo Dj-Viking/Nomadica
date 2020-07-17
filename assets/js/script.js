@@ -83,12 +83,16 @@ function getMedianSalary(countryInfo) {
 
 function getConversionRate(countryInfo) {
     fetch( `https://api.ratesapi.io/api/latest?base=USD&symbols=${countryInfo.currencyCode}` )
-        .then( (response) => {
-            return response.json();
-        })
+        .then( (response) => response.json() )
         .then( ({rates}) => {
             // currency conversion from USD into searched country's currency
-            let conversionRate = rates[countryInfo.currencyCode];
+            let conversionRate;
+            if (rates) {
+                conversionRate = rates[countryInfo.currencyCode];
+            } else {
+                conversionRate = 1;
+                countryInfo.currencyCode = "USD";
+            }
             countryInfo.conversionRate = conversionRate;
             console.log(`1 USD = ${countryInfo.conversionRate} ${countryInfo.currencyCode}`);
             getConvertedValues(countryInfo);
