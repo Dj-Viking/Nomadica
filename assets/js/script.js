@@ -130,8 +130,8 @@ function renderCountryInfo(countryInfo) {
     countryNameEl.textContent = countryInfo.countryName;
     flagImgEl.setAttribute("src", countryInfo.flagUrl);
     countryInfoEl.innerHTML =
-        `<p class="font-medium">Median Annual Salary for Web Developers in ${countryInfo.countryName}: <span id="converted-salary">${countryInfo.convertedSalary}</span> <span id="currency-code">${countryInfo.currencyCode}</span></p>
-        <p class="font-medium">Median Household Income in ${countryInfo.countryName}: <span id="converted-household-income">${countryInfo.convertedMedianHouseholdIncome}</span> ${countryInfo.currencyCode}</p>`;
+        `<p class="font-medium">Median Annual Salary for Web Developers in ${countryInfo.countryName}: ${countryInfo.convertedSalary} <span id="currency-code">${countryInfo.currencyCode}</span></p>
+        <p class="font-medium">Median Household Income in ${countryInfo.countryName}: ${countryInfo.convertedMedianHouseholdIncome} ${countryInfo.currencyCode}</p>`;
 }
 
 function convertButtonHandler(event) {
@@ -146,7 +146,7 @@ function convertButtonHandler(event) {
     countryInfo.medianHouseholdIncome = getMedianHouseholdIncome(countryInfo.countryName);
     countryInfo.flagUrl = flagImgEl.getAttribute("src");
     countryInfo.currentCurrencyCode = document.querySelector("#currency-code").textContent;
-    countryInfo.medianHouseholdIncome = document.querySelector("#converted-household-income").textContent;
+    
 
     getMedianSalary(countryInfo);
 }
