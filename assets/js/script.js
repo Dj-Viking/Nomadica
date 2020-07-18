@@ -8,6 +8,7 @@ const countryNameEl = document.querySelector("#country-name");
 const flagImgEl = document.querySelector("#flag-img");
 const quickConvertWrapperEl = document.querySelector("#quick-convert-wrapper");
 const countryInfoEl = document.querySelector("#country-info");
+const searchHistoryListEl = document.querySelector("#search-history-list");
 
 function formSubmitHandler(event) {
 
@@ -71,8 +72,7 @@ function getCurrencyCode(countryInfo) {
         .then((response) => response.json())
         .then((data) => {
             // get currency code
-            let currencyCode = data.currency_code;
-            countryInfo.currencyCode = currencyCode;
+            countryInfo.currencyCode = data.currency_code;
             getMedianSalary(countryInfo);
         })
         .catch((error) => errorMessageEl.textContent = "Unable to connect to database.");
@@ -86,8 +86,7 @@ function getMedianSalary(countryInfo) {
             for (let i = 0; i < salaries.length; i++) {
                 if (salaries[i].job.id == "WEB-DEVELOPER" || salaries[i].job.id == "Web Developer") {
                     // this figure is in USD
-                    let medianSalary = salaries[i].salary_percentiles.percentile_50;
-                    countryInfo.medianSalary = medianSalary;
+                    countryInfo.medianSalary = salaries[i].salary_percentiles.percentile_50;
                 }
             }
             getConversionRate(countryInfo);
@@ -152,17 +151,28 @@ function convertButtonHandler(event) {
 
 // when a country is searched, save in localStorage and add to search history. search history filters out duplicates and holds up to 10 country names.
 function saveSearchHistory(countryName) {
-    var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+    let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
     searchHistory.push(countryName);
-    searchHistory = searchHistory.filter(function(value, index, array) {
-        return array.indexOf(value) === index;
-    });
+    searchHistory = searchHistory.filter((value, index, array) => array.indexOf(value) === index);
     if (searchHistory.length > 10) {
         searchHistory = searchHistory.slice(1, 11);
     }
     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-    // loadSearchHistory();
+    loadSearchHistory();
 }
 
+function loadSearchHistory() {
+    let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+    searchHistoryListEl.innerHTML = "";
+
+    for (let i = 0; i < searchHistory.length; i++) {
+        let searchHistoryListItemEl = document.createElement("li");
+        searchHistoryListItemEl.textContent = searchHistory[i];
+
+        searchHistoryListEl.prepend(searchHistoryListItemEl);
+    }
+}
+
+loadSearchHistory();
 userFormEl.addEventListener("submit", formSubmitHandler);
 quickConvertWrapperEl.addEventListener("click", convertButtonHandler);
