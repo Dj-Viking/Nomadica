@@ -25,12 +25,10 @@ function formSubmitHandler(event) {
     let countryCode = getCountryCodeOrName(searchTerm);
 
     // if the country code was searched, the country name will be index [1]. if country name was searched, the country code will be index [0]
-    let countryName = searchTerm.length === 2 ? countryCode[1] : countryCode[0];
-    countryInfo.countryName = countryName;
+    countryInfo.countryName = searchTerm.length === 2 ? countryCode[1] : countryCode[0];
 
     // if the country code was searched, the country code will be index [0]. if country name was searched, the country code will be index [1]
-    countryCode = searchTerm.length === 2 ? countryCode[0] : countryCode[1];
-    countryInfo.countryCode = countryCode;
+    countryInfo.countryCode = searchTerm.length === 2 ? countryCode[0] : countryCode[1];
 
     // country search validation
     if (!countryInfo.countryCode || !countryInfo.countryName) {
@@ -39,10 +37,12 @@ function formSubmitHandler(event) {
     }
     errorMessageEl.textContent = "";
 
-    let flagUrl = getFlagUrl(countryCode);
+    saveSearchHistory(countryInfo.countryName);
+
+    let flagUrl = getFlagUrl(countryInfo.countryCode);
     countryInfo.flagUrl = flagUrl;
 
-    let medianHouseholdIncome = getMedianHouseholdIncome(countryName);
+    let medianHouseholdIncome = getMedianHouseholdIncome(countryInfo.countryName);
     countryInfo.medianHouseholdIncome = medianHouseholdIncome;
 
     getCurrencyCode(countryInfo);
@@ -146,9 +146,22 @@ function convertButtonHandler(event) {
     countryInfo.medianHouseholdIncome = getMedianHouseholdIncome(countryInfo.countryName);
     countryInfo.flagUrl = flagImgEl.getAttribute("src");
     countryInfo.currentCurrencyCode = document.querySelector("#currency-code").textContent;
-    
 
     getMedianSalary(countryInfo);
+}
+
+// when a country is searched, save in localStorage and add to search history. search history filters out duplicates and holds up to 10 country names.
+function saveSearchHistory(countryName) {
+    var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+    searchHistory.push(countryName);
+    searchHistory = searchHistory.filter(function(value, index, array) {
+        return array.indexOf(value) === index;
+    });
+    if (searchHistory.length > 10) {
+        searchHistory = searchHistory.slice(1, 11);
+    }
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+    // loadSearchHistory();
 }
 
 userFormEl.addEventListener("submit", formSubmitHandler);
