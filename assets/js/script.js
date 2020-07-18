@@ -20,6 +20,11 @@ function formSubmitHandler(event) {
 
     userFormEl.reset();
 
+    startSearch(searchTerm);
+}
+
+function startSearch(searchTerm) {
+
     let countryInfo = {};
 
     // this function returns an array with country code and country name index flipped depending on search term. returns false if country not found.
@@ -173,6 +178,11 @@ function loadSearchHistory() {
     }
 }
 
+function searchHistoryClickHandler(event) {
+    startSearch(event.target.textContent);
+}
+
 loadSearchHistory();
 userFormEl.addEventListener("submit", formSubmitHandler);
 quickConvertWrapperEl.addEventListener("click", convertButtonHandler);
+searchHistoryListEl.addEventListener("click", searchHistoryClickHandler);
