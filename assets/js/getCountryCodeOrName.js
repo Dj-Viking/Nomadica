@@ -238,6 +238,7 @@ function getCountryCodeOrName(inputValue) {
         'Vanuatu': 'VU',
         'Venezuela': 'VE',
         'Viet Nam': 'VN',
+        'Vietnam': 'VN',
         'Virgin Islands, British': 'VG',
         'Virgin Islands, U.S.': 'VI',
         'Wallis And Futuna': 'WF',

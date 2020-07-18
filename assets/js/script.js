@@ -7,14 +7,9 @@ const errorMessageEl = document.querySelector("#search-error-message");
 const countryNameEl = document.querySelector("#country-name");
 const flagImgEl = document.querySelector("#flag-img");
 const quickConvertWrapperEl = document.querySelector("#quick-convert-wrapper");
-const usdQuickConvertButtonEl = document.querySelector("#usd-quick-convert");
-const eurQuickConvertButtonEl = document.querySelector("#eur-quick-convert");
-const jpyQuickConvertButtonEl = document.querySelector("#jpy-quick-convert");
-const gbpQuickConvertButtonEl = document.querySelector("#gbp-quick-convert");
-const cadQuickConvertButtonEl = document.querySelector("#cad-quick-convert");
 const countryInfoEl = document.querySelector("#country-info");
 
-function formSubmitHandler() {
+function formSubmitHandler(event) {
 
     //this prevents the refreshing of the page when form is submitted
     event.preventDefault();
@@ -30,7 +25,7 @@ function formSubmitHandler() {
     let countryCode = getCountryCodeOrName(searchTerm);
 
     // if the country code was searched, the country name will be index [1]. if country name was searched, the country code will be index [0]
-    let countryName = searchTerm.length === 2 ? countryCode[1] : countryCode [0];
+    let countryName = searchTerm.length === 2 ? countryCode[1] : countryCode[0];
     countryInfo.countryName = countryName;
 
     // if the country code was searched, the country code will be index [0]. if country name was searched, the country code will be index [1]
@@ -43,13 +38,13 @@ function formSubmitHandler() {
         return;
     }
     errorMessageEl.textContent = "";
-    
+
     let flagUrl = getFlagUrl(countryCode);
     countryInfo.flagUrl = flagUrl;
 
     let medianHouseholdIncome = getMedianHouseholdIncome(countryName);
     countryInfo.medianHouseholdIncome = medianHouseholdIncome;
-    
+
     getCurrencyCode(countryInfo);
 }
 
@@ -72,38 +67,38 @@ function getMedianHouseholdIncome(countryName) {
 
 // get the currency code from the country code for conversion API
 function getCurrencyCode(countryInfo) {
-    fetch( `https://api.teleport.org/api/countries/iso_alpha2:${countryInfo.countryCode}/` )
-        .then( (response) => response.json() )
-        .then( (data) => {
+    fetch(`https://api.teleport.org/api/countries/iso_alpha2:${countryInfo.countryCode}/`)
+        .then((response) => response.json())
+        .then((data) => {
             // get currency code
             let currencyCode = data.currency_code;
             countryInfo.currencyCode = currencyCode;
             getMedianSalary(countryInfo);
         })
-        .catch( (error) => errorMessageEl.textContent = "Unable to connect to database.");
+        .catch((error) => errorMessageEl.textContent = "Unable to connect to database.");
 }
 
 function getMedianSalary(countryInfo) {
-    fetch( `https://api.teleport.org/api/countries/iso_alpha2:${countryInfo.countryCode}/salaries/` )
-    .then( (response) => response.json() )
-    .then( ({salaries}) => {
-        
-        for (let i = 0; i < salaries.length; i++) {
-            if (salaries[i].job.id == "WEB-DEVELOPER" || salaries[i].job.id == "Web Developer") {
-                // this figure is in USD
-                let medianSalary = salaries[i].salary_percentiles.percentile_50;
-                countryInfo.medianSalary = medianSalary;
+    fetch(`https://api.teleport.org/api/countries/iso_alpha2:${countryInfo.countryCode}/salaries/`)
+        .then((response) => response.json())
+        .then(({ salaries }) => {
+
+            for (let i = 0; i < salaries.length; i++) {
+                if (salaries[i].job.id == "WEB-DEVELOPER" || salaries[i].job.id == "Web Developer") {
+                    // this figure is in USD
+                    let medianSalary = salaries[i].salary_percentiles.percentile_50;
+                    countryInfo.medianSalary = medianSalary;
                 }
             }
             getConversionRate(countryInfo);
         })
-        .catch( (error) => errorMessageEl.textContent = "Unable to connect to database.");
+        .catch((error) => errorMessageEl.textContent = "Unable to connect to database.");
 }
 
 function getConversionRate(countryInfo) {
-    fetch( `https://api.ratesapi.io/api/latest?base=USD&symbols=${countryInfo.currencyCode}` )
-        .then( (response) => response.json() )
-        .then( ({rates}) => {
+    fetch(`https://api.ratesapi.io/api/latest?base=USD&symbols=${countryInfo.currencyCode}`)
+        .then((response) => response.json())
+        .then(({ rates }) => {
             let conversionRate;
             if (rates) {
                 // currency conversion rate for USD to searched country's currency
@@ -116,14 +111,14 @@ function getConversionRate(countryInfo) {
             countryInfo.conversionRate = conversionRate;
             getConvertedValues(countryInfo);
         })
-        .catch( (error) => errorMessageEl.textContent = "Unable to connect to database.");
+        .catch((error) => errorMessageEl.textContent = "Unable to connect to database.");
 }
 
 //convert medianSalary and medianHouseholdIncome using conversionRate
 function getConvertedValues(countryInfo) {
     let convertedSalary = Math.floor(countryInfo.medianSalary * countryInfo.conversionRate);
     countryInfo.convertedSalary = convertedSalary ? convertedSalary : "No salary data found ☹️";
-    
+
     let convertedMedianHouseholdIncome = Math.floor(countryInfo.medianHouseholdIncome * countryInfo.conversionRate);
     countryInfo.convertedMedianHouseholdIncome = convertedMedianHouseholdIncome ? convertedMedianHouseholdIncome : "No median household income data found ☹️";
 
@@ -134,10 +129,27 @@ function renderCountryInfo(countryInfo) {
     // render values to DOM once we know which elements they're being appended to
     countryNameEl.textContent = countryInfo.countryName;
     flagImgEl.setAttribute("src", countryInfo.flagUrl);
-    countryInfoEl.innerHTML = 
-        `<p class="font-medium">Median Annual Salary for Web Developers in ${countryInfo.countryName}: ${countryInfo.convertedSalary} ${countryInfo.currencyCode}</p>
-        <p class="font-medium">Median Household Income in ${countryInfo.countryName}: ${countryInfo.convertedMedianHouseholdIncome} ${countryInfo.currencyCode}</p>`;
-    console.log(countryInfo);
+    countryInfoEl.innerHTML =
+        `<p class="font-medium">Median Annual Salary for Web Developers in ${countryInfo.countryName}: <span id="converted-salary">${countryInfo.convertedSalary}</span> <span id="currency-code">${countryInfo.currencyCode}</span></p>
+        <p class="font-medium">Median Household Income in ${countryInfo.countryName}: <span id="converted-household-income">${countryInfo.convertedMedianHouseholdIncome}</span> ${countryInfo.currencyCode}</p>`;
+}
+
+function convertButtonHandler(event) {
+    let countryInfo = {};
+    if (event.target.getAttribute("data-currency")) {
+        countryInfo.currencyCode = event.target.getAttribute("data-currency");
+    } else {
+        return;
+    }
+    countryInfo.countryName = countryNameEl.textContent;
+    countryInfo.countryCode = getCountryCodeOrName(countryInfo.countryName)[1];
+    countryInfo.medianHouseholdIncome = getMedianHouseholdIncome(countryInfo.countryName);
+    countryInfo.flagUrl = flagImgEl.getAttribute("src");
+    countryInfo.currentCurrencyCode = document.querySelector("#currency-code").textContent;
+    countryInfo.medianHouseholdIncome = document.querySelector("#converted-household-income").textContent;
+
+    getMedianSalary(countryInfo);
 }
 
 userFormEl.addEventListener("submit", formSubmitHandler);
+quickConvertWrapperEl.addEventListener("click", convertButtonHandler);

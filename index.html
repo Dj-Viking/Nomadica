@@ -45,11 +45,11 @@
                 <div id="country-info" class="text-center"></div>
                 <div id="quick-convert-wrapper" class="flex justify-center text-center space-x-1">
                     <!-- these flags can be buttons to switch the currency amount from dollars to the selected in this list -->
-                    <button id="usd-quick-convert"><img src="https://www.countryflags.io/us/shiny/32.png">$</button> 
-                    <button id="eur-quick-convert"><img src="https://www.countryflags.io/eu/shiny/32.png">€</button> 
-                    <button id="jpy-quick-convert"><img src="https://www.countryflags.io/jp/shiny/32.png">¥</button> 
-                    <button id="gbp-quick-convert"><img src="https://www.countryflags.io/gb/shiny/32.png">£</button> 
-                    <button id="cad-quick-convert"><img src="https://www.countryflags.io/ca/shiny/32.png">$</button>
+                    <img data-currency="USD" id="usd-quick-convert" src="https://www.countryflags.io/us/shiny/32.png">
+                    <img data-currency="EUR" id="eur-quick-convert" src="https://www.countryflags.io/eu/shiny/32.png">
+                    <img data-currency="JPY" id="jpy-quick-convert" src="https://www.countryflags.io/jp/shiny/32.png">
+                    <img data-currency="GBP" id="gbp-quick-convert" src="https://www.countryflags.io/gb/shiny/32.png">
+                    <img data-currency="CAD" id="cad-quick-convert" src="https://www.countryflags.io/ca/shiny/32.png">
                 </div>
             </section>
             <section class="flex justify-center" id="search-container">
@@ -59,7 +59,7 @@
                        
                         
                     </p>
-                    <!-- appending button elements with the text element inside for search history --> 
+                    <!-- appending button elements with the text element inside for search history -->
                     <!-- when searching for the country again just grab the text content inside -->
                     <!-- this button and place it in the text field and submit -->
                     <p>test</p>
