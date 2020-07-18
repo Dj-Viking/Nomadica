@@ -1,7 +1,7 @@
 # Nomad Web Developer
 
 ## Description
-Have you ever thought about packing your bags and starting over somewhere new? Web developers have the luxury of being able to work almost anywhere, but it can be distressing not knowing what the standard of living for web developers is in a foreign land. This app allows you to search the median annual salary for web developers in over 200 countries. The salary is compared to the median household income for that country. These figures are both displayed in the searched country's currency or USD if the Rates API does not contain a conversion rate.
+Have you ever thought about packing your bags and starting over somewhere new? Web developers have the luxury of being able to work almost anywhere, but it can be distressing not knowing what the standard of living for web developers is in a foreign land. This app allows you to search the median annual salary for web developers in over 200 countries. This salary is then compared to the median household income for that country. These figures are both displayed in the searched country's currency (or USD if the Rates API does not contain a conversion rate). These figures can then be converted to common currencies with the buttons at the bottom of the page.
 
 ## User Story
 AS A web developer</br>
@@ -13,8 +13,8 @@ Coming Soon!
 
 ## Directions for Future Development
 * Comparison to searched country's poverty line
-* Create buttons to allow users to easily convert median salary and median household income figures to common currencies (USD, EUR, GBP, JPY, CAD, AUD)
-* Allow users to save a "home country" through local storage and convert all search results to their home country's currency as well
+* Save user's search history in local storage
+* Allow users to save a "home country" in local storage and convert all search results to their home country's currency as well
 
 ## Authors
 Created by Anders Ackerman, Daniel Monterrosa, and Junior Escobar
