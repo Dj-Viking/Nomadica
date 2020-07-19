@@ -30,7 +30,7 @@
                             required
                             class="focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 width-350-custom"
                         />
-                        <button type="submit" class="bg-blue-400 hover:bg-blue-700 text-white p-2 rounded-lg">
+                        <button type="submit" class="bg-blue-400 transition duration-500 hover:bg-blue-700 text-white p-2 rounded-lg">
                             Search
                         </button>                  
                     </form>       
@@ -45,19 +45,19 @@
                     <img id="flag-img"/>
                 </div>
                 <div id="country-info" class="text-center px-4"></div>
-                <div id="quick-convert-wrapper" class="flex justify-center text-center space-x-1">
+                <div id="quick-convert-wrapper" class="flex justify-center text-center space-x-1 ">
                     <!-- these flags can be buttons to switch the currency amount from dollars to the selected in this list -->
-                    <img data-currency="USD" id="usd-quick-convert" src="https://www.countryflags.io/us/shiny/32.png">
-                    <img data-currency="EUR" id="eur-quick-convert" src="https://www.countryflags.io/eu/shiny/32.png">
-                    <img data-currency="JPY" id="jpy-quick-convert" src="https://www.countryflags.io/jp/shiny/32.png">
-                    <img data-currency="GBP" id="gbp-quick-convert" src="https://www.countryflags.io/gb/shiny/32.png">
-                    <img data-currency="CAD" id="cad-quick-convert" src="https://www.countryflags.io/ca/shiny/32.png">
+                    <img data-currency="USD" id="usd-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/us/shiny/32.png">
+                    <img data-currency="EUR" id="eur-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/eu/shiny/32.png">
+                    <img data-currency="JPY" id="jpy-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/jp/shiny/32.png">
+                    <img data-currency="GBP" id="gbp-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/gb/shiny/32.png">
+                    <img data-currency="CAD" id="cad-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/ca/shiny/32.png">
                 </div>
             </section>
             <section class="margin-left-right-custom bg-gray-100 margin-bottom-custom rounded-lg" id="search-container">
                 <p class="bg-gray-300 border-radius-custom text-center h-8 pt-1 font-semibold">Search History</p>
                 <div id="search-history" class="flex flex-custom-column justify-center text-center">
-                    <ul id="search-history-list"></ul>
+                    <ul id="search-history-list" class="self-center"></ul>
                 </div>
             </section>
         </div>

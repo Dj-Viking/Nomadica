@@ -20,7 +20,21 @@ body {
     height: 200px;
 }
 
+#search-history-list {
+    padding: 0px;
+}
 
+li {
+    width: 150px
+}
+
+li:hover {
+    cursor: pointer;
+}
+
+#quick-convert-wrapper:hover {
+    cursor: pointer;
+}
 
 .margin-bottom-custom {
     margin-bottom: 50%;
