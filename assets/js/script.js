@@ -172,6 +172,7 @@ function loadSearchHistory() {
 
     for (let i = 0; i < searchHistory.length; i++) {
         let searchHistoryListItemEl = document.createElement("li");
+        searchHistoryListItemEl.classList = "transition duration-500 hover:bg-blue-700 hover:text-white rounded-lg";
         searchHistoryListItemEl.textContent = searchHistory[i];
 
         searchHistoryListEl.prepend(searchHistoryListItemEl);
