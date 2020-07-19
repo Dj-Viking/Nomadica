@@ -1,14 +1,26 @@
+html {
+    font-family: 'Source Code Pro', monospace !important;
+}
+
 .bg-img-custom {
     background-image: url("../images/background-img.jpg");
     height: 100% !important;
     width: 100% !important;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    
+    background-position: 50% 70%;
 }
 
 body {
     margin: 0;
+}
+
+.hide-before-search {
+    display: none;
+}
+
+.hide-after-search {
+    display: block;
 }
 
 #form-container {
@@ -25,16 +37,19 @@ body {
 }
 
 li {
-    width: 150px
+    width: 150px;
+    background-color:rgba(99,179,237, 1);
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 li:hover {
     cursor: pointer;
 }
 
-#quick-convert-wrapper:hover {
+/* #quick-convert-wrapper:hover {
     cursor: pointer;
-}
+} */
 
 .margin-bottom-custom {
     margin-bottom: 50%;
@@ -65,7 +80,7 @@ li:hover {
 }
 
 .title-padding {
-    padding-left: 15vw;
+    padding-left: 5vw;
 }
 
 .height-full {
@@ -135,7 +150,7 @@ li:hover {
 
 @media screen and (max-width: 1024px) {
     .title-padding {
-        padding-left: 8vw;
+        padding-left: 5vw;
     }
     .custom-title {
         font-size: 2vw !important; 
@@ -150,7 +165,7 @@ li:hover {
         font-size: 2vw !important;
     }
     #user-form {
-        padding-left: 2.5vw;
+        padding-left: 0vw;
     }
     h1 {
         font-size: 5vw !important;

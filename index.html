@@ -4,9 +4,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Nomad Web Developer</title>
+        <!-- google fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet"> 
+        <!-- TailWind CDN -->
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <!-- back up tailwind styles -->
         <link href="./assets/css/tailwind.css" rel="stylesheet">
+        <!-- custom styles -->
         <link href="./assets/css/style.css" rel="stylesheet">
+        <!-- favicon -->
+        <link rel="icon" type="img/ico" href="./assets/images/favicon.ico">
     </head>
     <body class="bg-cover bg-img-custom p-2">
         <div id="search-section" class=" w-100 mb-6">
@@ -17,8 +24,8 @@
             </header>
             <section id="form-container" class="border rounded-lg margin-left-right-custom2 bg-gray-200">
                 <div class="rounded-border-custom opacity-full z-index-high title-padding">
-                    <p class="text-2xl text-left mt-6 custom-title">
-                        Search Web Developer Salaries by Country Name:
+                    <p class="text-xl text-left mt-6 custom-title">
+                        Search Web Developer Salaries </br> by Country Name 👇:
                     </p>                       
                     <form id="user-form" class="flex items-center h-24 space-x-4 pl-32">
                         <input 
@@ -41,21 +48,39 @@
         <div class="">
             <section class="container items-center rounded overflow-hidden shadow-lg mx-auto my-10 pb-10 space-y-5 bg-gray-200 items-center">
                 <div id="country-title" class="flex text-center space-x-4 justify-center mt-5 items-center">
+                    <p id="call-to-action" class="hide-after-search ml-5">
+                        Search Above 👆 to See Web Developer Salaries Across the World! ✈️
+                    </p>
                     <p id="country-name" class="text-3xl"></p>
                     <img id="flag-img"/>
                 </div>
                 <div id="country-info" class="text-center px-4"></div>
-                <div id="quick-convert-wrapper" class="flex justify-center text-center space-x-1 ">
+                <div id="quick-convert-wrapper" class="flex justify-center text-center space-x-1 hide-before-search">
                     <!-- these flags can be buttons to switch the currency amount from dollars to the selected in this list -->
-                    <img data-currency="USD" id="usd-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/us/shiny/32.png">
-                    <img data-currency="EUR" id="eur-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/eu/shiny/32.png">
-                    <img data-currency="JPY" id="jpy-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/jp/shiny/32.png">
-                    <img data-currency="GBP" id="gbp-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/gb/shiny/32.png">
-                    <img data-currency="CAD" id="cad-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/ca/shiny/32.png">
+                    <button type="submit">
+                        <img data-currency="USD" id="usd-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/us/shiny/32.png">
+                    </button>
+                    <button type="submit">
+                        <img data-currency="EUR" id="eur-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/eu/shiny/32.png">
+                    </button>
+                    <button type="submit">
+                        <img data-currency="JPY" id="jpy-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/jp/shiny/32.png">
+                    </button>
+                    <button type="submit">
+                        <img data-currency="GBP" id="gbp-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/gb/shiny/32.png">
+                    </button>
+                    <button type="button">
+                        <img data-currency="CAD" id="cad-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/ca/shiny/32.png">
+                    </button>
                 </div>
+                <p class="text-center hide-before-search" id="quickconv-reminder">
+                    To quickly convert the salary to other currencies, </br> just click the flags above! 👆
+                </p>
             </section>
             <section class="margin-left-right-custom bg-gray-100 margin-bottom-custom rounded-lg" id="search-container">
-                <p class="bg-gray-300 border-radius-custom text-center h-8 pt-1 font-semibold">Search History</p>
+                <p class="bg-gray-300 border-radius-custom text-center h-8 pt-1 font-semibold">
+                    Search History 
+                </p>
                 <div id="search-history" class="flex flex-custom-column justify-center text-center">
                     <ul id="search-history-list" class="self-center"></ul>
                 </div>

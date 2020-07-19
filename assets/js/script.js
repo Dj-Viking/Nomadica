@@ -9,11 +9,19 @@ const flagImgEl = document.querySelector("#flag-img");
 const quickConvertWrapperEl = document.querySelector("#quick-convert-wrapper");
 const countryInfoEl = document.querySelector("#country-info");
 const searchHistoryListEl = document.querySelector("#search-history-list");
+const callToActionEl = document.querySelector("#call-to-action");
+const quickConvReminderEl = document.querySelector("#quickconv-reminder");
 
 function formSubmitHandler(event) {
 
     //this prevents the refreshing of the page when form is submitted
     event.preventDefault();
+
+    //handling the hiding classes
+    quickConvertWrapperEl.classList.remove("hide-before-search");
+    quickConvReminderEl.classList.remove("hide-before-search");
+    callToActionEl.classList.remove("hide-after-search");
+    callToActionEl.classList = "hide-before-search";
 
     // this will hold the value of the user's search
     let searchTerm = userInputEl.value;
@@ -181,6 +189,10 @@ function loadSearchHistory() {
 
 function searchHistoryClickHandler(event) {
     startSearch(event.target.textContent);
+    quickConvertWrapperEl.classList.remove("hide-before-search");
+    quickConvReminderEl.classList.remove("hide-before-search");
+    callToActionEl.classList.remove("hide-after-search");
+    callToActionEl.classList = "hide-before-search";
 }
 
 loadSearchHistory();
