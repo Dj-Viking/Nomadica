@@ -157,13 +157,13 @@ body {
     
     #form-container {
         background-position-y: 10.5em;
-        background-position-x: 0vw;
+        background-position-x: -5vw;
         height: 300px;
     }
     #user-form {
         display: flex !important;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: space-evenly;
         padding-left: 0vw;
         line-height: 4vw;
     }
