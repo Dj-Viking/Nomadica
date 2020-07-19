@@ -1,11 +1,26 @@
 .bg-img-custom {
-    background-image: url("https://images.unsplash.com/photo-1561781563-2027669731c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+    background-image: url("../images/background-img.jpg");
     height: 100% !important;
     width: 100% !important;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-position: 50% 100%;
+    
 }
+
+body {
+    margin: 0;
+}
+
+#form-container {
+    background-image: url("../images/people-working-in-cafe.jpg");
+    background-attachment: local;
+    background-repeat: no-repeat;
+    background-position-y: 0rem;
+    background-position-x: 55vw;
+    height: 200px;
+}
+
+
 
 .margin-bottom-custom {
     margin-bottom: 50%;
@@ -22,7 +37,8 @@
 }
 
 .border-radius-custom {
-    border-radius: 15px;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
 }
 
 .padding-left-right-custom {
@@ -34,7 +50,9 @@
     padding-right: 40% !important;
 }
 
-
+.title-padding {
+    padding-left: 15vw;
+}
 
 .height-full {
     height: 100%;
@@ -69,7 +87,7 @@
 }
 
 .width-custom-100perc {
-    width: 100px !important;
+    width: 300px !important;
 }
 
 .min-height-custom-300 {
@@ -99,4 +117,54 @@
 .margin-left-right-custom2 {
     margin-left: 10%;
     margin-right: 10%;
+}
+
+@media screen and (max-width: 1024px) {
+    .title-padding {
+        padding-left: 8vw;
+    }
+    .custom-title {
+        font-size: 2vw !important; 
+    }
+    #user-form {
+        padding-left: 6vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .custom-title {
+        font-size: 2vw !important;
+    }
+    #user-form {
+        padding-left: 2.5vw;
+    }
+    h1 {
+        font-size: 5vw !important;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    h1 {
+        font-size: 8vw !important;
+    }
+    .title-padding {
+        padding-left: 0vw;
+    }
+    .custom-title {
+        font-size: 4vw !important;
+        text-align: center;
+    }
+    
+    #form-container {
+        background-position-y: 10.5em;
+        background-position-x: -5vw;
+        height: 300px;
+    }
+    #user-form {
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        padding-left: 0vw;
+        line-height: 4vw;
+    }
 }
