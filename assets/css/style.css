@@ -1,5 +1,5 @@
-html {
-    font-family: 'Source Code Pro', monospace !important;
+* {
+    font-family: 'Source Code Pro', monospace;
 }
 
 .bg-img-custom {
@@ -13,6 +13,10 @@ html {
 
 body {
     margin: 0;
+}
+
+.custom-title {
+    display: block;
 }
 
 .hide-before-search {
@@ -47,17 +51,8 @@ li:hover {
     cursor: pointer;
 }
 
-/* #quick-convert-wrapper:hover {
-    cursor: pointer;
-} */
-
 .margin-bottom-custom {
     margin-bottom: 50%;
-}
-
-.flex-custom-column {
-    flex-direction: column !important;
-    
 }
 
 .margin-left-right-custom {
