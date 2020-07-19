@@ -3,13 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Nomad Web Developer</title>
+        <title>Nomadica</title>
         <!-- google fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet"> 
         <!-- TailWind CDN -->
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-        <!-- back up tailwind styles -->
-        <link href="./assets/css/tailwind.css" rel="stylesheet">
         <!-- custom styles -->
         <link href="./assets/css/style.css" rel="stylesheet">
         <!-- favicon -->
@@ -18,45 +16,95 @@
     <body class="bg-cover bg-img-custom p-2">
         <div id="search-section" class=" w-100 mb-6">
             <header>
-                <h1 class="text-5xl text-center border-radius-custom">
-                    Nomad Web Developer
-                </h1>
+                <h1 class="text-5xl text-center border-radius-custom">Nomadica</h1>
             </header>
             <section id="form-container" class="border rounded-lg margin-left-right-custom2 bg-gray-200">
                 <div class="rounded-border-custom opacity-full z-index-high title-padding">
-                    <p class="text-xl text-left mt-6 custom-title">
-                        Search Web Developer Salaries </br> by Country Name 👇:
-                    </p>                       
                     <form id="user-form" class="flex items-center h-24 space-x-4 pl-32">
-                        <input 
-                            name="user-input" 
-                            id="user-input" 
-                            type="text" 
-                            autofocus="true" 
-                            autocomplete="off"
-                            required
-                            class="focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 width-350-custom"
-                        />
-                        <button type="submit" class="bg-blue-400 transition duration-500 hover:bg-blue-700 text-white p-2 rounded-lg">
-                            Search
-                        </button>                  
+                        <div>
+                            <label for="user-input" class="text-xl text-left pt-6 custom-title">Search Median Salaries </br> by Country Name 👇:</label>
+                            <div>
+                                <input 
+                                    name="user-input" 
+                                    id="user-input" 
+                                    type="text" 
+                                    autofocus="true" 
+                                    autocomplete="off"
+                                    required
+                                    class="focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 width-350-custom"
+                                    />
+                                    <select name="occupations" id="user-select" required>
+                                        <option value="" disabled selected>Please select an occupation</option>
+                                        <option value="Account Manager">Account Manager</option>
+                                        <option value="Accountant">Accountant</option>
+                                        <option value="Administrative Assistant">Administrative Assistant</option>
+                                        <option value="Architect">Architect</option>
+                                        <option value="Attorney">Attorney</option>
+                                        <option value="Business Analyst">Business Analyst</option>
+                                        <option value="Business Development">Business Development</option>
+                                        <option value="C Level Executive">C Level Executive</option>
+                                        <option value="Cashier">Cashier</option>
+                                        <option value="Chef">Chef</option>
+                                        <option value="Chemical Engineer">Chemical Engineer</option>
+                                        <option value="Civil Engineer">Civil Engineer</option>
+                                        <option value="Content Marketing">Content Marketing</option>
+                                        <option value="Copywriter">Copywriter</option>
+                                        <option value="Customer Support">Customer Support</option>
+                                        <option value="Data Analyst">Data Analyst</option>
+                                        <option value="Data Scientist">Data Scientist</option>
+                                        <option value="Dentist">Dentist</option>
+                                        <option value="Electrical Engineer">Electrical Engineer</option>
+                                        <option value="Executive Assistant">Executive Assistant</option>
+                                        <option value="Fashion Designer">Fashion Designer</option>
+                                        <option value="Finance Manager">Finance Manager</option>
+                                        <option value="Financial Analyst">Financial Analyst</option>
+                                        <option value="Graphic Designer">Graphic Designer</option>
+                                        <option value="Hardware Engineer">Hardware Engineer</option>
+                                        <option value="Human Resources Manager">Human Resources Manager</option>
+                                        <option value="IT Manager">IT Manager</option>
+                                        <option value="Industrial Designer">Industrial Designer</option>
+                                        <option value="Interior Designer">Interior Designer</option>
+                                        <option value="Lecturer">Lecturer</option>
+                                        <option value="Marketing Manager">Marketing Manager</option>
+                                        <option value="Mechanical Engineer">Mechanical Engineer</option>
+                                        <option value="Mobile Developer">Mobile Developer</option>
+                                        <option value="Nurse">Nurse</option>
+                                        <option value="Office Manager">Office Manager</option>
+                                        <option value="Operations Manager">Operations Manager</option>
+                                        <option value="Pharmacist">Pharmacist</option>
+                                        <option value="Physician">Physician</option>
+                                        <option value="Postdoctoral Researcher">Postdoctoral Researcher</option>
+                                        <option value="Product Manager">Product Manager</option>
+                                        <option value="Project Manager">Project Manager</option>
+                                        <option value="QA Engineer">QA Engineer</option>
+                                        <option value="Receptionist">Receptionist</option>
+                                        <option value="Research Scientist">Research Scientist</option>
+                                        <option value="Sales Manager">Sales Manager</option>
+                                        <option value="Software Engineer">Software Engineer</option>
+                                        <option value="Systems Administrator">Systems Administrator</option>
+                                        <option value="Teacher">Teacher</option>
+                                        <option value="UX Designer">UX Designer</option>
+                                        <option value="Waiter">Waiter</option>
+                                        <option value="Web Designer">Web Designer</option>
+                                        <option value="Web Developer">Web Developer</option>
+                                    </select>
+                                <button type="submit" class="bg-blue-400 transition duration-500 hover:bg-blue-700 text-white p-2 rounded-lg">Search</button>
+                            </div>
+                        </div>
+                        <p id="search-error-message" class="text-left"></p>
                     </form>       
-                    <p id="search-error-message" class="text-left pl-12"></p>
                 </div>
             </section>
         </div>
-        <div class="">
-            <section class="container items-center rounded overflow-hidden shadow-lg mx-auto my-10 pb-10 space-y-5 bg-gray-200 items-center">
+        <div id="scroll-div"></div>
+        <section class="container rounded overflow-hidden shadow-lg mx-auto my-10 pb-10 space-y-5 bg-gray-200 items-center">
                 <div id="country-title" class="flex text-center space-x-4 justify-center mt-5 items-center">
-                    <p id="call-to-action" class="hide-after-search ml-5">
-                        Search Above 👆 to See Web Developer Salaries Across the World! ✈️
-                    </p>
-                    <p id="country-name" class="text-3xl"></p>
+                    <p id="call-to-action" class="hide-after-search ml-5">Search Above 👆 to See Web Developer Salaries Across the World! ✈️</p>
+                    <h2 id="country-name" class="text-3xl"></h2>
                     <img id="flag-img"/>
                 </div>
                 <div id="country-info" class="text-center px-4"></div>
                 <div id="quick-convert-wrapper" class="flex justify-center text-center space-x-1 hide-before-search">
-                    <!-- these flags can be buttons to switch the currency amount from dollars to the selected in this list -->
                     <button type="submit">
                         <img data-currency="USD" id="usd-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/us/shiny/32.png">
                     </button>
@@ -73,20 +121,14 @@
                         <img data-currency="CAD" id="cad-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/ca/shiny/32.png">
                     </button>
                 </div>
-                <p class="text-center hide-before-search" id="quickconv-reminder">
-                    To quickly convert the salary to other currencies, </br> just click the flags above! 👆
-                </p>
+                <p class="text-center hide-before-search" id="quickconv-reminder">To quickly convert these figures to other currencies, </br> just click the flags above! 👆</p>
             </section>
-            <section class="margin-left-right-custom bg-gray-100 margin-bottom-custom rounded-lg" id="search-container">
-                <p class="bg-gray-300 border-radius-custom text-center h-8 pt-1 font-semibold">
-                    Search History 
-                </p>
-                <div id="search-history" class="flex flex-custom-column justify-center text-center">
+            <section id="search-container" class="margin-left-right-custom bg-gray-100 margin-bottom-custom rounded-lg">
+                <p class="bg-gray-300 border-radius-custom text-center h-8 pt-1 font-semibold">Search History</p>
+                <div id="search-history" class="flex justify-center text-center">
                     <ul id="search-history-list" class="self-center"></ul>
                 </div>
-            </section>
-        </div>
-        
+        </section>
         
         <script src="./assets/js/getCountryCodeOrName.js"></script>
         <script src="./assets/js/medianIncomeData.js"></script>

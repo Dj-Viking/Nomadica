@@ -1,11 +1,11 @@
-# Nomad Web Developer
+# Nomadica
 
 ## Description
-Have you ever thought about packing your bags and starting over somewhere new? Web developers have the luxury of being able to work almost anywhere, but it can be distressing not knowing what the standard of living for web developers is in a foreign land. This app allows you to search the median annual salary for web developers in over 200 countries. This salary is then compared to the median household income for that country. These figures are both displayed in the searched country's currency (or USD if the Rates API does not contain a conversion rate). These figures can then be converted to common currencies with the buttons at the bottom of the page.
+Have you ever thought about packing your bags and starting over somewhere new? It's tempting, but it can be distressing not knowing how people with your occupation fare financially in a foreign land. This app allows you to search the median annual salary for over 50 occupations in over 200 countries. This salary is then compared to the median household income for that country. These figures are both displayed in the searched country's currency (or USD if the Rates API does not contain a conversion rate). These figures can then be converted to common currencies with the flag buttons at the bottom of the page. Your search history is saved at the bottom of the page after each successful search. The search history filters out duplicates and holds a maximum of 10 items.
 
 ## User Story
-AS A web developer</br>
-I WANT to know what web developers live like in other countries</br>
+AS A person interested in relocating for work</br>
+I WANT to know what people in my occupation live like in other countries</br>
 SO THAT I can make an informed decision about moving there
 
 ## Screenshots
@@ -13,7 +13,6 @@ Coming Soon!
 
 ## Directions for Future Development
 * Comparison to searched country's poverty line
-* Save user's search history in local storage
 * Allow users to save a "home country" in local storage and convert all search results to their home country's currency as well
 
 ## Authors

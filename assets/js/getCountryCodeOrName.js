@@ -102,7 +102,7 @@ function getCountryCodeOrName(inputValue) {
         'Iceland': 'IS',
         'India': 'IN',
         'Indonesia': 'ID',
-        'Iran, Islamic Republic Of': 'IR',
+        'Iran': 'IR',
         'Iraq': 'IQ',
         'Ireland': 'IE',
         'Isle Of Man': 'IM',
@@ -281,10 +281,6 @@ function getCountryCodeOrName(inputValue) {
 
             case Boolean(outValue.match(/[Ff][Aa][Ll][Kk][Ll][Aa][Nn][Dd][ ][Ii][Ss][Ll][Aa][Nn][Dd][Ss][ ][(][Mm][Aa][Ll][Vv][Ii][Nn][Aa][Ss][)]$/)):
                 outValue = "Falkland Islands (Malvinas)";
-                break;
-
-            case Boolean(outValue.match(/^[Ii][Rr][Aa][Nn]$/)):
-                outValue = "Iran, Islamic Republic Of";
                 break;
 
             default:

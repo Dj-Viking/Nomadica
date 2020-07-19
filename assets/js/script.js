@@ -1,8 +1,10 @@
 // Nomad Web Developer
 //      * all country codes are in iso_alpha2 format i.e. "US" for "United States" or "JP" for "Japan"
 
+const scrollDivEl = document.querySelector("#scroll-div");
 const userFormEl = document.querySelector("#user-form");
 const userInputEl = document.querySelector("#user-input");
+const userSelectEl = document.querySelector("#user-select");
 const errorMessageEl = document.querySelector("#search-error-message");
 const countryNameEl = document.querySelector("#country-name");
 const flagImgEl = document.querySelector("#flag-img");
@@ -17,32 +19,29 @@ function formSubmitHandler(event) {
     //this prevents the refreshing of the page when form is submitted
     event.preventDefault();
 
-    //handling the hiding classes
-    quickConvertWrapperEl.classList.remove("hide-before-search");
-    quickConvReminderEl.classList.remove("hide-before-search");
-    callToActionEl.classList.remove("hide-after-search");
-    callToActionEl.classList = "hide-before-search";
-
     // this will hold the value of the user's search
-    let searchTerm = userInputEl.value;
+    let locationSearch = userInputEl.value;
+    let occupationSearch = userSelectEl.value;
 
     userFormEl.reset();
 
-    startSearch(searchTerm);
+    startSearch(locationSearch, occupationSearch);
 }
 
-function startSearch(searchTerm) {
+function startSearch(locationSearch, occupationSearch) {
 
     let countryInfo = {};
 
+    countryInfo.occupation = occupationSearch;
+
     // this function returns an array with country code and country name index flipped depending on search term. returns false if country not found.
-    let countryCode = getCountryCodeOrName(searchTerm);
+    let countryCode = getCountryCodeOrName(locationSearch);
 
     // if the country code was searched, the country name will be index [1]. if country name was searched, the country code will be index [0]
-    countryInfo.countryName = searchTerm.length === 2 ? countryCode[1] : countryCode[0];
+    countryInfo.countryName = locationSearch.length === 2 ? countryCode[1] : countryCode[0];
 
     // if the country code was searched, the country code will be index [0]. if country name was searched, the country code will be index [1]
-    countryInfo.countryCode = searchTerm.length === 2 ? countryCode[0] : countryCode[1];
+    countryInfo.countryCode = locationSearch.length === 2 ? countryCode[0] : countryCode[1];
 
     // country search validation
     if (!countryInfo.countryCode || !countryInfo.countryName) {
@@ -51,7 +50,7 @@ function startSearch(searchTerm) {
     }
     errorMessageEl.textContent = "";
 
-    saveSearchHistory(countryInfo.countryName);
+    saveSearchHistory(countryInfo);
 
     let flagUrl = getFlagUrl(countryInfo.countryCode);
     countryInfo.flagUrl = flagUrl;
@@ -88,7 +87,7 @@ function getCurrencyCode(countryInfo) {
             countryInfo.currencyCode = data.currency_code;
             getMedianSalary(countryInfo);
         })
-        .catch((error) => errorMessageEl.textContent = "Unable to connect to database.");
+        .catch((error) => errorMessageEl.textContent = "Unable to connect to Country Selection database.");
 }
 
 function getMedianSalary(countryInfo) {
@@ -97,14 +96,14 @@ function getMedianSalary(countryInfo) {
         .then(({ salaries }) => {
 
             for (let i = 0; i < salaries.length; i++) {
-                if (salaries[i].job.id == "WEB-DEVELOPER" || salaries[i].job.id == "Web Developer") {
+                if (salaries[i].job.title == countryInfo.occupation) {
                     // this figure is in USD
                     countryInfo.medianSalary = salaries[i].salary_percentiles.percentile_50;
                 }
             }
             getConversionRate(countryInfo);
         })
-        .catch((error) => errorMessageEl.textContent = "Unable to connect to database.");
+        .catch((error) => errorMessageEl.textContent = "Unable to connect to Median Salary database.");
 }
 
 function getConversionRate(countryInfo) {
@@ -123,7 +122,7 @@ function getConversionRate(countryInfo) {
             countryInfo.conversionRate = conversionRate;
             getConvertedValues(countryInfo);
         })
-        .catch((error) => errorMessageEl.textContent = "Unable to connect to database.");
+        .catch((error) => errorMessageEl.textContent = "Unable to connect to Rate Conversion database.");
 }
 
 //convert medianSalary and medianHouseholdIncome using conversionRate
@@ -138,12 +137,19 @@ function getConvertedValues(countryInfo) {
 }
 
 function renderCountryInfo(countryInfo) {
-    // render values to DOM once we know which elements they're being appended to
+    // hide pre-search elements and display post-search elements
+    quickConvertWrapperEl.classList.remove("hide-before-search");
+    quickConvReminderEl.classList.remove("hide-before-search");
+    callToActionEl.classList.remove("hide-after-search");
+    callToActionEl.classList = "hide-before-search";
+
+    // render values to DOM
     countryNameEl.textContent = countryInfo.countryName;
     flagImgEl.setAttribute("src", countryInfo.flagUrl);
     countryInfoEl.innerHTML =
-        `<p class="font-medium">Median Annual Salary for Web Developers in ${countryInfo.countryName}: ${countryInfo.convertedSalary} <span id="currency-code">${countryInfo.currencyCode}</span></p>
+        `<p class="font-medium">Median Annual Salary for <span id="occupation">${countryInfo.occupation}</span>s in ${countryInfo.countryName}: ${countryInfo.convertedSalary} <span id="currency-code">${countryInfo.currencyCode}</span></p>
         <p class="font-medium">Median Household Income in ${countryInfo.countryName}: ${countryInfo.convertedMedianHouseholdIncome} ${countryInfo.currencyCode}</p>`;
+    scrollDivEl.scrollIntoView();
 }
 
 function convertButtonHandler(event) {
@@ -155,6 +161,7 @@ function convertButtonHandler(event) {
     }
     countryInfo.countryName = countryNameEl.textContent;
     countryInfo.countryCode = getCountryCodeOrName(countryInfo.countryName)[1];
+    countryInfo.occupation = document.querySelector("#occupation").textContent;
     countryInfo.medianHouseholdIncome = getMedianHouseholdIncome(countryInfo.countryName);
     countryInfo.flagUrl = flagImgEl.getAttribute("src");
     countryInfo.currentCurrencyCode = document.querySelector("#currency-code").textContent;
@@ -163,9 +170,9 @@ function convertButtonHandler(event) {
 }
 
 // when a country is searched, save in localStorage and add to search history. search history filters out duplicates and holds up to 10 country names.
-function saveSearchHistory(countryName) {
+function saveSearchHistory(countryInfo) {
     let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-    searchHistory.push(countryName);
+    searchHistory.push(`${countryInfo.countryName} - ${countryInfo.occupation}`);
     searchHistory = searchHistory.filter((value, index, array) => array.indexOf(value) === index);
     if (searchHistory.length > 10) {
         searchHistory = searchHistory.slice(1, 11);
@@ -181,21 +188,23 @@ function loadSearchHistory() {
     for (let i = 0; i < searchHistory.length; i++) {
         let searchHistoryListItemEl = document.createElement("li");
         searchHistoryListItemEl.classList = "transition duration-500 hover:bg-blue-700 hover:text-white rounded-lg";
-        searchHistoryListItemEl.textContent = searchHistory[i];
+
+        let searchHistoryButtonEl = document.createElement("button");
+        searchHistoryButtonEl.setAttribute("type", "submit");
+        searchHistoryButtonEl.textContent = `${searchHistory[i].split("-")[0].trim()} - ${searchHistory[i].split("-")[1].trim()}`;
+        searchHistoryListItemEl.appendChild(searchHistoryButtonEl);
 
         searchHistoryListEl.prepend(searchHistoryListItemEl);
     }
 }
 
 function searchHistoryClickHandler(event) {
-    startSearch(event.target.textContent);
-    quickConvertWrapperEl.classList.remove("hide-before-search");
-    quickConvReminderEl.classList.remove("hide-before-search");
-    callToActionEl.classList.remove("hide-after-search");
-    callToActionEl.classList = "hide-before-search";
+    let location = event.target.innerHTML.split("-")[0].trim();
+    let occupation = event.target.innerHTML.split("-")[1].trim();
+    startSearch(location, occupation);
 }
 
 loadSearchHistory();
 userFormEl.addEventListener("submit", formSubmitHandler);
 quickConvertWrapperEl.addEventListener("click", convertButtonHandler);
-searchHistoryListEl.addEventListener("click", searchHistoryClickHandler);
+searchHistoryListEl.addEventListener("mousedown", searchHistoryClickHandler);
