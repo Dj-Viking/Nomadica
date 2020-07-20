@@ -241,11 +241,26 @@ li:hover {
 
     .side-img {
         height: 200px;
+        margin-bottom: 0px;
     }
 
     .custom-title {
         font-size: 4vw !important;
         text-align: center;
+    }
+    
+    .search-btn {
+        padding: 10px;
+        transform: scale(.75);
+        width: 25vw;
+    }
+
+    #user-input {
+        transform: scale(.9);
+    }
+
+    #user-select {
+        transform: scale(.75);
     }
     
     #user-form {
