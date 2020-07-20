@@ -36,6 +36,10 @@ body {
     height: 200px;
 }
 
+.custom-search-border {
+    border-top: 5vw black;
+}
+
 #search-history-list {
     padding: 0px;
 }
