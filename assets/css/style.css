@@ -42,6 +42,8 @@
 .side-img {
     height: 250px;
     padding-left: 3vw;
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
 }
 
 body {
@@ -198,6 +200,9 @@ li:hover {
         background-position-y: 0vw;
     }
 
+    .search-btn {
+        width: 30vw;
+    }
     .side-img {
         padding-left: 2.5vw;
         border-top-right-radius: .5rem;
