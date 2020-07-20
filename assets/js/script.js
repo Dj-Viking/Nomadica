@@ -21,18 +21,20 @@ function formSubmitHandler(event) {
 
     // this will hold the value of the user's search
     let locationSearch = userInputEl.value;
-    let occupationSearch = userSelectEl.value;
+    let occupationValue = userSelectEl.value;
+    let occupationName = userSelectEl.options[userSelectEl.selectedIndex].text;
 
     userFormEl.reset();
 
-    startSearch(locationSearch, occupationSearch);
+    startSearch(locationSearch, occupationValue, occupationName);
 }
 
-function startSearch(locationSearch, occupationSearch) {
+function startSearch(locationSearch, occupationValue, occupationName) {
 
     let countryInfo = {};
 
-    countryInfo.occupation = occupationSearch;
+    countryInfo.occupationName = occupationName;
+    countryInfo.occupationValue = occupationValue;
 
     // this function returns an array with country code and country name index flipped depending on search term. returns false if country not found.
     let countryCode = getCountryCodeOrName(locationSearch);
@@ -96,7 +98,7 @@ function getMedianSalary(countryInfo) {
         .then(({ salaries }) => {
 
             for (let i = 0; i < salaries.length; i++) {
-                if (salaries[i].job.title == countryInfo.occupation) {
+                if (salaries[i].job.title == countryInfo.occupationValue) {
                     // this figure is in USD
                     countryInfo.medianSalary = salaries[i].salary_percentiles.percentile_50;
                 }
@@ -147,7 +149,7 @@ function renderCountryInfo(countryInfo) {
     countryNameEl.textContent = countryInfo.countryName;
     flagImgEl.setAttribute("src", countryInfo.flagUrl);
     countryInfoEl.innerHTML =
-        `<p class="font-medium">Median Annual Salary for <span id="occupation">${countryInfo.occupation}</span>s in ${countryInfo.countryName}: ${countryInfo.convertedSalary} <span id="currency-code">${countryInfo.currencyCode}</span></p>
+        `<p class="font-medium">Median Annual Salary for <span id="occupation" data-value="${countryInfo.occupationValue}">${countryInfo.occupationName}</span>s in ${countryInfo.countryName}: ${countryInfo.convertedSalary} <span id="currency-code">${countryInfo.currencyCode}</span></p>
         <p class="font-medium">Median Household Income in ${countryInfo.countryName}: ${countryInfo.convertedMedianHouseholdIncome} ${countryInfo.currencyCode}</p>`;
     scrollDivEl.scrollIntoView();
 }
@@ -161,7 +163,8 @@ function convertButtonHandler(event) {
     }
     countryInfo.countryName = countryNameEl.textContent;
     countryInfo.countryCode = getCountryCodeOrName(countryInfo.countryName)[1];
-    countryInfo.occupation = document.querySelector("#occupation").textContent;
+    countryInfo.occupationName = document.querySelector("#occupation").textContent;
+    countryInfo.occupationValue = document.querySelector("#occupation").getAttribute("data-value");
     countryInfo.medianHouseholdIncome = getMedianHouseholdIncome(countryInfo.countryName);
     countryInfo.flagUrl = flagImgEl.getAttribute("src");
     countryInfo.currentCurrencyCode = document.querySelector("#currency-code").textContent;
@@ -172,7 +175,7 @@ function convertButtonHandler(event) {
 // when a country is searched, save in localStorage and add to search history. search history filters out duplicates and holds up to 10 country names.
 function saveSearchHistory(countryInfo) {
     let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-    searchHistory.push(`${countryInfo.countryName} - ${countryInfo.occupation}`);
+    searchHistory.push(`${countryInfo.countryName} - ${countryInfo.occupationName} - ${countryInfo.occupationValue}`);
     searchHistory = searchHistory.filter((value, index, array) => array.indexOf(value) === index);
     if (searchHistory.length > 10) {
         searchHistory = searchHistory.slice(1, 11);
@@ -191,6 +194,7 @@ function loadSearchHistory() {
 
         let searchHistoryButtonEl = document.createElement("button");
         searchHistoryButtonEl.setAttribute("type", "submit");
+        searchHistoryButtonEl.setAttribute("data-value", searchHistory[i].split("-")[2].trim());
         searchHistoryButtonEl.textContent = `${searchHistory[i].split("-")[0].trim()} - ${searchHistory[i].split("-")[1].trim()}`;
         searchHistoryListItemEl.appendChild(searchHistoryButtonEl);
 
@@ -199,9 +203,10 @@ function loadSearchHistory() {
 }
 
 function searchHistoryClickHandler(event) {
-    let location = event.target.innerHTML.split("-")[0].trim();
-    let occupation = event.target.innerHTML.split("-")[1].trim();
-    startSearch(location, occupation);
+    let locationSearch = event.target.innerHTML.split("-")[0].trim();
+    let occupationName = event.target.innerHTML.split("-")[1].trim();
+    let occupationValue = event.target.getAttribute("data-value");
+    startSearch(locationSearch, occupationValue, occupationName);
 }
 
 loadSearchHistory();
