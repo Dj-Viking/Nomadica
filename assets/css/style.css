@@ -25,6 +25,14 @@
     background-size: cover;
 }
 
+#search-history {
+    background-image: url("../images/search-history-background-blue.jpg");
+    background-attachment: local;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -30vw;
+}
+
 .side-img {
     height: 250px;
     padding-left: 3vw;
@@ -52,6 +60,11 @@ body {
 
 #search-history-list {
     padding: 0px;
+}
+
+.search-btn {
+    width: 15vw;
+    margin-top: .5rem;
 }
 
 li {
