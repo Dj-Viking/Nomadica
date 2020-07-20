@@ -14,15 +14,15 @@
         <link rel="icon" type="img/ico" href="./assets/images/favicon.ico">
     </head>
     <body class="bg-cover bg-img-custom p-2">
-        <div id="search-section" class=" w-100 mb-6">
+        <div id="search-section" class="w-100 mb-6">
             <header>
-                <h1 class="text-5xl text-center border-radius-custom">Nomadica</h1>
+                <h1 class="text-5xl text-center rounded-lg border border-black border-double border-b-4 border-t-4 mb-5 title-bg">Nomadica</h1>
             </header>
-            <section id="form-container" class="border rounded-lg margin-left-right-custom2 bg-gray-200">
+            <section id="form-container" class="border rounded-lg margin-left-right-custom2 search-bg">
                 <div class="rounded-border-custom opacity-full z-index-high title-padding">
-                    <form id="user-form" class="flex items-center h-24 space-x-4 pl-32">
+                    <form id="user-form" class="flex space-x-4 pl-32 mt-4">
                         <div>
-                            <label for="user-input" class="text-xl text-left pt-6 custom-title">Search Median Salaries </br> by Country Name 👇:</label>
+                            <label for="user-input" class="text-xl text-center pt-6 custom-title mb-2">Search Median Salaries </br> by Country Name 👇:</label>
                             <div>
                                 <input 
                                     name="user-input" 
@@ -88,18 +88,19 @@
                                         <option value="Web Designer">Web Designer</option>
                                         <option value="Web Developer">Web Developer</option>
                                     </select>
-                                <button type="submit" class="bg-blue-400 transition duration-500 hover:bg-blue-700 text-white p-2 rounded-lg">Search</button>
+                                <button type="submit" class="bg-blue-400 transition duration-500 hover:bg-blue-700 text-white p-2 rounded-lg search-btn">Search</button>
                             </div>
                         </div>
                         <p id="search-error-message" class="text-left"></p>
-                    </form>       
+                    </form>
+                    <img class="side-img" src="assets/images/people-working-in-cafe.jpg">       
                 </div>
             </section>
         </div>
         <div id="scroll-div"></div>
         <section class="container rounded overflow-hidden shadow-lg mx-auto my-10 pb-10 space-y-5 bg-gray-200 items-center">
                 <div id="country-title" class="flex text-center space-x-4 justify-center mt-5 items-center">
-                    <p id="call-to-action" class="hide-after-search ml-5">Search Above 👆 to See Web Developer Salaries Across the World! ✈️</p>
+                    <p id="call-to-action" class="hide-after-search ml-5">Search Above 👆 to See Various Occupation Salaries Across the World! ✈️</p>
                     <h2 id="country-name" class="text-3xl"></h2>
                     <img id="flag-img"/>
                 </div>
@@ -123,7 +124,7 @@
                 </div>
                 <p class="text-center hide-before-search" id="quickconv-reminder">To quickly convert these figures to other currencies, </br> just click the flags above! 👆</p>
             </section>
-            <section id="search-container" class="margin-left-right-custom bg-gray-100 margin-bottom-custom rounded-lg">
+            <section id="search-container" class="margin-left-right-custom margin-bottom-custom rounded-lg">
                 <p class="bg-gray-300 border-radius-custom text-center h-8 pt-1 font-semibold">Search History</p>
                 <div id="search-history" class="flex justify-center text-center">
                     <ul id="search-history-list" class="self-center"></ul>

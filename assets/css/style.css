@@ -11,6 +11,41 @@
     background-position: 50% 70%;
 }
 
+.title-bg {
+    background-image: url("../images/mountains.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: 50% 21%;
+    background-size: cover;
+}
+
+.search-bg {
+    background-image: url("../images/search-bar-background.jpg");
+    background-attachment: local;
+    background-size: cover;
+}
+
+#search-history {
+    background-image: url("../images/search-history-background-blue.jpg");
+    background-attachment: local;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -30vw;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+}
+
+#search-container {
+    height: min-content;
+}
+
+.side-img {
+    height: 250px;
+    padding-left: 3vw;
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+}
+
 body {
     margin: 0;
 }
@@ -27,17 +62,17 @@ body {
     display: block;
 }
 
-#form-container {
-    background-image: url("../images/people-working-in-cafe.jpg");
-    background-attachment: local;
-    background-repeat: no-repeat;
-    background-position-y: 0rem;
-    background-position-x: 55vw;
-    height: 200px;
+.custom-search-border {
+    border-top: 5vw black;
 }
 
 #search-history-list {
     padding: 0px;
+}
+
+.search-btn {
+    width: 15vw;
+    margin-top: .5rem;
 }
 
 li {
@@ -76,6 +111,7 @@ li:hover {
 
 .title-padding {
     padding-left: 5vw;
+    display: flex;
 }
 
 .height-full {
@@ -145,25 +181,58 @@ li:hover {
 
 @media screen and (max-width: 1024px) {
     .title-padding {
-        padding-left: 5vw;
+        padding-left: 0vw;
+        text-align: center;
     }
+
+    #user-select {
+        margin-top: .5vw;
+    }
+
     .custom-title {
         font-size: 2vw !important; 
     }
     #user-form {
         padding-left: 6vw;
     }
+
+    #search-history {
+        background-position-y: 0vw;
+    }
+
+    .search-btn {
+        width: 30vw;
+    }
+    .side-img {
+        padding-left: 2.5vw;
+        border-top-right-radius: .5rem;
+        border-bottom-right-radius: .5rem;
+    }
 }
 
 @media screen and (max-width: 768px) {
     .custom-title {
-        font-size: 2vw !important;
+        font-size: 2.5vw !important;
+        padding-top: 1vw;
     }
     #user-form {
         padding-left: 0vw;
     }
     h1 {
         font-size: 5vw !important;
+    }
+
+    .title-padding {
+        display: block;
+    }
+
+    .side-img {
+        padding-left: 0vw;
+        align-items: center;
+        margin: auto;
+        border-radius: .5rem;
+        margin-top: 1.5vw;
+        margin-bottom: 1.5vw;
     }
 }
 
@@ -174,16 +243,31 @@ li:hover {
     .title-padding {
         padding-left: 0vw;
     }
+
+    .side-img {
+        height: 200px;
+        margin-bottom: 0px;
+    }
+
     .custom-title {
         font-size: 4vw !important;
         text-align: center;
     }
     
-    #form-container {
-        background-position-y: 10.5em;
-        background-position-x: -5vw;
-        height: 300px;
+    .search-btn {
+        padding: 10px;
+        transform: scale(.75);
+        width: 25vw;
     }
+
+    #user-input {
+        transform: scale(.9);
+    }
+
+    #user-select {
+        transform: scale(.75);
+    }
+    
     #user-form {
         display: flex !important;
         flex-wrap: wrap;
