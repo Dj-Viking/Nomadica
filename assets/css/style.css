@@ -11,6 +11,14 @@
     background-position: 50% 70%;
 }
 
+.title-bg {
+    background-image: url("../images/mountains.jpg");
+    background-attachment: local;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
 body {
     margin: 0;
 }
