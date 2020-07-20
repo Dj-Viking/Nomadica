@@ -31,6 +31,12 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position-y: -30vw;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+}
+
+#search-container {
+    height: min-content;
 }
 
 .side-img {
@@ -103,6 +109,7 @@ li:hover {
 
 .title-padding {
     padding-left: 5vw;
+    display: flex;
 }
 
 .height-full {
@@ -172,25 +179,55 @@ li:hover {
 
 @media screen and (max-width: 1024px) {
     .title-padding {
-        padding-left: 5vw;
+        padding-left: 0vw;
+        text-align: center;
     }
+
+    #user-select {
+        margin-top: .5vw;
+    }
+
     .custom-title {
         font-size: 2vw !important; 
     }
     #user-form {
         padding-left: 6vw;
     }
+
+    #search-history {
+        background-position-y: 0vw;
+    }
+
+    .side-img {
+        padding-left: 2.5vw;
+        border-top-right-radius: .5rem;
+        border-bottom-right-radius: .5rem;
+    }
 }
 
 @media screen and (max-width: 768px) {
     .custom-title {
-        font-size: 2vw !important;
+        font-size: 2.5vw !important;
+        padding-top: 1vw;
     }
     #user-form {
         padding-left: 0vw;
     }
     h1 {
         font-size: 5vw !important;
+    }
+
+    .title-padding {
+        display: block;
+    }
+
+    .side-img {
+        padding-left: 0vw;
+        align-items: center;
+        margin: auto;
+        border-radius: .5rem;
+        margin-top: 1.5vw;
+        margin-bottom: 1.5vw;
     }
 }
 
@@ -201,16 +238,16 @@ li:hover {
     .title-padding {
         padding-left: 0vw;
     }
+
+    .side-img {
+        height: 200px;
+    }
+
     .custom-title {
         font-size: 4vw !important;
         text-align: center;
     }
     
-    #form-container {
-        background-position-y: 10.5em;
-        background-position-x: -5vw;
-        height: 300px;
-    }
     #user-form {
         display: flex !important;
         flex-wrap: wrap;
