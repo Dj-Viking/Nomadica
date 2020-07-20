@@ -14,15 +14,16 @@
         <link rel="icon" type="img/ico" href="./assets/images/favicon.ico">
     </head>
     <body class="bg-cover bg-img-custom p-2">
-        <div id="search-section" class=" w-100 mb-6">
+        <div id="search-section" class="w-100 mb-6">
             <header>
                 <h1 class="text-5xl text-center rounded-lg border border-black border-double border-b-4 border-t-4 mb-5 title-bg">Nomadica</h1>
             </header>
-            <section id="form-container" class="border rounded-lg margin-left-right-custom2 bg-gray-200">
-                <div class="rounded-border-custom opacity-full z-index-high title-padding">
+            <section id="form-container" class="border rounded-lg margin-left-right-custom2 search-bg">
+                <div class="rounded-border-custom opacity-full z-index-high title-padding flex">
+                    <div class="side-img self-end"></div>
                     <form id="user-form" class="flex items-center space-x-4 pl-32">
-                        <div class="custom-search-border">
-                            <label for="user-input" class="text-xl text-left pt-6 custom-title">Search Median Salaries </br> by Country Name 👇:</label>
+                        <div class="">
+                            <label for="user-input" class="text-xl text-center pt-6 custom-title mb-2">Search Median Salaries </br> by Country Name 👇:</label>
                             <div>
                                 <input 
                                     name="user-input" 
@@ -92,7 +93,8 @@
                             </div>
                         </div>
                         <p id="search-error-message" class="text-left"></p>
-                    </form>       
+                    </form>
+                    <img class="side-img" src="assets/images/people-working-in-cafe.jpg">       
                 </div>
             </section>
         </div>

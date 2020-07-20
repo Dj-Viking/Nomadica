@@ -13,10 +13,21 @@
 
 .title-bg {
     background-image: url("../images/mountains.jpg");
-    background-attachment: local;
+    background-attachment: fixed;
     background-repeat: no-repeat;
-    background-position: 50% 50%;
+    background-position: 50% 21%;
     background-size: cover;
+}
+
+.search-bg {
+    background-image: url("../images/search-bar-background.jpg");
+    background-attachment: local;
+    background-size: cover;
+}
+
+.side-img {
+    height: 250px;
+    padding-left: 3vw;
 }
 
 body {
@@ -33,15 +44,6 @@ body {
 
 .hide-after-search {
     display: block;
-}
-
-#form-container {
-    background-image: url("../images/people-working-in-cafe.jpg");
-    background-attachment: local;
-    background-repeat: no-repeat;
-    background-position-y: 0rem;
-    background-position-x: 55vw;
-    height: 200px;
 }
 
 .custom-search-border {
