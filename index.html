@@ -15,7 +15,7 @@
     <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
 </head>
 
-<body class="bg-color-gray">
+<body class="map-bg">
     <header class="w-full h-20 py-16 lg:px-24 bg-color-gunmetal flex items-center lg:justify-between justify-center">
         <div class="flex flex-no-wrap">
             <h1 class="md:text-5xl text-4xl inline">Nomadica</h1>
@@ -25,7 +25,7 @@
     </header>
     <div class="flex flex-wrap justify-between w-5/6 mx-auto my-16">
         <aside class="flex flex-col w-30-percent">
-            <section id="form-container" class="w-full mx-auto p-8 bg-color-gunmetal rounded-lg box-shadow">
+            <section id="form-container" class="w-full mx-auto p-8 bg-color-gunmetal rounded-lg box-shadow-offwhite">
                 <h2 class="text-center mb-3 font-medium text-xl">Search for Salary Info</h2>
                 <hr class="border-t-4 border-color-terracotta">
                 <form id="user-form" class="mt-3">
@@ -88,17 +88,17 @@
                         <option value="Web Developer">Web Developer</option>
                     </select>
                     <button type="submit" class="block mx-auto w-full rounded-lg bg-color-terracotta font-bold py-2 px-4 border border-solid border-color-sand">Search</button>
-                    <p id="search-error-message" class="mt-4 text-color-terracotta text-center font-medium"></p>
+                    <p id="search-error-message" class="mt-4 text-red-600 text-center font-medium"></p>
                 </form>
             </section>
-            <section id="search-history" class="w-full text-center mt-5 mx-auto p-8 bg-color-gunmetal rounded-lg hidden box-shadow">
+            <section id="search-history" class="w-full text-center mt-5 mx-auto p-8 bg-color-gunmetal rounded-lg hidden box-shadow-offwhite">
                 <h2 class="text-center mb-3 font-medium text-xl">Search History</h2>
                 <hr class="border-t-4 border-color-terracotta">
                 <ul id="search-history-list" class="mx-auto mt-6"></ul>
             </section>
         </aside>
         <!-- <div id="scroll-div"></div> -->
-        <main id="country-info" class="text-center w-65-percent h-250-px mx-auto p-8 rounded-lg hidden box-shadow bg-color-gunmetal">
+        <main id="country-info" class="text-center w-65-percent h-250-px mx-auto p-8 rounded-lg hidden box-shadow-offwhite bg-color-gunmetal">
             <div class="bg-color-offwhite w-full h-full pt-6 rounded-lg border-4 border-color-terracotta">
                 <div id="country-title" class="flex items-center justify-center">
                     <h2 id="country-name" class="inline-block text-5xl mr-3 text-color-gunmetal"></h2>
@@ -112,25 +112,30 @@
                 </div>
                 <div id="quick-convert-wrapper" class="text-center mt-10">
                     <!-- buttons need tooltips on hover -->
-                    <button type="submit" class="mx-2">
+                    <button type="submit" class="flag-btn mx-2 px-1 relative">
                         <img data-currency="USD" id="usd-quick-convert" class=""
                             src="https://www.countryflags.io/us/shiny/32.png" alt="united states flag">
+                        <span class="tooltip">Convert to USD</span>
                     </button>
-                    <button type="submit" class="mx-2">
+                    <button type="submit" class="flag-btn mx-2 px-1 relative">
                         <img data-currency="EUR" id="eur-quick-convert" class=""
                             src="https://www.countryflags.io/eu/shiny/32.png" alt="european union flag">
+                        <span class="tooltip">Convert to EUR</span>
                     </button>
-                    <button type="submit" class="mx-2">
+                    <button type="submit" class="flag-btn mx-2 px-1 relative">
                         <img data-currency="JPY" id="jpy-quick-convert" class=""
                             src="https://www.countryflags.io/jp/shiny/32.png" alt="japan flag">
+                        <span class="tooltip">Convert to JPY</span>
                     </button>
-                    <button type="submit" class="mx-2">
+                    <button type="submit" class="flag-btn mx-2 px-1 relative">
                         <img data-currency="GBP" id="gbp-quick-convert" class=""
                             src="https://www.countryflags.io/gb/shiny/32.png" alt="united kingdom flag">
+                        <span class="tooltip">Convert to GBP</span>
                     </button>
-                    <button type="button" class="mx-2">
+                    <button type="button" class="flag-btn mx-2 px-1 relative">
                         <img data-currency="CAD" id="cad-quick-convert" class=""
                             src="https://www.countryflags.io/ca/shiny/32.png" alt="canada flag">
+                        <span class="tooltip">Convert to CAD</span>
                     </button>
                 </div>
             </main>

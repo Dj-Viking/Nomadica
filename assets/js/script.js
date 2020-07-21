@@ -17,8 +17,6 @@ const quickConvertWrapperEl = document.querySelector("#quick-convert-wrapper");
 const searchHistoryContainerEl = document.querySelector("#search-history");
 const searchHistoryListEl = document.querySelector("#search-history-list");
 
-console.log(salaryAnalysisEl);
-
 function formSubmitHandler(event) {
 
     //this prevents the refreshing of the page when form is submitted
@@ -27,8 +25,6 @@ function formSubmitHandler(event) {
     // this will hold the value of the user's search
     let locationSearch = userInputEl.value;
     let occupationValue = userSelectEl.value;
-
-    userFormEl.reset();
 
     startSearch(locationSearch, occupationValue);
 }
@@ -140,7 +136,6 @@ function getConvertedValues(countryInfo) {
 
     let salaryAnalysis = Math.floor((countryInfo.convertedSalary / countryInfo.convertedMedianHouseholdIncome) * 100);
     countryInfo.salaryAnalysis = salaryAnalysis;
-    console.log(countryInfo.salaryAnalysis);
 
     renderCountryInfo(countryInfo);
 }
@@ -157,14 +152,14 @@ function renderCountryInfo(countryInfo) {
     medianSalaryEl.innerHTML = `Median Annual Salary: ${countryInfo.convertedSalary} <span id="currency-code" class="text-color-gunmetal">${countryInfo.currencyCode}</span>`;
     medianHouseholdIncomeEl.textContent = `Median Household Income: ${countryInfo.convertedMedianHouseholdIncome} ${countryInfo.currencyCode}`;
     if (countryInfo.salaryAnalysis > 100) {
-        salaryAnalysisEl.innerHTML = `Pays about <span class="text-green-500">${countryInfo.salaryAnalysis - 100}% above</span> median income`;
+        salaryAnalysisEl.innerHTML = `Pays about <span class="text-green-600">${countryInfo.salaryAnalysis - 100}% above</span> median income`;
     } else if (countryInfo.salaryAnalysis < 100) {
-        salaryAnalysisEl.innerHTML = `Pays about <span class="text-red-500">${100 - countryInfo.salaryAnalysis}% below</span> median income`;
-    } else {
+        salaryAnalysisEl.innerHTML = `Pays about <span class="text-red-600">${100 - countryInfo.salaryAnalysis}% below</span> median income`;
+    } else if (countryInfo.salaryAnalysis == 100) {
         salaryAnalysisEl.innerHTML = `Pays about equal to the median income`;
+    } else {
+        salaryAnalysisEl.innerHTML = "";
     }
-
-    // scrollDivEl.scrollIntoView();
 }
 
 function convertButtonHandler(event) {

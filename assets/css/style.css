@@ -5,68 +5,45 @@
     color: rgb(239, 241, 243);
 }
 
+:root {
+    --gunmetal: rgb(34, 56, 67);
+    --offwhite: rgb(239, 241, 243);
+    --gray: rgb(219, 211, 216);
+    --sand: rgb(216, 180, 160);
+    --terracotta: rgb(215, 122, 97);
+}
+
+.map-bg {
+    background-image: url("../images/map-bg.jpg");
+    background-position: 0px 80px;
+}
+
 .bg-color-gunmetal {
-    background-color: rgb(34, 56, 67);
+    background-color: var(--gunmetal);
 }
 
 .bg-color-offwhite {
-    background-color: rgb(239, 241, 243);
-}
-
-.bg-color-gray {
-    background-color: rgb(219, 211, 216);
-}
-
-.bg-color-sand {
-    background-color: rgb(216, 180, 160);
+    background-color: var(--offwhite);
 }
 
 .bg-color-terracotta {
-    background-color: rgb(215, 122, 97);
+    background-color: var(--terracotta);
 }
 
 .text-color-gunmetal {
-    color: rgb(34, 56, 67);
-}
-
-.text-color-offwhite {
-    color: rgb(239, 241, 243);
-}
-
-.text-color-gray {
-    color: rgb(219, 211, 216);
-}
-
-.text-color-sand {
-    color: rgb(216, 180, 160);
-}
-
-.text-color-terracotta {
-    color: rgb(215, 122, 97);
-}
-
-.border-color-gunmetal {
-    border-color: rgb(34, 56, 67);
-}
-
-.border-color-offwhite {
-    border-color: rgb(239, 241, 243);
-}
-
-.border-color-gray {
-    border-color: rgb(219, 211, 216);
+    color: var(--gunmetal);
 }
 
 .border-color-sand {
-    border-color: rgb(216, 180, 160);
+    border-color: var(--sand);
 }
 
 .border-color-terracotta {
-    border-color: rgb(215, 122, 97);
+    border-color: var(--terracotta);
 }
 
-.box-shadow {
-    box-shadow: 1px 5px 10px gray;
+.box-shadow-offwhite {
+    box-shadow: 1px 1px 5px var(--offwhite);
 }
 
 .w-30-percent {
@@ -84,11 +61,47 @@
 input,
 select,
 option {
-    color: rgb(34, 56, 67);
+    color: var(--gunmetal);
 }
 
 button:hover,
 li:hover {
-    background-color: rgb(215, 122, 97);
-    color: rgb(34, 56, 67);
+    color: var(--gunmetal);
+}
+
+.flag-btn:focus {
+    outline: none;
+}
+
+.flag-btn .tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 115%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.flag-btn .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.flag-btn:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
 }
