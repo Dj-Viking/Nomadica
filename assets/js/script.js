@@ -23,7 +23,7 @@ function formSubmitHandler(event) {
     event.preventDefault();
 
     // this will hold the value of the user's search
-    let locationSearch = userInputEl.value;
+    let locationSearch = userInputEl.value.trim();
     let occupationValue = userSelectEl.value;
 
     startSearch(locationSearch, occupationValue);
@@ -184,8 +184,8 @@ function saveSearchHistory(countryInfo) {
     let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
     searchHistory.push(`${countryInfo.countryName} - ${countryInfo.occupationValue}`);
     searchHistory = searchHistory.filter((value, index, array) => array.indexOf(value) === index);
-    if (searchHistory.length > 10) {
-        searchHistory = searchHistory.slice(1, 11);
+    if (searchHistory.length > 5) {
+        searchHistory = searchHistory.slice(1, 6);
     }
     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
     loadSearchHistory();
