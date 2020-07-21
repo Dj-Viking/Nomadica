@@ -1,138 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Nomadica</title>
-        <!-- google fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet"> 
-        <!-- TailWind CDN -->
-        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-        <!-- custom styles -->
-        <link href="./assets/css/style.css" rel="stylesheet">
-        <!-- favicon -->
-        <link rel="icon" type="img/ico" href="./assets/images/favicon.ico">
-    </head>
-    <body class="bg-cover bg-img-custom p-2">
-        <div id="search-section" class="w-100 mb-6">
-            <header>
-                <h1 class="text-5xl text-center rounded-lg border border-black border-double border-b-4 border-t-4 mb-5 title-bg">Nomadica</h1>
-            </header>
-            <section id="form-container" class="border rounded-lg margin-left-right-custom2 search-bg">
-                <div class="rounded-border-custom opacity-full z-index-high title-padding">
-                    <form id="user-form" class="flex space-x-4 pl-32 mt-4">
-                        <div>
-                            <label for="user-input" class="text-xl text-center pt-6 custom-title mb-2">Search Median Salaries </br> by Country Name 👇:</label>
-                            <div>
-                                <input 
-                                    name="user-input" 
-                                    id="user-input" 
-                                    type="text" 
-                                    autofocus="true" 
-                                    autocomplete="off"
-                                    required
-                                    class="focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 width-350-custom"
-                                    />
-                                    <select name="occupations" id="user-select" required>
-                                        <option value="" disabled selected>Please select an occupation</option>
-                                        <option value="Account Manager">Account Manager</option>
-                                        <option value="Accountant">Accountant</option>
-                                        <option value="Administrative Assistant">Administrative Assistant</option>
-                                        <option value="Architect">Architect</option>
-                                        <option value="Attorney">Attorney</option>
-                                        <option value="Business Analyst">Business Analyst</option>
-                                        <option value="Business Development">Business Developer</option>
-                                        <option value="C Level Executive">C Level Executive</option>
-                                        <option value="Cashier">Cashier</option>
-                                        <option value="Chef">Chef</option>
-                                        <option value="Chemical Engineer">Chemical Engineer</option>
-                                        <option value="Civil Engineer">Civil Engineer</option>
-                                        <option value="Content Marketing">Content Marketer</option>
-                                        <option value="Copywriter">Copywriter</option>
-                                        <option value="Customer Support">Customer Supporter</option>
-                                        <option value="Data Analyst">Data Analyst</option>
-                                        <option value="Data Scientist">Data Scientist</option>
-                                        <option value="Dentist">Dentist</option>
-                                        <option value="Electrical Engineer">Electrical Engineer</option>
-                                        <option value="Executive Assistant">Executive Assistant</option>
-                                        <option value="Fashion Designer">Fashion Designer</option>
-                                        <option value="Finance Manager">Finance Manager</option>
-                                        <option value="Financial Analyst">Financial Analyst</option>
-                                        <option value="Graphic Designer">Graphic Designer</option>
-                                        <option value="Hardware Engineer">Hardware Engineer</option>
-                                        <option value="Human Resources Manager">Human Resources Manager</option>
-                                        <option value="IT Manager">IT Manager</option>
-                                        <option value="Industrial Designer">Industrial Designer</option>
-                                        <option value="Interior Designer">Interior Designer</option>
-                                        <option value="Lecturer">Lecturer</option>
-                                        <option value="Marketing Manager">Marketing Manager</option>
-                                        <option value="Mechanical Engineer">Mechanical Engineer</option>
-                                        <option value="Mobile Developer">Mobile Developer</option>
-                                        <option value="Nurse">Nurse</option>
-                                        <option value="Office Manager">Office Manager</option>
-                                        <option value="Operations Manager">Operations Manager</option>
-                                        <option value="Pharmacist">Pharmacist</option>
-                                        <option value="Physician">Physician</option>
-                                        <option value="Postdoctoral Researcher">Postdoctoral Researcher</option>
-                                        <option value="Product Manager">Product Manager</option>
-                                        <option value="Project Manager">Project Manager</option>
-                                        <option value="QA Engineer">QA Engineer</option>
-                                        <option value="Receptionist">Receptionist</option>
-                                        <option value="Research Scientist">Research Scientist</option>
-                                        <option value="Sales Manager">Sales Manager</option>
-                                        <option value="Software Engineer">Software Engineer</option>
-                                        <option value="Systems Administrator">Systems Administrator</option>
-                                        <option value="Teacher">Teacher</option>
-                                        <option value="UX Designer">UX Designer</option>
-                                        <option value="Waiter">Waiter</option>
-                                        <option value="Web Designer">Web Designer</option>
-                                        <option value="Web Developer">Web Developer</option>
-                                    </select>
-                                <button type="submit" class="bg-blue-400 transition duration-500 hover:bg-blue-700 text-white p-2 rounded-lg search-btn">Search</button>
-                            </div>
-                        </div>
-                        <p id="search-error-message" class="text-left"></p>
-                    </form>
-                    <img class="side-img" src="assets/images/people-working-in-cafe.jpg">       
-                </div>
-            </section>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nomadica</title>
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <!-- TailWind CDN -->
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <!-- custom styles -->
+    <link href="./assets/css/style.css" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
+</head>
+
+<body>
+    <header class="">
+        <h1 class="">Nomadica</h1>
+    </header>
+    <section id="form-container" class="">
+        <form id="user-form" class="">
+            <label for="user-input" class="">Search by Country:</label>
+            <input name="user-input" id="user-input" class="" type="text" autofocus="true" autocomplete="off" required />
+            <select name="occupations" id="user-select" class="" required>
+                <option value="" disabled selected>Select an Occupation:</option>
+                <option value="Account Manager">Account Manager</option>
+                <option value="Accountant">Accountant</option>
+                <option value="Administrative Assistant">Administrative Assistant</option>
+                <option value="Architect">Architect</option>
+                <option value="Attorney">Attorney</option>
+                <option value="Business Analyst">Business Analyst</option>
+                <option value="Business Development">Business Developer</option>
+                <option value="C Level Executive">C Level Executive</option>
+                <option value="Cashier">Cashier</option>
+                <option value="Chef">Chef</option>
+                <option value="Chemical Engineer">Chemical Engineer</option>
+                <option value="Civil Engineer">Civil Engineer</option>
+                <option value="Content Marketing">Content Marketer</option>
+                <option value="Copywriter">Copywriter</option>
+                <option value="Customer Support">Customer Supporter</option>
+                <option value="Data Analyst">Data Analyst</option>
+                <option value="Data Scientist">Data Scientist</option>
+                <option value="Dentist">Dentist</option>
+                <option value="Electrical Engineer">Electrical Engineer</option>
+                <option value="Executive Assistant">Executive Assistant</option>
+                <option value="Fashion Designer">Fashion Designer</option>
+                <option value="Finance Manager">Finance Manager</option>
+                <option value="Financial Analyst">Financial Analyst</option>
+                <option value="Graphic Designer">Graphic Designer</option>
+                <option value="Hardware Engineer">Hardware Engineer</option>
+                <option value="Human Resources Manager">Human Resources Manager</option>
+                <option value="IT Manager">IT Manager</option>
+                <option value="Industrial Designer">Industrial Designer</option>
+                <option value="Interior Designer">Interior Designer</option>
+                <option value="Lecturer">Lecturer</option>
+                <option value="Marketing Manager">Marketing Manager</option>
+                <option value="Mechanical Engineer">Mechanical Engineer</option>
+                <option value="Mobile Developer">Mobile Developer</option>
+                <option value="Nurse">Nurse</option>
+                <option value="Office Manager">Office Manager</option>
+                <option value="Operations Manager">Operations Manager</option>
+                <option value="Pharmacist">Pharmacist</option>
+                <option value="Physician">Physician</option>
+                <option value="Postdoctoral Researcher">Postdoctoral Researcher</option>
+                <option value="Product Manager">Product Manager</option>
+                <option value="Project Manager">Project Manager</option>
+                <option value="QA Engineer">QA Engineer</option>
+                <option value="Receptionist">Receptionist</option>
+                <option value="Research Scientist">Research Scientist</option>
+                <option value="Sales Manager">Sales Manager</option>
+                <option value="Software Engineer">Software Engineer</option>
+                <option value="Systems Administrator">Systems Administrator</option>
+                <option value="Teacher">Teacher</option>
+                <option value="UX Designer">UX Designer</option>
+                <option value="Waiter">Waiter</option>
+                <option value="Web Designer">Web Designer</option>
+                <option value="Web Developer">Web Developer</option>
+            </select>
+            <button type="submit" class="">Search</button>
+            <p id="search-error-message" class=""></p>
+        </form>
+    </section>
+    <div id="scroll-div"></div>
+    <section class="">
+        <div id="country-title" class="">
+            <h2 id="country-name" class=""></h2>
+            <img id="flag-img" class="" />
         </div>
-        <div id="scroll-div"></div>
-        <section class="container rounded overflow-hidden shadow-lg mx-auto my-10 pb-10 space-y-5 bg-gray-200 items-center">
-                <div id="country-title" class="flex text-center space-x-4 justify-center mt-5 items-center">
-                    <p id="call-to-action" class="hide-after-search ml-5">Search Above 👆 to See Various Occupation Salaries Across the World! ✈️</p>
-                    <h2 id="country-name" class="text-3xl"></h2>
-                    <img id="flag-img"/>
-                </div>
-                <div id="country-info" class="text-center px-4"></div>
-                <div id="quick-convert-wrapper" class="flex justify-center text-center space-x-1 hide-before-search">
-                    <button type="submit">
-                        <img data-currency="USD" id="usd-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/us/shiny/32.png">
-                    </button>
-                    <button type="submit">
-                        <img data-currency="EUR" id="eur-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/eu/shiny/32.png">
-                    </button>
-                    <button type="submit">
-                        <img data-currency="JPY" id="jpy-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/jp/shiny/32.png">
-                    </button>
-                    <button type="submit">
-                        <img data-currency="GBP" id="gbp-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/gb/shiny/32.png">
-                    </button>
-                    <button type="button">
-                        <img data-currency="CAD" id="cad-quick-convert" class="transition duration-500 hover:bg-blue-700 p-1" src="https://www.countryflags.io/ca/shiny/32.png">
-                    </button>
-                </div>
-                <p class="text-center hide-before-search" id="quickconv-reminder">To quickly convert these figures to other currencies, </br> just click the flags above! 👆</p>
-            </section>
-            <section id="search-container" class="margin-left-right-custom margin-bottom-custom rounded-lg">
-                <p class="bg-gray-300 border-radius-custom text-center h-8 pt-1 font-semibold">Search History</p>
-                <div id="search-history" class="flex justify-center text-center">
-                    <ul id="search-history-list" class="self-center"></ul>
-                </div>
-        </section>
-        
-        <script src="./assets/js/getCountryCodeOrName.js"></script>
-        <script src="./assets/js/medianIncomeData.js"></script>
-        <script src="./assets/js/script.js"></script>
-    </body>
+        <div id="country-info" class=""></div>
+        <div id="quick-convert-wrapper" class="">
+            <!-- buttons need tooltips on hover -->
+            <button type="submit">
+                <img data-currency="USD" id="usd-quick-convert" class=""
+                    src="https://www.countryflags.io/us/shiny/32.png" alt="united states flag">
+            </button>
+            <button type="submit">
+                <img data-currency="EUR" id="eur-quick-convert" class=""
+                    src="https://www.countryflags.io/eu/shiny/32.png" alt="european union flag">
+            </button>
+            <button type="submit">
+                <img data-currency="JPY" id="jpy-quick-convert" class=""
+                    src="https://www.countryflags.io/jp/shiny/32.png" alt=" japanese flag">
+            </button>
+            <button type="submit">
+                <img data-currency="GBP" id="gbp-quick-convert" class=""
+                    src="https://www.countryflags.io/gb/shiny/32.png" alt="united kingdom flag">
+            </button>
+            <button type="button">
+                <img data-currency="CAD" id="cad-quick-convert" class=""
+                    src="https://www.countryflags.io/ca/shiny/32.png" alt="canadian flag">
+            </button>
+        </div>
+    </section>
+    <section id="search-container" class="">
+        <p class="">Search History</p>
+        <ul id="search-history-list" class=""></ul>
+    </section>
+
+    <script src="./assets/js/getCountryCodeOrName.js"></script>
+    <script src="./assets/js/medianIncomeData.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
 </html>

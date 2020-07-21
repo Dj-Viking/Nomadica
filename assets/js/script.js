@@ -11,8 +11,6 @@ const flagImgEl = document.querySelector("#flag-img");
 const quickConvertWrapperEl = document.querySelector("#quick-convert-wrapper");
 const countryInfoEl = document.querySelector("#country-info");
 const searchHistoryListEl = document.querySelector("#search-history-list");
-const callToActionEl = document.querySelector("#call-to-action");
-const quickConvReminderEl = document.querySelector("#quickconv-reminder");
 
 function formSubmitHandler(event) {
 
@@ -140,10 +138,7 @@ function getConvertedValues(countryInfo) {
 
 function renderCountryInfo(countryInfo) {
     // hide pre-search elements and display post-search elements
-    quickConvertWrapperEl.classList.remove("hide-before-search");
-    quickConvReminderEl.classList.remove("hide-before-search");
-    callToActionEl.classList.remove("hide-after-search");
-    callToActionEl.classList = "hide-before-search";
+    // quickConvertWrapperEl.classList.remove("hide-before-search");
 
     // render values to DOM
     countryNameEl.textContent = countryInfo.countryName;
@@ -151,7 +146,7 @@ function renderCountryInfo(countryInfo) {
     countryInfoEl.innerHTML =
         `<p class="font-medium">Median Annual Salary for <span id="occupation" data-value="${countryInfo.occupationValue}">${countryInfo.occupationName}</span>s in ${countryInfo.countryName}: ${countryInfo.convertedSalary} <span id="currency-code">${countryInfo.currencyCode}</span></p>
         <p class="font-medium">Median Household Income in ${countryInfo.countryName}: ${countryInfo.convertedMedianHouseholdIncome} ${countryInfo.currencyCode}</p>`;
-    scrollDivEl.scrollIntoView();
+    // scrollDivEl.scrollIntoView();
 }
 
 function convertButtonHandler(event) {
@@ -190,9 +185,9 @@ function loadSearchHistory() {
 
     for (let i = 0; i < searchHistory.length; i++) {
         let searchHistoryListItemEl = document.createElement("li");
-        searchHistoryListItemEl.classList = "transition duration-500 hover:bg-blue-700 hover:text-white rounded-lg";
+        searchHistoryListItemEl.classList = "";
 
-        let searchHistoryButtonEl = document.createElement("button");
+        let searchHistoryButtonEl = document.createElement("li");
         searchHistoryButtonEl.setAttribute("type", "submit");
         searchHistoryButtonEl.setAttribute("data-value", searchHistory[i].split("-")[2].trim());
         searchHistoryButtonEl.textContent = `${searchHistory[i].split("-")[0].trim()} - ${searchHistory[i].split("-")[1].trim()}`;
