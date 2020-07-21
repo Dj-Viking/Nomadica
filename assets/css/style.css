@@ -86,3 +86,9 @@ select,
 option {
     color: rgb(34, 56, 67);
 }
+
+button:hover,
+li:hover {
+    background-color: rgb(215, 122, 97);
+    color: rgb(34, 56, 67);
+}

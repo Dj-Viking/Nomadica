@@ -10,10 +10,14 @@ const countryInfoEl = document.querySelector("#country-info");
 const countryNameEl = document.querySelector("#country-name");
 const flagImgEl = document.querySelector("#flag-img");
 const occupationNameEl = document.querySelector("#occupation-name");
-const countryFinancialsEl = document.querySelector("#country-financials");
+const medianSalaryEl = document.querySelector("#median-salary");
+const medianHouseholdIncomeEl = document.querySelector("#median-household-income");
+const salaryAnalysisEl = document.querySelector("#salary-analysis");
 const quickConvertWrapperEl = document.querySelector("#quick-convert-wrapper");
 const searchHistoryContainerEl = document.querySelector("#search-history");
 const searchHistoryListEl = document.querySelector("#search-history-list");
+
+console.log(salaryAnalysisEl);
 
 function formSubmitHandler(event) {
 
@@ -134,6 +138,10 @@ function getConvertedValues(countryInfo) {
     let convertedMedianHouseholdIncome = Math.floor(countryInfo.medianHouseholdIncome * countryInfo.conversionRate);
     countryInfo.convertedMedianHouseholdIncome = convertedMedianHouseholdIncome ? convertedMedianHouseholdIncome : "No median household income data found ☹️";
 
+    let salaryAnalysis = Math.floor((countryInfo.convertedSalary / countryInfo.convertedMedianHouseholdIncome) * 100);
+    countryInfo.salaryAnalysis = salaryAnalysis;
+    console.log(countryInfo.salaryAnalysis);
+
     renderCountryInfo(countryInfo);
 }
 
@@ -146,9 +154,16 @@ function renderCountryInfo(countryInfo) {
     occupationNameEl.textContent = countryInfo.occupationValue;
     flagImgEl.setAttribute("src", countryInfo.flagUrl);
     flagImgEl.setAttribute("alt", `${countryInfo.countryName} flag`)
-    countryFinancialsEl.innerHTML =
-        `<p class="font-medium mb-1">Median Annual Salary: ${countryInfo.convertedSalary} <span id="currency-code">${countryInfo.currencyCode}</span></p>
-        <p class="font-medium mb-1">Median Household Income: ${countryInfo.convertedMedianHouseholdIncome} ${countryInfo.currencyCode}</p>`;
+    medianSalaryEl.innerHTML = `Median Annual Salary: ${countryInfo.convertedSalary} <span id="currency-code" class="text-color-gunmetal">${countryInfo.currencyCode}</span>`;
+    medianHouseholdIncomeEl.textContent = `Median Household Income: ${countryInfo.convertedMedianHouseholdIncome} ${countryInfo.currencyCode}`;
+    if (countryInfo.salaryAnalysis > 100) {
+        salaryAnalysisEl.innerHTML = `Pays about <span class="text-green-500">${countryInfo.salaryAnalysis - 100}% above</span> median income`;
+    } else if (countryInfo.salaryAnalysis < 100) {
+        salaryAnalysisEl.innerHTML = `Pays about <span class="text-red-500">${100 - countryInfo.salaryAnalysis}% below</span> median income`;
+    } else {
+        salaryAnalysisEl.innerHTML = `Pays about equal to the median income`;
+    }
+
     // scrollDivEl.scrollIntoView();
 }
 
@@ -191,7 +206,7 @@ function loadSearchHistory() {
 
     for (let i = 0; i < searchHistory.length; i++) {
         let searchHistoryListItemEl = document.createElement("li");
-        searchHistoryListItemEl.classList.add("list-item", "cursor-pointer", "mb-3", "px-1", "py-2", "border", "border-solid", "border-color-sand", "rounded-lg", "bg-color-terracotta");
+        searchHistoryListItemEl.classList.add("list-item", "cursor-pointer", "mb-3", "px-1", "py-2", "border", "border-solid", "border-color-sand", "rounded-lg", "bg-color-terracotta", "font-semibold");
         searchHistoryListItemEl.textContent = `${searchHistory[i].split("-")[0].trim()} - ${searchHistory[i].split("-")[1].trim()}`;
 
         searchHistoryListEl.prepend(searchHistoryListItemEl);

@@ -98,36 +98,42 @@
             </section>
         </aside>
         <!-- <div id="scroll-div"></div> -->
-        <main id="country-info" class="text-center w-65-percent h-250-px mx-auto p-8 bg-color-gunmetal rounded-lg hidden box-shadow">
-            <div id="country-title" class="flex items-center justify-center my-10">
-                <h2 id="country-name" class="inline-block text-5xl mr-3"></h2>
-                <img id="flag-img" class="text-center inline-block" />
-            </div>
-            <h3 id="occupation-name" class="text-3xl mb-2"></h3>
-            <div id="country-financials" class=""></div>
-            <div id="quick-convert-wrapper" class="text-center mt-16">
-                <!-- buttons need tooltips on hover -->
-                <button type="submit" class="mx-2">
-                    <img data-currency="USD" id="usd-quick-convert" class=""
-                        src="https://www.countryflags.io/us/shiny/32.png" alt="united states flag">
-                </button>
-                <button type="submit" class="mx-2">
-                    <img data-currency="EUR" id="eur-quick-convert" class=""
-                        src="https://www.countryflags.io/eu/shiny/32.png" alt="european union flag">
-                </button>
-                <button type="submit" class="mx-2">
-                    <img data-currency="JPY" id="jpy-quick-convert" class=""
-                        src="https://www.countryflags.io/jp/shiny/32.png" alt="japan flag">
-                </button>
-                <button type="submit" class="mx-2">
-                    <img data-currency="GBP" id="gbp-quick-convert" class=""
-                        src="https://www.countryflags.io/gb/shiny/32.png" alt="united kingdom flag">
-                </button>
-                <button type="button" class="mx-2">
-                    <img data-currency="CAD" id="cad-quick-convert" class=""
-                        src="https://www.countryflags.io/ca/shiny/32.png" alt="canada flag">
-                </button>
-            </div>
+        <main id="country-info" class="text-center w-65-percent h-250-px mx-auto p-8 rounded-lg hidden box-shadow bg-color-gunmetal">
+            <div class="bg-color-offwhite w-full h-full pt-6 rounded-lg border-4 border-color-terracotta">
+                <div id="country-title" class="flex items-center justify-center">
+                    <h2 id="country-name" class="inline-block text-5xl mr-3 text-color-gunmetal"></h2>
+                    <img id="flag-img" class="text-center inline-block" />
+                </div>
+                <h3 id="occupation-name" class="text-3xl mt-4 mb-2 pt-6 text-color-gunmetal inline-block w-1/2 border-t-4 border-color-terracotta"></h3>
+                <div id="country-financials" class="text-color-gunmetal">
+                    <p id="median-salary" class="font-medium mb-1 text-color-gunmetal"></p>
+                    <p id="median-household-income" class="font-medium mb-1 text-color-gunmetal"></p>
+                    <p id="salary-analysis" class="font-medium mb-1 text-color-gunmetal"></p>
+                </div>
+                <div id="quick-convert-wrapper" class="text-center mt-10">
+                    <!-- buttons need tooltips on hover -->
+                    <button type="submit" class="mx-2">
+                        <img data-currency="USD" id="usd-quick-convert" class=""
+                            src="https://www.countryflags.io/us/shiny/32.png" alt="united states flag">
+                    </button>
+                    <button type="submit" class="mx-2">
+                        <img data-currency="EUR" id="eur-quick-convert" class=""
+                            src="https://www.countryflags.io/eu/shiny/32.png" alt="european union flag">
+                    </button>
+                    <button type="submit" class="mx-2">
+                        <img data-currency="JPY" id="jpy-quick-convert" class=""
+                            src="https://www.countryflags.io/jp/shiny/32.png" alt="japan flag">
+                    </button>
+                    <button type="submit" class="mx-2">
+                        <img data-currency="GBP" id="gbp-quick-convert" class=""
+                            src="https://www.countryflags.io/gb/shiny/32.png" alt="united kingdom flag">
+                    </button>
+                    <button type="button" class="mx-2">
+                        <img data-currency="CAD" id="cad-quick-convert" class=""
+                            src="https://www.countryflags.io/ca/shiny/32.png" alt="canada flag">
+                    </button>
+                </div>
+            </main>
         </main>
     </div>
 
