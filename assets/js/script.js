@@ -149,8 +149,8 @@ function renderCountryInfo(countryInfo) {
     occupationNameEl.textContent = countryInfo.occupationValue;
     flagImgEl.setAttribute("src", countryInfo.flagUrl);
     flagImgEl.setAttribute("alt", `${countryInfo.countryName} flag`)
-    medianSalaryEl.innerHTML = `Median Annual Salary: ${countryInfo.convertedSalary} <span id="currency-code" class="text-color-gunmetal">${countryInfo.currencyCode}</span>`;
-    medianHouseholdIncomeEl.textContent = `Median Household Income: ${countryInfo.convertedMedianHouseholdIncome} ${countryInfo.currencyCode}`;
+    medianSalaryEl.innerHTML = `Median Annual Salary: <span class="figures text-color-gunmetal">${countryInfo.convertedSalary} <span id="currency-code" class="text-color-gunmetal">${countryInfo.currencyCode}</span></span>`;
+    medianHouseholdIncomeEl.innerHTML = `Median Household Income: <span class="figures text-color-gunmetal">${countryInfo.convertedMedianHouseholdIncome} ${countryInfo.currencyCode}</span>`;
     if (countryInfo.salaryAnalysis > 100) {
         salaryAnalysisEl.innerHTML = `Pays about <span class="text-green-600">${countryInfo.salaryAnalysis - 100}% above</span> median income`;
     } else if (countryInfo.salaryAnalysis < 100) {
