@@ -45,10 +45,9 @@ function getCountryCodeOrName(inputValue) {
         'Chile': 'CL',
         'China': 'CN',
         'Christmas Island': 'CX',
-        'Cocos (Keeling) Islands': 'CC',
+        'Cocos Islands': 'CC',
         'Colombia': 'CO',
         'Comoros': 'KM',
-        'Democratic Republic of Congo': 'CD',
         'Cook Islands': 'CK',
         'Costa Rica': 'CR',
         'Cote D\'Ivoire': 'CI',
@@ -67,14 +66,13 @@ function getCountryCodeOrName(inputValue) {
         'Eritrea': 'ER',
         'Estonia': 'EE',
         'Ethiopia': 'ET',
-        'Falkland Islands (Malvinas)': 'FK',
+        'Falkland Islands': 'FK',
         'Faroe Islands': 'FO',
         'Fiji': 'FJ',
         'Finland': 'FI',
         'France': 'FR',
         'French Guiana': 'GF',
         'French Polynesia': 'PF',
-        'French Southern Territories': 'TF',
         'Gabon': 'GA',
         'Gambia': 'GM',
         'Georgia': 'GE',
@@ -92,8 +90,7 @@ function getCountryCodeOrName(inputValue) {
         'Guinea-Bissau': 'GW',
         'Guyana': 'GY',
         'Haiti': 'HT',
-        'Heard Island & Mcdonald Islands': 'HM',
-        'Holy See (Vatican City State)': 'VA',
+        'Holy See': 'VA',
         'Honduras': 'HN',
         'Hong Kong': 'HK',
         'Hungary': 'HU',
@@ -159,7 +156,6 @@ function getCountryCodeOrName(inputValue) {
         'Nigeria': 'NG',
         'Niue': 'NU',
         'Norfolk Island': 'NF',
-        'Northern Mariana Islands': 'MP',
         'Norway': 'NO',
         'Oman': 'OM',
         'Pakistan': 'PK',
@@ -174,7 +170,7 @@ function getCountryCodeOrName(inputValue) {
         'Portugal': 'PT',
         'Puerto Rico': 'PR',
         'Qatar': 'QA',
-        'Republic of the Congo': 'CG',
+        'Republic Of The Congo': 'CG',
         'Reunion': 'RE',
         'Romania': 'RO',
         'Russia': 'RU',
@@ -185,7 +181,6 @@ function getCountryCodeOrName(inputValue) {
         'Saint Lucia': 'LC',
         'Saint Martin': 'MF',
         'Saint Pierre And Miquelon': 'PM',
-        'Saint Vincent And Grenadines': 'VC',
         'Samoa': 'WS',
         'San Marino': 'SM',
         'Sao Tome And Principe': 'ST',
@@ -269,14 +264,6 @@ function getCountryCodeOrName(inputValue) {
         switch (true) {
             case Boolean(outValue.match(/^[Gg][Uu][Ii][Nn][Ee][Aa][-][Bb][Ii][Ss][Ss][Aa][Uu]$/)):
                 outValue = "Guinea-Bissau";
-                break;
-
-            case Boolean(outValue.match(/^[Hh][Oo][Ll][Yy][ ][Ss][Ee][Ee][ ][(][Vv][Aa][Tt][Ii][Cc][Aa][Nn][ ][Cc][Ii][Tt][Yy][ ][Ss][Tt][Aa][Tt][Ee][)]$/)):
-                outValue = "Holy See (Vatican City State)";
-                break;
-
-            case Boolean(outValue.match(/[Ff][Aa][Ll][Kk][Ll][Aa][Nn][Dd][ ][Ii][Ss][Ll][Aa][Nn][Dd][Ss][ ][(][Mm][Aa][Ll][Vv][Ii][Nn][Aa][Ss][)]$/)):
-                outValue = "Falkland Islands (Malvinas)";
                 break;
 
             default:

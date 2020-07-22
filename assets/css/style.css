@@ -11,8 +11,13 @@
     padding: 0;
     margin: 0;
     color: var(--offwhite);
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
+h1,
+.quote {
+    font-family: 'Kaushan Script', cursive;
+}
 
 .map-bg {
     background-image: url("../images/map-bg.jpg");
@@ -48,16 +53,16 @@
     box-shadow: 1px 1px 5px var(--offwhite);
 }
 
-.w-30-percent {
+.w-search-section {
     width: 30%;
 }
 
-.w-65-percent {
+.w-country-info {
     width: 65%;
 }
 
-.h-250-px {
-    height: 450px;
+.h-country-info {
+    height: 500px;
 }
 
 input,
@@ -78,8 +83,8 @@ li:hover {
 .flag-btn .tooltip {
     visibility: hidden;
     width: 120px;
-    background-color: #555;
-    color: #fff;
+    background-color: var(--gunmetal);
+    color: var(--offwhite);
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
@@ -100,10 +105,63 @@ li:hover {
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: #555 transparent transparent transparent;
+    border-color: var(--gunmetal) transparent transparent transparent;
 }
 
 .flag-btn:hover .tooltip {
     visibility: visible;
     opacity: 1;
+}
+
+@media screen and (max-width:1024px) {
+    .w-search-section {
+        flex-flow: row wrap;
+        justify-content: space-between;
+        width: 100%;
+        height: auto;
+    }
+
+    .search-section {
+        display: inline-block;
+        width: 48%;
+        margin: 0;
+    }
+
+    .w-country-info {
+        margin-top: 20px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:640px) {
+    .content-container {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .w-search-section {
+        flex-flow: column nowrap;
+    }
+
+    .search-section {
+        width: 100%;
+    }
+
+    .search-section:last-child {
+        margin-top: 20px;
+    }
+
+    .h-country-info {
+        height: auto;
+    }
+}
+
+@media screen and (max-width:535px) {
+    .content-container {
+        width: 95%;
+    }
+
+    .flag-btn {
+        margin: 0;
+    }
 }

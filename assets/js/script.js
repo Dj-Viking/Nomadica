@@ -129,10 +129,10 @@ function getConversionRate(countryInfo) {
 //convert medianSalary and medianHouseholdIncome using conversionRate
 function getConvertedValues(countryInfo) {
     let convertedSalary = Math.floor(countryInfo.medianSalary * countryInfo.conversionRate);
-    countryInfo.convertedSalary = convertedSalary ? convertedSalary : "No salary data found ☹️";
+    countryInfo.convertedSalary = convertedSalary ? convertedSalary : "No data found ☹️";
 
     let convertedMedianHouseholdIncome = Math.floor(countryInfo.medianHouseholdIncome * countryInfo.conversionRate);
-    countryInfo.convertedMedianHouseholdIncome = convertedMedianHouseholdIncome ? convertedMedianHouseholdIncome : "No median household income data found ☹️";
+    countryInfo.convertedMedianHouseholdIncome = convertedMedianHouseholdIncome ? convertedMedianHouseholdIncome : "No data found ☹️";
 
     let salaryAnalysis = Math.floor((countryInfo.convertedSalary / countryInfo.convertedMedianHouseholdIncome) * 100);
     countryInfo.salaryAnalysis = salaryAnalysis;
@@ -160,6 +160,7 @@ function renderCountryInfo(countryInfo) {
     } else {
         salaryAnalysisEl.innerHTML = "";
     }
+    countryInfoEl.scrollIntoView({behavior: "smooth"});
 }
 
 function convertButtonHandler(event) {
