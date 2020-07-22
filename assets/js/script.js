@@ -1,18 +1,21 @@
 // Nomad Web Developer
 //      * all country codes are in iso_alpha2 format i.e. "US" for "United States" or "JP" for "Japan"
 
-const scrollDivEl = document.querySelector("#scroll-div");
 const userFormEl = document.querySelector("#user-form");
 const userInputEl = document.querySelector("#user-input");
 const userSelectEl = document.querySelector("#user-select");
 const errorMessageEl = document.querySelector("#search-error-message");
+const scrollDivEl = document.querySelector("#scroll-div");
+const countryInfoEl = document.querySelector("#country-info");
 const countryNameEl = document.querySelector("#country-name");
 const flagImgEl = document.querySelector("#flag-img");
+const occupationNameEl = document.querySelector("#occupation-name");
+const medianSalaryEl = document.querySelector("#median-salary");
+const medianHouseholdIncomeEl = document.querySelector("#median-household-income");
+const salaryAnalysisEl = document.querySelector("#salary-analysis");
 const quickConvertWrapperEl = document.querySelector("#quick-convert-wrapper");
-const countryInfoEl = document.querySelector("#country-info");
+const searchHistoryContainerEl = document.querySelector("#search-history");
 const searchHistoryListEl = document.querySelector("#search-history-list");
-const callToActionEl = document.querySelector("#call-to-action");
-const quickConvReminderEl = document.querySelector("#quickconv-reminder");
 
 function formSubmitHandler(event) {
 
@@ -20,20 +23,16 @@ function formSubmitHandler(event) {
     event.preventDefault();
 
     // this will hold the value of the user's search
-    let locationSearch = userInputEl.value;
+    let locationSearch = userInputEl.value.trim();
     let occupationValue = userSelectEl.value;
-    let occupationName = userSelectEl.options[userSelectEl.selectedIndex].text;
 
-    userFormEl.reset();
-
-    startSearch(locationSearch, occupationValue, occupationName);
+    startSearch(locationSearch, occupationValue);
 }
 
-function startSearch(locationSearch, occupationValue, occupationName) {
+function startSearch(locationSearch, occupationValue) {
 
     let countryInfo = {};
 
-    countryInfo.occupationName = occupationName;
     countryInfo.occupationValue = occupationValue;
 
     // this function returns an array with country code and country name index flipped depending on search term. returns false if country not found.
@@ -47,7 +46,7 @@ function startSearch(locationSearch, occupationValue, occupationName) {
 
     // country search validation
     if (!countryInfo.countryCode || !countryInfo.countryName) {
-        errorMessageEl.textContent = "We couldn't find that country. Please try again.";
+        errorMessageEl.textContent = "We couldn't find that country.";
         return;
     }
     errorMessageEl.textContent = "";
@@ -130,28 +129,38 @@ function getConversionRate(countryInfo) {
 //convert medianSalary and medianHouseholdIncome using conversionRate
 function getConvertedValues(countryInfo) {
     let convertedSalary = Math.floor(countryInfo.medianSalary * countryInfo.conversionRate);
-    countryInfo.convertedSalary = convertedSalary ? convertedSalary : "No salary data found ☹️";
+    countryInfo.convertedSalary = convertedSalary ? convertedSalary : "No data found ☹️";
 
     let convertedMedianHouseholdIncome = Math.floor(countryInfo.medianHouseholdIncome * countryInfo.conversionRate);
-    countryInfo.convertedMedianHouseholdIncome = convertedMedianHouseholdIncome ? convertedMedianHouseholdIncome : "No median household income data found ☹️";
+    countryInfo.convertedMedianHouseholdIncome = convertedMedianHouseholdIncome ? convertedMedianHouseholdIncome : "No data found ☹️";
+
+    let salaryAnalysis = Math.floor((countryInfo.convertedSalary / countryInfo.convertedMedianHouseholdIncome) * 100);
+    countryInfo.salaryAnalysis = salaryAnalysis;
 
     renderCountryInfo(countryInfo);
 }
 
 function renderCountryInfo(countryInfo) {
     // hide pre-search elements and display post-search elements
-    quickConvertWrapperEl.classList.remove("hide-before-search");
-    quickConvReminderEl.classList.remove("hide-before-search");
-    callToActionEl.classList.remove("hide-after-search");
-    callToActionEl.classList = "hide-before-search";
+    countryInfoEl.classList.remove("hidden");
 
     // render values to DOM
     countryNameEl.textContent = countryInfo.countryName;
+    occupationNameEl.textContent = countryInfo.occupationValue;
     flagImgEl.setAttribute("src", countryInfo.flagUrl);
-    countryInfoEl.innerHTML =
-        `<p class="font-medium">Median Annual Salary for <span id="occupation" data-value="${countryInfo.occupationValue}">${countryInfo.occupationName}</span>s in ${countryInfo.countryName}: ${countryInfo.convertedSalary} <span id="currency-code">${countryInfo.currencyCode}</span></p>
-        <p class="font-medium">Median Household Income in ${countryInfo.countryName}: ${countryInfo.convertedMedianHouseholdIncome} ${countryInfo.currencyCode}</p>`;
-    scrollDivEl.scrollIntoView();
+    flagImgEl.setAttribute("alt", `${countryInfo.countryName} flag`)
+    medianSalaryEl.innerHTML = `Median Annual Salary: ${countryInfo.convertedSalary} <span id="currency-code" class="text-color-gunmetal">${countryInfo.currencyCode}</span>`;
+    medianHouseholdIncomeEl.textContent = `Median Household Income: ${countryInfo.convertedMedianHouseholdIncome} ${countryInfo.currencyCode}`;
+    if (countryInfo.salaryAnalysis > 100) {
+        salaryAnalysisEl.innerHTML = `Pays about <span class="text-green-600">${countryInfo.salaryAnalysis - 100}% above</span> median income`;
+    } else if (countryInfo.salaryAnalysis < 100) {
+        salaryAnalysisEl.innerHTML = `Pays about <span class="text-red-600">${100 - countryInfo.salaryAnalysis}% below</span> median income`;
+    } else if (countryInfo.salaryAnalysis == 100) {
+        salaryAnalysisEl.innerHTML = `Pays about equal to the median income`;
+    } else {
+        salaryAnalysisEl.innerHTML = "";
+    }
+    countryInfoEl.scrollIntoView({behavior: "smooth"});
 }
 
 function convertButtonHandler(event) {
@@ -163,8 +172,7 @@ function convertButtonHandler(event) {
     }
     countryInfo.countryName = countryNameEl.textContent;
     countryInfo.countryCode = getCountryCodeOrName(countryInfo.countryName)[1];
-    countryInfo.occupationName = document.querySelector("#occupation").textContent;
-    countryInfo.occupationValue = document.querySelector("#occupation").getAttribute("data-value");
+    countryInfo.occupationValue = occupationNameEl.textContent;
     countryInfo.medianHouseholdIncome = getMedianHouseholdIncome(countryInfo.countryName);
     countryInfo.flagUrl = flagImgEl.getAttribute("src");
     countryInfo.currentCurrencyCode = document.querySelector("#currency-code").textContent;
@@ -175,10 +183,10 @@ function convertButtonHandler(event) {
 // when a country is searched, save in localStorage and add to search history. search history filters out duplicates and holds up to 10 country names.
 function saveSearchHistory(countryInfo) {
     let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-    searchHistory.push(`${countryInfo.countryName} - ${countryInfo.occupationName} - ${countryInfo.occupationValue}`);
+    searchHistory.push(`${countryInfo.countryName} - ${countryInfo.occupationValue}`);
     searchHistory = searchHistory.filter((value, index, array) => array.indexOf(value) === index);
-    if (searchHistory.length > 10) {
-        searchHistory = searchHistory.slice(1, 11);
+    if (searchHistory.length > 5) {
+        searchHistory = searchHistory.slice(1, 6);
     }
     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
     loadSearchHistory();
@@ -188,25 +196,25 @@ function loadSearchHistory() {
     let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
     searchHistoryListEl.innerHTML = "";
 
+    if (searchHistory.length != 0) {
+        searchHistoryContainerEl.classList.remove("hidden");
+    }
+
     for (let i = 0; i < searchHistory.length; i++) {
         let searchHistoryListItemEl = document.createElement("li");
-        searchHistoryListItemEl.classList = "transition duration-500 hover:bg-blue-700 hover:text-white rounded-lg";
-
-        let searchHistoryButtonEl = document.createElement("button");
-        searchHistoryButtonEl.setAttribute("type", "submit");
-        searchHistoryButtonEl.setAttribute("data-value", searchHistory[i].split("-")[2].trim());
-        searchHistoryButtonEl.textContent = `${searchHistory[i].split("-")[0].trim()} - ${searchHistory[i].split("-")[1].trim()}`;
-        searchHistoryListItemEl.appendChild(searchHistoryButtonEl);
+        searchHistoryListItemEl.classList.add("list-item", "cursor-pointer", "mb-3", "px-1", "py-2", "border", "border-solid", "border-color-sand", "rounded-lg", "bg-color-terracotta", "font-semibold");
+        searchHistoryListItemEl.textContent = `${searchHistory[i].split("-")[0].trim()} - ${searchHistory[i].split("-")[1].trim()}`;
 
         searchHistoryListEl.prepend(searchHistoryListItemEl);
     }
 }
 
 function searchHistoryClickHandler(event) {
-    let locationSearch = event.target.innerHTML.split("-")[0].trim();
-    let occupationName = event.target.innerHTML.split("-")[1].trim();
-    let occupationValue = event.target.getAttribute("data-value");
-    startSearch(locationSearch, occupationValue, occupationName);
+    if (event.target.classList.contains("list-item")) {
+        let locationSearch = event.target.textContent.split("-")[0].trim();
+        let occupationValue = event.target.textContent.split("-")[1].trim();
+        startSearch(locationSearch, occupationValue);
+    }
 }
 
 loadSearchHistory();
