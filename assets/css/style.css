@@ -133,6 +133,18 @@ li:hover {
     }
 }
 
+@media screen and (max-width:800px) {
+    .content-container {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .occupation {
+        width: 80%;
+    }
+}
+
 @media screen and (max-width:640px) {
     .content-container {
         margin-top: 30px;
@@ -154,13 +166,14 @@ li:hover {
     .h-country-info {
         height: auto;
     }
+
+    .figures {
+        display: block;
+        margin-bottom: 10px;
+    }
 }
 
 @media screen and (max-width:535px) {
-    .content-container {
-        width: 95%;
-    }
-
     .flag-btn {
         margin: 0;
     }
