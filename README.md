@@ -28,3 +28,6 @@ Created by Anders Ackerman, Daniel Monterrosa, and Junior Escobar
 * [Country Flags API](https://www.countryflags.io/)
 * [Tailwind CSS](https://tailwindcss.com/)
 * [Google Fonts](https://fonts.google.com/)
+
+## Live Link
+https://dj-viking.github.io/Nomadica/
