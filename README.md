@@ -4,6 +4,10 @@
 Have you ever thought about packing your bags and starting over somewhere new? It's tempting, but it can be distressing not knowing how people with your occupation fare financially in a foreign land. Nomadica’s purpose is to give you the information needed to make an informed, confident decision about relocating.</br></br>
 Nomadica allows you to search the median annual salary for 50+ occupations in 200+ countries and compare it to that country’s median household income. These figures are both displayed in the searched country's currency (or USD if the Rates API does not contain a conversion rate). These figures can then be converted to common currencies with the flag buttons at the bottom of the page. Your search history is updated after each successful search and stores your last 5 unique searches.
 
+## Deployment Page Link
+
+https://dj-viking.github.io/Nomadica/
+
 ## User Story
 AS A person interested in relocating for work</br>
 I WANT to know what people in my occupation live like in other countries</br>
