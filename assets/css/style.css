@@ -1,102 +1,180 @@
-.bg-img-custom {
-    background-image: url("https://images.unsplash.com/photo-1561781563-2027669731c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
-    height: 100% !important;
-    width: 100% !important;
-    background-attachment: fixed;
+:root {
+    --gunmetal: rgb(34, 56, 67);
+    --offwhite: rgb(239, 241, 243);
+    --gray: rgb(219, 211, 216);
+    --sand: rgb(216, 180, 160);
+    --terracotta: rgb(215, 122, 97);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    color: var(--offwhite);
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+h1,
+.quote {
+    font-family: 'Kaushan Script', cursive;
+}
+
+.map-bg {
+    background-image: url("../images/map-bg.jpg");
+    background-size: cover;
     background-repeat: no-repeat;
-    background-position: 50% 100%;
 }
 
-.margin-bottom-custom {
-    margin-bottom: 50%;
+.bg-color-gunmetal {
+    background-color: var(--gunmetal);
 }
 
-.flex-custom-column {
-    flex-direction: column !important;
-    
+.bg-color-offwhite {
+    background-color: var(--offwhite);
 }
 
-.margin-left-right-custom {
-    margin-left: 30%;
-    margin-right: 30%;
+.bg-color-terracotta {
+    background-color: var(--terracotta);
 }
 
-.border-radius-custom {
-    border-radius: 15px;
+.text-color-gunmetal {
+    color: var(--gunmetal);
 }
 
-.padding-left-right-custom {
-    padding-left: 10%;
-    padding-right: 10%;
-}
-.padding-left-right-custom2 {
-    padding-left: 40% !important;
-    padding-right: 40% !important;
+.border-color-sand {
+    border-color: var(--sand);
 }
 
-
-
-.height-full {
-    height: 100%;
+.border-color-terracotta {
+    border-color: var(--terracotta);
 }
 
-.text-light {
-    color: white;
+.box-shadow-offwhite {
+    box-shadow: 1px 1px 5px var(--offwhite);
 }
 
-.opacity-light {
-    opacity: .8;
+.w-search-section {
+    width: 30%;
 }
 
-.z-index-high {
-    z-index: 9999;
+.w-country-info {
+    width: 65%;
 }
 
-.z-index-low {
-    z-index: 9998;
+.h-country-info {
+    height: 500px;
 }
 
-.opacity-full {
-    opacity: 1 !important;
+input,
+select,
+option {
+    color: var(--gunmetal);
 }
 
-.width-custom-350{
-    min-width: 350px !important;
+button:hover,
+li:hover {
+    color: var(--gunmetal);
 }
 
-.width-custom-50perc {
-    width: 50%
+.flag-btn:focus {
+    outline: none;
 }
 
-.width-custom-100perc {
-    width: 100px !important;
+.flag-btn .tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: var(--gunmetal);
+    color: var(--offwhite);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 115%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
-.min-height-custom-300 {
-    min-height: 300px !important;
+.flag-btn .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--gunmetal) transparent transparent transparent;
 }
 
-.text-center-custom {
-    text-align: center !important;
+.flag-btn:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
 }
 
-.rounded-border-custom {
-    border-radius: 15px !important;
+@media screen and (max-width:1024px) {
+    .w-search-section {
+        flex-flow: row wrap;
+        justify-content: space-between;
+        width: 100%;
+        height: auto;
+    }
+
+    .search-section {
+        display: inline-block;
+        width: 48%;
+        margin: 0;
+    }
+
+    .w-country-info {
+        margin-top: 20px;
+        width: 100%;
+    }
 }
 
-.text-center-custom {
-    text-align: center !important;
+@media screen and (max-width:800px) {
+    .content-container {
+        width: 95%;
+    }
 }
 
-.align-items-center-custom {
-    -ms-flex-align: center !important;
+@media screen and (max-width:768px) {
+    .occupation {
+        width: 80%;
+    }
 }
 
-.margin-left-right-custom {
-    margin-left: 20%;
-    margin-right: 20%;
+@media screen and (max-width:640px) {
+    .content-container {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .w-search-section {
+        flex-flow: column nowrap;
+    }
+
+    .search-section {
+        width: 100%;
+    }
+
+    .search-section:last-child {
+        margin-top: 20px;
+    }
+
+    .h-country-info {
+        height: auto;
+    }
+
+    .figures {
+        display: block;
+        margin-bottom: 10px;
+    }
 }
-.margin-left-right-custom2 {
-    margin-left: 10%;
-    margin-right: 10%;
+
+@media screen and (max-width:535px) {
+    .flag-btn {
+        margin: 0;
+    }
 }

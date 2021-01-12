@@ -141,7 +141,7 @@ const medianIncomeArr = [
         "medianHouseholdIncome": 6302
     },
     {
-        "country": "DR Congo",
+        "country": "Democratic Republic of Congo",
         "medianHouseholdIncome": 1988
     },
     {

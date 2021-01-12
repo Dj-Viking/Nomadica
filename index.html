@@ -1,68 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Nomad Web Developer</title>
-        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-        <link href="./assets/css/tailwind.css" rel="stylesheet">
-        <link href="./assets/css/style.css" rel="stylesheet">
-        <link rel="icon" type="img/png" href="./assets/images/favicon.ico">
-    </head>
-    <body class="bg-gray-400">
-        <div class="bg-cover bg-img-custom">
-            <header class="">
-                <h1 class="text-5xl text-center border-double border-b-4 border-t-4 border-radius-custom">
-                    Nomad Web Developer
-                </h1>
-            </header>
-            <section id="form-container" class="border rounded-lg bg-white margin-left-right-custom2 bg-gray-300">
-                <div class="bg-gray-100 rounded-border-custom opacity-full z-index-high">
-                    <p class="text-2xl text-center">
-                        Search Web Developer Salaries by Country Name:
-                    </p>
-                    <form id="user-form" class="flex items-center h-24 justify-center space-x-4">
-                        <input 
-                            name="user-input" 
-                            id="user-input" 
-                            type="text" 
-                            autofocus="true" 
-                            autocomplete="off"
-                            required
-                            class="focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 width-350-custom"
-                        />
-                        <button type="submit" class="bg-blue-400 hover:bg-blue-700 text-white p-2 rounded-lg">
-                            Search
-                        </button>
-                    </form>
-                    <p id="search-error-message" class="text-center"></p>
-                </div>
-            </section>
-            <section class="container items-center rounded overflow-hidden shadow-lg mx-auto my-10 pb-10 space-y-5 bg-white">
-                <div id="country-title" class="flex text-center space-x-4 justify-center mt-5 items-center">
-                    <p id="country-name" class="text-3xl"></p>
-                    <img id="flag-img"/>
-                </div>
-                <div id="country-info" class="text-center"></div>
-                <div id="quick-convert-wrapper" class="flex justify-center text-center space-x-1">
-                    <!-- these flags can be buttons to switch the currency amount from dollars to the selected in this list -->
-                    <img data-currency="USD" id="usd-quick-convert" src="https://www.countryflags.io/us/shiny/32.png">
-                    <img data-currency="EUR" id="eur-quick-convert" src="https://www.countryflags.io/eu/shiny/32.png">
-                    <img data-currency="JPY" id="jpy-quick-convert" src="https://www.countryflags.io/jp/shiny/32.png">
-                    <img data-currency="GBP" id="gbp-quick-convert" src="https://www.countryflags.io/gb/shiny/32.png">
-                    <img data-currency="CAD" id="cad-quick-convert" src="https://www.countryflags.io/ca/shiny/32.png">
-                </div>
-            </section>
-            <section class="flex justify-center" id="search-container">
-                <div id="search-history" class="flex flex-custom-column justify-center margin-left-right-custom padding-left-right-custom bg-gray-100 margin-bottom-custom items-center border-radius-custom">
-                    <p class="flex bg-gray-300 border-radius-custom text-center width-custom-100perc">Search History</p>
-                    <ul id="search-history-list"></ul>
-                </div>
-            </section>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nomadica</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <!-- TailWind CDN -->
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <!-- custom styles -->
+    <link href="./assets/css/style.css" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
+</head>
+
+<body class="map-bg">
+    <header class="w-full h-1 py-12 lg:px-24 bg-color-gunmetal flex items-center justify-center">
+        <div class="flex flex-no-wrap">
+            <h1 class="md:text-5xl text-4xl inline">Nomadica</h1>
+            <img class="inline h-16 w-16" src="./assets/images/title-icon.png" alt="cartoon plane flying around the world">
         </div>
-        
-        <script src="./assets/js/getCountryCodeOrName.js"></script>
-        <script src="./assets/js/medianIncomeData.js"></script>
-        <script src="./assets/js/script.js"></script>
-    </body>
+        <p class="quote text-2xl hidden pl-6 lg:block">"Wherever you go, go with all your heart"</p>
+    </header>
+    <div class="content-container flex flex-wrap justify-between w-5/6 mx-auto my-16">
+        <aside class="flex flex-col w-search-section">
+            <section id="form-container" class="search-section w-full mx-auto p-8 bg-color-gunmetal rounded-lg box-shadow-offwhite">
+                <h2 class="text-center mb-3 font-medium text-xl">Search for Salary Info</h2>
+                <hr class="border-t-4 border-color-terracotta">
+                <form id="user-form" class="mt-3">
+                    <label for="user-input" class="block mx-auto font-semibold">Enter a Country:</label>
+                    <input name="user-input" id="user-input" class="block mx-auto w-full mb-4 py-1 px-2 rounded" type="text" autofocus="true" autocomplete="off" required />
+                    <label for="user-select" class="block mx-auto font-semibold">Select a Profession:</label>
+                    <select name="user-select" id="user-select" class="block mx-auto w-full mb-6 py-1 px-2 rounded" required>
+                        <option value="" disabled selected></option>
+                        <option value="Account Manager">Account Manager</option>
+                        <option value="Accountant">Accountant</option>
+                        <option value="Administrative Assistant">Administrative Assistant</option>
+                        <option value="Architect">Architect</option>
+                        <option value="Attorney">Attorney</option>
+                        <option value="Business Analyst">Business Analyst</option>
+                        <option value="Business Development">Business Development</option>
+                        <option value="C Level Executive">C Level Executive</option>
+                        <option value="Cashier">Cashier</option>
+                        <option value="Chef">Chef</option>
+                        <option value="Chemical Engineer">Chemical Engineer</option>
+                        <option value="Civil Engineer">Civil Engineer</option>
+                        <option value="Content Marketing">Content Marketing</option>
+                        <option value="Copywriter">Copywriter</option>
+                        <option value="Customer Support">Customer Support</option>
+                        <option value="Data Analyst">Data Analyst</option>
+                        <option value="Data Scientist">Data Scientist</option>
+                        <option value="Dentist">Dentist</option>
+                        <option value="Electrical Engineer">Electrical Engineer</option>
+                        <option value="Executive Assistant">Executive Assistant</option>
+                        <option value="Fashion Designer">Fashion Designer</option>
+                        <option value="Finance Manager">Finance Manager</option>
+                        <option value="Financial Analyst">Financial Analyst</option>
+                        <option value="Graphic Designer">Graphic Designer</option>
+                        <option value="Hardware Engineer">Hardware Engineer</option>
+                        <option value="Human Resources Manager">Human Resources Manager</option>
+                        <option value="IT Manager">IT Manager</option>
+                        <option value="Industrial Designer">Industrial Designer</option>
+                        <option value="Interior Designer">Interior Designer</option>
+                        <option value="Lecturer">Lecturer</option>
+                        <option value="Marketing Manager">Marketing Manager</option>
+                        <option value="Mechanical Engineer">Mechanical Engineer</option>
+                        <option value="Mobile Developer">Mobile Developer</option>
+                        <option value="Nurse">Nurse</option>
+                        <option value="Office Manager">Office Manager</option>
+                        <option value="Operations Manager">Operations Manager</option>
+                        <option value="Pharmacist">Pharmacist</option>
+                        <option value="Physician">Physician</option>
+                        <option value="Postdoctoral Researcher">Postdoctoral Researcher</option>
+                        <option value="Product Manager">Product Manager</option>
+                        <option value="Project Manager">Project Manager</option>
+                        <option value="QA Engineer">QA Engineer</option>
+                        <option value="Receptionist">Receptionist</option>
+                        <option value="Research Scientist">Research Scientist</option>
+                        <option value="Sales Manager">Sales Manager</option>
+                        <option value="Software Engineer">Software Engineer</option>
+                        <option value="Systems Administrator">Systems Administrator</option>
+                        <option value="Teacher">Teacher</option>
+                        <option value="UX Designer">UX Designer</option>
+                        <option value="Waiter">Waiter</option>
+                        <option value="Web Designer">Web Designer</option>
+                        <option value="Web Developer">Web Developer</option>
+                    </select>
+                    <button type="submit" class="block mx-auto w-full rounded-lg bg-color-terracotta font-bold py-2 px-4 border border-solid border-color-sand">Search</button>
+                    <p id="search-error-message" class="mt-4 text-red-600 text-center font-medium"></p>
+                </form>
+            </section>
+            <section id="search-history" class="search-section w-full text-center mt-5 mx-auto p-8 bg-color-gunmetal rounded-lg hidden box-shadow-offwhite">
+                <h2 class="text-center mb-3 font-medium text-xl">Search History</h2>
+                <hr class="border-t-4 border-color-terracotta">
+                <ul id="search-history-list" class="mx-auto mt-6"></ul>
+            </section>
+        </aside>
+        <main id="country-info" class="text-center w-country-info h-country-info mx-auto p-8 rounded-lg hidden box-shadow-offwhite bg-color-gunmetal">
+            <div class="bg-color-offwhite w-full h-full pt-6 rounded-lg border-4 border-color-terracotta">
+                <div id="country-title" class="flex flex-wrap items-center justify-center">
+                    <h2 id="country-name" class="inline text-4xl mr-3 text-color-gunmetal"></h2>
+                    <img id="flag-img" class="text-center inline" />
+                </div>
+                <h3 id="occupation-name" class="occupation text-3xl mt-4 mb-2 pt-6 text-color-gunmetal inline-block w-1/2 border-t-4 border-color-terracotta"></h3>
+                <div id="country-financials" class="text-color-gunmetal">
+                    <p id="median-salary" class="font-medium mb-1 text-color-gunmetal"></p>
+                    <p id="median-household-income" class="font-medium mb-1 text-color-gunmetal"></p>
+                    <p id="salary-analysis" class="font-medium mb-1 text-color-gunmetal"></p>
+                </div>
+                <div id="quick-convert-wrapper" class="text-center mt-10">
+                    <button type="submit" class="flag-btn mx-2 px-1 relative">
+                        <img data-currency="USD" id="usd-quick-convert" class=""
+                            src="https://www.countryflags.io/us/shiny/32.png" alt="united states flag">
+                        <span class="tooltip">Convert to USD</span>
+                    </button>
+                    <button type="submit" class="flag-btn mx-2 px-1 relative">
+                        <img data-currency="EUR" id="eur-quick-convert" class=""
+                            src="https://www.countryflags.io/eu/shiny/32.png" alt="european union flag">
+                        <span class="tooltip">Convert to EUR</span>
+                    </button>
+                    <button type="submit" class="flag-btn mx-2 px-1 relative">
+                        <img data-currency="JPY" id="jpy-quick-convert" class=""
+                            src="https://www.countryflags.io/jp/shiny/32.png" alt="japan flag">
+                        <span class="tooltip">Convert to JPY</span>
+                    </button>
+                    <button type="submit" class="flag-btn mx-2 px-1 relative">
+                        <img data-currency="GBP" id="gbp-quick-convert" class=""
+                            src="https://www.countryflags.io/gb/shiny/32.png" alt="united kingdom flag">
+                        <span class="tooltip">Convert to GBP</span>
+                    </button>
+                    <button type="button" class="flag-btn mx-2 px-1 relative">
+                        <img data-currency="CAD" id="cad-quick-convert" class=""
+                            src="https://www.countryflags.io/ca/shiny/32.png" alt="canada flag">
+                        <span class="tooltip">Convert to CAD</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="./assets/js/getCountryCodeOrName.js"></script>
+    <script src="./assets/js/medianIncomeData.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
 </html>
