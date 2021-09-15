@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/Dj-Viking/Nomadica#readme",
   "dependencies": {
-    "if-env": "1.0.4",
-    "concurrently": "6.2.1"
+    "if-env": "1.0.4"
   }
 }
