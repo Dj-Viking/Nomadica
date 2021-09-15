@@ -28,7 +28,7 @@ Created by Anders Ackerman, Daniel Monterrosa, and Junior Escobar
 
 ## Powered By
 * [Teleport API](https://developers.teleport.org/api/)
-* [Rates API](https://ratesapi.io/documentation/)
+* [ExchangeRate-API](https://www.exchangerate-api.com/)
 * [Country Flags API](https://www.countryflags.io/)
 * [Tailwind CSS](https://tailwindcss.com/)
 * [Google Fonts](https://fonts.google.com/)
