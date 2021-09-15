@@ -20,7 +20,7 @@ h1,
 }
 
 .map-bg {
-    background-image: url("../images/map-bg.jpg");
+    background-image: url("/map-bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
