@@ -22,8 +22,6 @@ app.get("/rates", async (req, res) => {
     const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${req.query.base}`);
     const data = await response.json();
     //send back the conversion rate from the base to the requested currency code of the country in question
-    console.log("data from api", data);
-    console.log("matched request conversion rate", data.conversion_rates[req.query.code]);
     if (data) return res.status(200).json({ data: data.conversion_rates[req.query.code]});
   } catch (error) {
     console.error(error);
