@@ -1,0 +1,25 @@
+{
+  "name": "nomadica",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dj-Viking/Nomadica.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dj-Viking/Nomadica/issues"
+  },
+  "homepage": "https://github.com/Dj-Viking/Nomadica#readme",
+  "dependencies": {
+    "if-env": "1.0.4",
+    "concurrently": "6.2.1"
+  }
+}
