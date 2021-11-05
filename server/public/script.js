@@ -186,17 +186,25 @@ function renderCountryInfo(countryInfo) {
     occupationNameEl.textContent = countryInfo.occupationValue;
     flagImgEmojiEl.textContent = countryInfo.countryFlag;
     flagImgEmojiEl.style.fontSize = "30px";
-    flagImgEmojiEl.setAttribute("alt", `${countryInfo.countryName} flag`)
+    flagImgEmojiEl.setAttribute("alt", `${countryInfo.countryName} flag`);
     medianSalaryEl.innerHTML = `Median Annual Salary: <span class="figures text-color-gunmetal">${numberWithCommas(countryInfo.convertedSalary)} <span id="currency-code" class="text-color-gunmetal">${countryInfo.currencyCode}</span></span>`;
     medianHouseholdIncomeEl.innerHTML = `Median Household Income: <span class="figures text-color-gunmetal">${numberWithCommas(countryInfo.convertedMedianHouseholdIncome)} ${countryInfo.currencyCode}</span>`;
-    if (countryInfo.salaryAnalysis > 100) {
-        salaryAnalysisEl.innerHTML = `Pays about <span class="text-green-600">${countryInfo.salaryAnalysis - 100}% above</span> median income`;
-    } else if (countryInfo.salaryAnalysis < 100) {
-        salaryAnalysisEl.innerHTML = `Pays about <span class="text-red-600">${100 - countryInfo.salaryAnalysis}% below</span> median income`;
-    } else if (countryInfo.salaryAnalysis == 100) {
-        salaryAnalysisEl.innerHTML = `Pays about equal to the median income`;
-    } else {
-        salaryAnalysisEl.innerHTML = "";
+    switch(true) {
+        case countryInfo.salaryAnalysis > 100: {
+            salaryAnalysisEl.innerHTML = `Pays about <span class="text-green-600">${countryInfo.salaryAnalysis - 100}% above</span> median income`;
+        }
+        break;
+        case countryInfo.salaryAnalysis < 100: {
+            salaryAnalysisEl.innerHTML = `Pays about <span class="text-red-600">${100 - countryInfo.salaryAnalysis}% below</span> median income`;
+        }
+        break;
+        case countryInfo.salaryAnalysis == 100: {
+            salaryAnalysisEl.innerHTML = `Pays about equal to the median income`;
+        }
+        break;
+        default: {
+            salaryAnalysisEl.innerHTML = "";
+        }
     }
     countryInfoEl.scrollIntoView({behavior: "smooth"});
 }
@@ -212,7 +220,6 @@ function convertButtonHandler(event) {
     countryInfo.countryCode = getCountryCodeOrName(countryInfo.countryName)[1];
     countryInfo.occupationValue = occupationNameEl.textContent;
     countryInfo.medianHouseholdIncome = getMedianHouseholdIncome(countryInfo.countryName);
-    countryInfo.flagUrl = flagImgEmojiEl.getAttribute("src");
     countryInfo.currentCurrencyCode = document.querySelector("#currency-code").textContent;
 
     getMedianSalary(countryInfo);
