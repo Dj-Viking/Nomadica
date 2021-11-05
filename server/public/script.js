@@ -142,9 +142,9 @@ function getMedianSalary(countryInfo) {
 
 function getConversionRate(countryInfo) {
     //test url
-    const API_URL = `http://localhost:4000/rates/?base=USD&code=${countryInfo.currencyCode}`
+    // const API_URL = `http://localhost:4000/rates/?base=USD&code=${countryInfo.currencyCode}`
     // prod api url?? TODO deploy to prod
-    // const API_URL = `https://nomadica-app.herokuapp.com/rates/?base=USD&code=${countryInfo.currencyCode}`;
+    const API_URL = `https://nomadica-app.herokuapp.com/rates/?base=USD&code=${countryInfo.currencyCode}`;
     fetch(`${API_URL}`)
         .then((response) => response.json())
         .then(({ data }) => {
