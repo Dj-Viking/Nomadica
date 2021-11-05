@@ -1,7 +1,7 @@
 /**
  * 
  * @param {string} inputNameOrCode input string from the input element could be a country code or country name
- * @returns {[string, string]} [countryCode, countryName]
+ * @returns {[string | boolean, string]} [countryCode, countryName]
  * @example
  * 
  * //input 
