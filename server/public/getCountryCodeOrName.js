@@ -1,5 +1,22 @@
-function getCountryCodeOrName(inputValue) {
-    let nameCountries = {
+/**
+ * 
+ * @param {string} inputNameOrCode input string from the input element could be a country code or country name
+ * @returns {[string, string]} [countryCode, countryName]
+ * @example
+ * 
+ * //input 
+ * "HR" 
+ * //output
+ * ["HR", "Croatia"]
+ * 
+ * //input
+ * "Croatia"
+ * //output
+ * ["HR", "Croatia"]
+ * 
+ */
+function getCountryCodeOrName(inputNameOrCode) {
+    const countryKeyCodeValue = {
         'Afghanistan': 'AF',
         'Aland Islands': 'AX',
         'Albania': 'AL',
@@ -239,46 +256,48 @@ function getCountryCodeOrName(inputValue) {
         'Zimbabwe': 'ZW'
     }
 
-    if (inputValue === undefined || Boolean(inputValue.match(/^[^,'& ()-]{1}([a-zA-Z\s',&()-]){0,80}$/)) === false) return [false, inputValue];
+    if (inputNameOrCode === undefined || Boolean(inputNameOrCode.match(/^[^,'& ()-]{1}([a-zA-Z\s',&()-]){0,80}$/)) === false) return [false, inputNameOrCode];
 
-    let inlength = inputValue.length;
+    let inlength = inputNameOrCode.length;
     if (inlength === 2) {
-        let outValue = inputValue.toUpperCase();
-        let countryName = "";
-        for (let name in nameCountries) {
-            if (nameCountries[name] === outValue) countryName = name;
+        let returnCode = inputNameOrCode.toUpperCase();
+        let returnName = "";
+        for (const key in countryKeyCodeValue) {
+            if (countryKeyCodeValue[key] === returnCode) returnName = key;
         }
         switch (true) {
-            case Boolean(countryName === ""):
-                return [false, inputValue];
+            case Boolean(returnName === ""):
+                return [false, inputNameOrCode];
 
             default:
-                return [outValue, countryName];
+                return [returnCode, returnName];
         }
 
     }
 
     if (inlength > 2) {
-        let outValue = inputValue.toLowerCase();
+        let returnCode = inputNameOrCode.toLowerCase();
 
         switch (true) {
-            case Boolean(outValue.match(/^[Gg][Uu][Ii][Nn][Ee][Aa][-][Bb][Ii][Ss][Ss][Aa][Uu]$/)):
-                outValue = "Guinea-Bissau";
+            case Boolean(returnCode.match(/^[Gg][Uu][Ii][Nn][Ee][Aa][-][Bb][Ii][Ss][Ss][Aa][Uu]$/)):
+                returnCode = "Guinea-Bissau";
                 break;
 
             default:
-                let arrCName = outValue.split(" ");
+                let arrCName = returnCode.split(" ");
                 let cNameJoin = "";
                 for (let i in arrCName) {
                     cNameJoin += arrCName[i].charAt(0).toUpperCase() + arrCName[i].slice(1) + " ";
                 }
-                outValue = cNameJoin.trim();
+                returnCode = cNameJoin.trim();
                 break;
         }
 
         return [
-            (nameCountries.hasOwnProperty(outValue) ? outValue : false),
-            (nameCountries.hasOwnProperty(outValue) ? nameCountries[outValue] : inputValue)
+            //code
+            (countryKeyCodeValue.hasOwnProperty(returnCode) ? returnCode : false),
+            //name
+            (countryKeyCodeValue.hasOwnProperty(returnCode) ? countryKeyCodeValue[returnCode] : inputNameOrCode)
         ];
 
     }

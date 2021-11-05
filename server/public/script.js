@@ -1,6 +1,9 @@
 // Nomad Web Developer
 //      * all country codes are in iso_alpha2 format i.e. "US" for "United States" or "JP" for "Japan"
 
+
+// TODO: (provide static flag emojis for the currency conversion buttons)
+
 const userFormEl = document.querySelector("#user-form");
 const userInputEl = document.querySelector("#user-input");
 const userSelectEl = document.querySelector("#user-select");
@@ -8,7 +11,7 @@ const errorMessageEl = document.querySelector("#search-error-message");
 const scrollDivEl = document.querySelector("#scroll-div");
 const countryInfoEl = document.querySelector("#country-info");
 const countryNameEl = document.querySelector("#country-name");
-const flagImgEl = document.querySelector("#flag-img");
+const flagImgEmojiEl = document.querySelector("#flag-img");
 const occupationNameEl = document.querySelector("#occupation-name");
 const medianSalaryEl = document.querySelector("#median-salary");
 const medianHouseholdIncomeEl = document.querySelector("#median-household-income");
@@ -31,18 +34,34 @@ function formSubmitHandler(event) {
 
 function startSearch(locationSearch, occupationValue) {
 
+
+    /**
+     * @type {{
+     *  occupationValue: string;
+     *  countryName: string;
+     *  countryNameOrCode: string;
+     *  countryFlag: string;
+     *  countryCode: string;
+     *  medianHouseholdIncome: number;
+     * }}
+     */
     let countryInfo = {};
 
     countryInfo.occupationValue = occupationValue;
 
     // this function returns an array with country code and country name index flipped depending on search term. returns false if country not found.
-    let countryCode = getCountryCodeOrName(locationSearch);
+    let countryNameOrCode = getCountryCodeOrName(locationSearch);
 
+    
     // if the country code was searched, the country name will be index [1]. if country name was searched, the country code will be index [0]
-    countryInfo.countryName = locationSearch.length === 2 ? countryCode[1] : countryCode[0];
-
+    countryInfo.countryName = locationSearch.length === 2 ? countryNameOrCode[1] : countryNameOrCode[0];
+    
     // if the country code was searched, the country code will be index [0]. if country name was searched, the country code will be index [1]
-    countryInfo.countryCode = locationSearch.length === 2 ? countryCode[0] : countryCode[1];
+    countryInfo.countryCode = locationSearch.length === 2 ? countryNameOrCode[0] : countryNameOrCode[1];
+    
+    countryInfo.countryFlag = getCountryFlagFromNameOrCode(
+        locationSearch.length === 2 ? countryNameOrCode[0] : countryNameOrCode[1]
+    );
 
     // country search validation
     if (!countryInfo.countryCode || !countryInfo.countryName) {
@@ -52,9 +71,6 @@ function startSearch(locationSearch, occupationValue) {
     errorMessageEl.textContent = "";
 
     saveSearchHistory(countryInfo);
-
-    let flagUrl = getFlagUrl(countryInfo.countryCode);
-    countryInfo.flagUrl = flagUrl;
 
     let medianHouseholdIncome = getMedianHouseholdIncome(countryInfo.countryName);
     countryInfo.medianHouseholdIncome = medianHouseholdIncome;
@@ -151,8 +167,8 @@ function renderCountryInfo(countryInfo) {
     // render values to DOM
     countryNameEl.textContent = countryInfo.countryName;
     occupationNameEl.textContent = countryInfo.occupationValue;
-    flagImgEl.setAttribute("src", countryInfo.flagUrl);
-    flagImgEl.setAttribute("alt", `${countryInfo.countryName} flag`)
+    flagImgEmojiEl.innerText = countryInfo.countryFlag;
+    flagImgEmojiEl.setAttribute("alt", `${countryInfo.countryName} flag`)
     medianSalaryEl.innerHTML = `Median Annual Salary: <span class="figures text-color-gunmetal">${numberWithCommas(countryInfo.convertedSalary)} <span id="currency-code" class="text-color-gunmetal">${countryInfo.currencyCode}</span></span>`;
     medianHouseholdIncomeEl.innerHTML = `Median Household Income: <span class="figures text-color-gunmetal">${numberWithCommas(countryInfo.convertedMedianHouseholdIncome)} ${countryInfo.currencyCode}</span>`;
     if (countryInfo.salaryAnalysis > 100) {
@@ -178,7 +194,7 @@ function convertButtonHandler(event) {
     countryInfo.countryCode = getCountryCodeOrName(countryInfo.countryName)[1];
     countryInfo.occupationValue = occupationNameEl.textContent;
     countryInfo.medianHouseholdIncome = getMedianHouseholdIncome(countryInfo.countryName);
-    countryInfo.flagUrl = flagImgEl.getAttribute("src");
+    countryInfo.flagUrl = flagImgEmojiEl.getAttribute("src");
     countryInfo.currentCurrencyCode = document.querySelector("#currency-code").textContent;
 
     getMedianSalary(countryInfo);
