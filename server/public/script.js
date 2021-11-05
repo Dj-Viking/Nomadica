@@ -174,6 +174,8 @@ function getConvertedValues(countryInfo) {
     let salaryAnalysis = Math.floor((countryInfo.convertedSalary / countryInfo.convertedMedianHouseholdIncome) * 100);
     countryInfo.salaryAnalysis = salaryAnalysis;
 
+    countryInfo.countryFlag = getCountryFlagFromNameOrCode(countryInfo.countryCode);
+
     renderCountryInfo(countryInfo);
 }
 
