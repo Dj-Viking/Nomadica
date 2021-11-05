@@ -104,6 +104,7 @@
             <div class="bg-color-offwhite w-full h-full pt-6 rounded-lg border-4 border-color-terracotta">
                 <div id="country-title" class="flex flex-wrap items-center justify-center">
                     <h2 id="country-name" class="inline text-4xl mr-3 text-color-gunmetal"></h2>
+                    <span id="flag-img"></span>
                     <img id="flag-img" class="text-center inline" />
                 </div>
                 <h3 id="occupation-name" class="occupation text-3xl mt-4 mb-2 pt-6 text-color-gunmetal inline-block w-1/2 border-t-4 border-color-terracotta"></h3>
@@ -114,37 +115,32 @@
                 </div>
                 <div id="quick-convert-wrapper" class="text-center mt-10">
                     <button type="submit" class="flag-btn mx-2 px-1 relative">
-                        <img data-currency="USD" id="usd-quick-convert" class=""
-                            src="https://www.countryflags.io/us/shiny/32.png" alt="united states flag">
+                        <span id="usd-quick-convert" class="" data-currency="USD"></span>
                         <span class="tooltip">Convert to USD</span>
                     </button>
                     <button type="submit" class="flag-btn mx-2 px-1 relative">
-                        <img data-currency="EUR" id="eur-quick-convert" class=""
-                            src="https://www.countryflags.io/eu/shiny/32.png" alt="european union flag">
+                        <span id="eur-quick-convert" class="" data-currency="EUR"></span>
                         <span class="tooltip">Convert to EUR</span>
                     </button>
                     <button type="submit" class="flag-btn mx-2 px-1 relative">
-                        <img data-currency="JPY" id="jpy-quick-convert" class=""
-                            src="https://www.countryflags.io/jp/shiny/32.png" alt="japan flag">
+                        <span id="jpy-quick-convert" class="" data-currency="JPY"></span>
                         <span class="tooltip">Convert to JPY</span>
                     </button>
                     <button type="submit" class="flag-btn mx-2 px-1 relative">
-                        <img data-currency="GBP" id="gbp-quick-convert" class=""
-                            src="https://www.countryflags.io/gb/shiny/32.png" alt="united kingdom flag">
+                        <span id="gbp-quick-convert" class="" data-currency="GBP"></span>
                         <span class="tooltip">Convert to GBP</span>
                     </button>
                     <button type="button" class="flag-btn mx-2 px-1 relative">
-                        <img data-currency="CAD" id="cad-quick-convert" class=""
-                            src="https://www.countryflags.io/ca/shiny/32.png" alt="canada flag">
+                        <span id="cad-quick-convert" class="" data-currency="CAD"></span>
                         <span class="tooltip">Convert to CAD</span>
                     </button>
                 </div>
             </div>
         </main>
     </div>
-    <script src="/helpers.js"></script>
     <script src="/FLAGKEY_EMOJIVALUE.js"></script>
     <script src="/getCountryFlagFromNameOrCode.js"></script>
+    <script src="/helpers.js"></script>
     <script src="/getCountryCodeOrName.js"></script>
     <script src="/medianIncomeData.js"></script>
     <script src="/script.js"></script>

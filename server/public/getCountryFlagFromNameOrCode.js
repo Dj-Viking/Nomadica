@@ -11,7 +11,6 @@
     //code logic to return flag from code
     for (const key in FLAGKEY_EMOJIVALUE) {
       if (key === nameOrCode.toUpperCase()) {
-        console.log("output emoji from a country code", FLAGKEY_EMOJIVALUE[key].emoji)
         return FLAGKEY_EMOJIVALUE[key].emoji;
       }
     }
@@ -20,7 +19,6 @@
     //code logic to return flag from name
     for (const key in FLAGKEY_EMOJIVALUE) {
       if (FLAGKEY_EMOJIVALUE[key].name === nameOrCode) {
-        console.log("output emoji from a country name", FLAGKEY_EMOJIVALUE[key].emoji)
         return FLAGKEY_EMOJIVALUE[key].emoji;
       }
     }

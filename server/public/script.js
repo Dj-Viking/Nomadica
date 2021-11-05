@@ -4,6 +4,22 @@
 
 // TODO: (provide static flag emojis for the currency conversion buttons)
 
+const EUFlagConvertEl = document.querySelector("#eur-quick-convert");
+EUFlagConvertEl.textContent = getCountryFlagFromNameOrCode("EU");
+EUFlagConvertEl.style.fontSize = "30px";
+const JPFlagConvertEl = document.querySelector("#jpy-quick-convert");
+JPFlagConvertEl.textContent = getCountryFlagFromNameOrCode("JP");
+JPFlagConvertEl.style.fontSize = "30px";
+const GBPFlagConvertEl = document.querySelector("#gbp-quick-convert");
+GBPFlagConvertEl.textContent = getCountryFlagFromNameOrCode("GB");
+GBPFlagConvertEl.style.fontSize = "30px";
+const CADFlagConvertEl = document.querySelector("#cad-quick-convert");
+CADFlagConvertEl.textContent = getCountryFlagFromNameOrCode("CA");
+CADFlagConvertEl.style.fontSize = "30px";
+const USFlagConvertEl = document.querySelector("#usd-quick-convert");
+USFlagConvertEl.textContent = getCountryFlagFromNameOrCode("US");
+USFlagConvertEl.style.fontSize = "30px";
+
 const userFormEl = document.querySelector("#user-form");
 const userInputEl = document.querySelector("#user-input");
 const userSelectEl = document.querySelector("#user-select");
@@ -43,6 +59,7 @@ function startSearch(locationSearch, occupationValue) {
      *  countryFlag: string;
      *  countryCode: string;
      *  medianHouseholdIncome: number;
+     *  medianSalary: number;
      * }}
      */
     let countryInfo = {};
@@ -125,9 +142,9 @@ function getMedianSalary(countryInfo) {
 
 function getConversionRate(countryInfo) {
     //test url
-    // const API_URL = `http://localhost:4000/rates/?base=USD&code=${countryInfo.currencyCode}`
+    const API_URL = `http://localhost:4000/rates/?base=USD&code=${countryInfo.currencyCode}`
     // prod api url?? TODO deploy to prod
-    const API_URL = `https://nomadica-app.herokuapp.com/rates/?base=USD&code=${countryInfo.currencyCode}`;
+    // const API_URL = `https://nomadica-app.herokuapp.com/rates/?base=USD&code=${countryInfo.currencyCode}`;
     fetch(`${API_URL}`)
         .then((response) => response.json())
         .then(({ data }) => {
@@ -167,7 +184,8 @@ function renderCountryInfo(countryInfo) {
     // render values to DOM
     countryNameEl.textContent = countryInfo.countryName;
     occupationNameEl.textContent = countryInfo.occupationValue;
-    flagImgEmojiEl.innerText = countryInfo.countryFlag;
+    flagImgEmojiEl.textContent = countryInfo.countryFlag;
+    flagImgEmojiEl.style.fontSize = "30px";
     flagImgEmojiEl.setAttribute("alt", `${countryInfo.countryName} flag`)
     medianSalaryEl.innerHTML = `Median Annual Salary: <span class="figures text-color-gunmetal">${numberWithCommas(countryInfo.convertedSalary)} <span id="currency-code" class="text-color-gunmetal">${countryInfo.currencyCode}</span></span>`;
     medianHouseholdIncomeEl.innerHTML = `Median Household Income: <span class="figures text-color-gunmetal">${numberWithCommas(countryInfo.convertedMedianHouseholdIncome)} ${countryInfo.currencyCode}</span>`;
