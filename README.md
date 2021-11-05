@@ -29,6 +29,7 @@ Created by Anders Ackerman, Daniel Monterrosa, and Junior Escobar
 ## Powered By
 * [Teleport API](https://developers.teleport.org/api/)
 * [ExchangeRate-API](https://www.exchangerate-api.com/)
-* [Country Flags API](https://www.countryflags.io/)
+* Deprecated <a href="https://github.com/Dj-Viking/Nomadica/pull/55" rel="noopener noreferrer">PR on this deprecation</a>
+  - [Country Flags API](https://www.countryflags.io/) 
 * [Tailwind CSS](https://tailwindcss.com/)
 * [Google Fonts](https://fonts.google.com/)
