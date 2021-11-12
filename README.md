@@ -6,7 +6,7 @@ Nomadica allows you to search the median annual salary for 50+ occupations in 20
 
 ## Deployment Page Link
 
-https://nomadica-app.herokuapp.com
+<a href="https://nomadica-app.herokuapp.com" rel="noopener noreferrer" >Here on Heroku</a>
 
 ## User Story
 AS A person interested in relocating for work</br>
