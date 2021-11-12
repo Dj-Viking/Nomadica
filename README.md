@@ -27,9 +27,9 @@ SO THAT I can make an informed decision about moving there
 Created by Anders Ackerman, Daniel Monterrosa, and Junior Escobar
 
 ## Powered By
-* [Teleport API](https://developers.teleport.org/api/)
-* [ExchangeRate-API](https://www.exchangerate-api.com/)
-* Deprecated <a href="https://github.com/Dj-Viking/Nomadica/pull/55" rel="noopener noreferrer">PR on this deprecation</a>
-  - [Country Flags API](https://www.countryflags.io/) 
-* [Tailwind CSS](https://tailwindcss.com/)
-* [Google Fonts](https://fonts.google.com/)
+* <a href="https://developers.teleport.org/api/" rel="noopener noreferrer">Teleport API</a>
+* <a href="https://www.exchangerate-api.com/" rel="noopener noreferrer">ExchangeRate-API</a> 
+* Deprecated <a href="https://github.com/Dj-Viking/Nomadica/pull/55" rel="noopener noreferrer">PR on this deprecation of country flags api, using emoji strings now.</a>
+  - <a href="https://www.countryflags.io/" rel="noopener noreferrer" >Country Flags API (NO LONGER IN SERVICE!)</a>
+* <a href="https://tailwindcss.com" rel="noopener noreferrer">Tailwind CSS</a>
+* <a href="https://fonts.google.com" rel="noopener noreferrer">Google Fonts</a>
