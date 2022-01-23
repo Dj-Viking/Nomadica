@@ -1,14 +1,15 @@
-const express = require("express");
-const path = require("path");
-require("dotenv").config();
+import express from "express";
+import path from "path";
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 4000;
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //send static file directory at home path
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.resolve("public")));
 
 //conversion rate api call
 // app.get("/rates", (req, res) => {

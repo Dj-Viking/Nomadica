@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod",
-    "start:prod": "cd server; npm start",
+    "start": "sh start.sh",
     "install": "cd server; npm i"
   },
   "repository": {
