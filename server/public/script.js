@@ -7,15 +7,19 @@
 const EUFlagConvertEl = document.querySelector("#eur-quick-convert");
 EUFlagConvertEl.textContent = getCountryFlagFromNameOrCode("EU");
 EUFlagConvertEl.style.fontSize = "30px";
+
 const JPFlagConvertEl = document.querySelector("#jpy-quick-convert");
 JPFlagConvertEl.textContent = getCountryFlagFromNameOrCode("JP");
 JPFlagConvertEl.style.fontSize = "30px";
+
 const GBPFlagConvertEl = document.querySelector("#gbp-quick-convert");
 GBPFlagConvertEl.textContent = getCountryFlagFromNameOrCode("GB");
 GBPFlagConvertEl.style.fontSize = "30px";
+
 const CADFlagConvertEl = document.querySelector("#cad-quick-convert");
 CADFlagConvertEl.textContent = getCountryFlagFromNameOrCode("CA");
 CADFlagConvertEl.style.fontSize = "30px";
+
 const USFlagConvertEl = document.querySelector("#usd-quick-convert");
 USFlagConvertEl.textContent = getCountryFlagFromNameOrCode("US");
 USFlagConvertEl.style.fontSize = "30px";
@@ -35,6 +39,20 @@ const salaryAnalysisEl = document.querySelector("#salary-analysis");
 const quickConvertWrapperEl = document.querySelector("#quick-convert-wrapper");
 const searchHistoryContainerEl = document.querySelector("#search-history");
 const searchHistoryListEl = document.querySelector("#search-history-list");
+const spinnerDiv = document.querySelector("#spinner");
+let isLoading = false;
+
+/**
+ * 
+ * @param {boolean} isLoading 
+ */
+function toggleSpinner(isLoading) {
+    if (isLoading) {
+        spinnerDiv.style.display = "flex"
+    } else {
+        spinnerDiv.style.display = "none";
+    }
+}
 
 function formSubmitHandler(event) {
 
@@ -49,6 +67,8 @@ function formSubmitHandler(event) {
 }
 
 function startSearch(locationSearch, occupationValue) {
+    isLoading = true;
+    toggleSpinner(isLoading);
 
 
     /**
@@ -142,9 +162,9 @@ function getMedianSalary(countryInfo) {
 
 function getConversionRate(countryInfo) {
     //test url
-    // const API_URL = `http://localhost:4000/rates/?base=USD&code=${countryInfo.currencyCode}`
+    const API_URL = `http://localhost:4000/rates/?base=USD&code=${countryInfo.currencyCode}`
     // prod api url?? TODO deploy to prod
-    const API_URL = `https://nomadica-app.herokuapp.com/rates/?base=USD&code=${countryInfo.currencyCode}`;
+    // const API_URL = `https://nomadica-app.herokuapp.com/rates/?base=USD&code=${countryInfo.currencyCode}`;
     fetch(`${API_URL}`)
         .then((response) => response.json())
         .then(({ data }) => {
@@ -180,6 +200,8 @@ function getConvertedValues(countryInfo) {
 }
 
 function renderCountryInfo(countryInfo) {
+    isLoading = false;
+    toggleSpinner(isLoading);
     // hide pre-search elements and display post-search elements
     countryInfoEl.classList.remove("hidden");
 

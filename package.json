@@ -1,11 +1,12 @@
 {
   "name": "nomadica",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "cd server; npm start",
+    "start:dev": "cd server; npm run watch",
     "install": "cd server; npm i"
   },
   "repository": {
