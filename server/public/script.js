@@ -48,8 +48,10 @@ let isLoading = false;
  */
 function toggleSpinner(isLoading) {
     if (isLoading) {
+        countryInfoEl.style.display = "none";
         spinnerDiv.style.display = "flex"
     } else {
+        countryInfoEl.style.display = "block";
         spinnerDiv.style.display = "none";
     }
 }
