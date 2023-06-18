@@ -27,7 +27,7 @@ API_KEY='<YOUR API KEY HERE>'
 
 ## Deployment Page Link
 
-<a href="https://nomadica-app.herokuapp.com" rel="noopener noreferrer" >Here on Heroku</a>
+<a href="https://nomadica.onrender.com" rel="noopener noreferrer" >Here on Render.com</a>
 
 ## User Story
 
