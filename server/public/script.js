@@ -1,7 +1,6 @@
 // Nomad Web Developer
 //      * all country codes are in iso_alpha2 format i.e. "US" for "United States" or "JP" for "Japan"
 
-
 // TODO: (provide static flag emojis for the currency conversion buttons)
 
 const EUFlagConvertEl = document.querySelector("#eur-quick-convert");
@@ -43,13 +42,13 @@ const spinnerDiv = document.querySelector("#spinner");
 let isLoading = false;
 
 /**
- * 
- * @param {boolean} isLoading 
+ *
+ * @param {boolean} isLoading
  */
 function toggleSpinner(isLoading) {
     if (isLoading) {
         countryInfoEl.style.display = "none";
-        spinnerDiv.style.display = "flex"
+        spinnerDiv.style.display = "flex";
     } else {
         countryInfoEl.style.display = "block";
         spinnerDiv.style.display = "none";
@@ -57,7 +56,6 @@ function toggleSpinner(isLoading) {
 }
 
 function formSubmitHandler(event) {
-
     //this prevents the refreshing of the page when form is submitted
     event.preventDefault();
 
@@ -71,7 +69,6 @@ function formSubmitHandler(event) {
 function startSearch(locationSearch, occupationValue) {
     isLoading = true;
     toggleSpinner(isLoading);
-
 
     /**
      * @type {{
@@ -91,13 +88,12 @@ function startSearch(locationSearch, occupationValue) {
     // this function returns an array with country code and country name index flipped depending on search term. returns false if country not found.
     let countryNameOrCode = getCountryCodeOrName(locationSearch);
 
-    
     // if the country code was searched, the country name will be index [1]. if country name was searched, the country code will be index [0]
     countryInfo.countryName = locationSearch.length === 2 ? countryNameOrCode[1] : countryNameOrCode[0];
-    
+
     // if the country code was searched, the country code will be index [0]. if country name was searched, the country code will be index [1]
     countryInfo.countryCode = locationSearch.length === 2 ? countryNameOrCode[0] : countryNameOrCode[1];
-    
+
     countryInfo.countryFlag = getCountryFlagFromNameOrCode(
         locationSearch.length === 2 ? countryNameOrCode[0] : countryNameOrCode[1]
     );
@@ -143,14 +139,13 @@ function getCurrencyCode(countryInfo) {
             countryInfo.currencyCode = data.currency_code;
             getMedianSalary(countryInfo);
         })
-        .catch((error) => errorMessageEl.textContent = "Unable to connect to Country Selection database.");
+        .catch((error) => (errorMessageEl.textContent = "Unable to connect to Country Selection database."));
 }
 
 function getMedianSalary(countryInfo) {
     fetch(`https://api.teleport.org/api/countries/iso_alpha2:${countryInfo.countryCode}/salaries/`)
         .then((response) => response.json())
         .then(({ salaries }) => {
-
             for (let i = 0; i < salaries.length; i++) {
                 if (salaries[i].job.title == countryInfo.occupationValue) {
                     // this figure is in USD
@@ -159,14 +154,14 @@ function getMedianSalary(countryInfo) {
             }
             getConversionRate(countryInfo);
         })
-        .catch((error) => errorMessageEl.textContent = "Unable to connect to Median Salary database." + error);
+        .catch((error) => (errorMessageEl.textContent = "Unable to connect to Median Salary database." + error));
 }
 
 function getConversionRate(countryInfo) {
     //test url
-    // const API_URL = `http://localhost:4000/rates/?base=USD&code=${countryInfo.currencyCode}`
+    // const API_URL = `http://localhost:4000/rates/?base=USD&code=${countryInfo.currencyCode}`;
     // prod api url?? TODO deploy to prod
-    const API_URL = `https://nomadica-app.herokuapp.com/rates/?base=USD&code=${countryInfo.currencyCode}`;
+    const API_URL = `https://nomadica.onrender.com/rates/?base=USD&code=${countryInfo.currencyCode}`;
     fetch(`${API_URL}`)
         .then((response) => response.json())
         .then(({ data }) => {
@@ -182,7 +177,7 @@ function getConversionRate(countryInfo) {
             countryInfo.conversionRate = conversionRate;
             getConvertedValues(countryInfo);
         })
-        .catch((error) => errorMessageEl.textContent = "Unable to connect to Rate Conversion database.");
+        .catch((error) => (errorMessageEl.textContent = "Unable to connect to Rate Conversion database."));
 }
 
 //convert medianSalary and medianHouseholdIncome using conversionRate
@@ -191,7 +186,9 @@ function getConvertedValues(countryInfo) {
     countryInfo.convertedSalary = convertedSalary ? convertedSalary : "No data found ☹️";
 
     let convertedMedianHouseholdIncome = Math.floor(countryInfo.medianHouseholdIncome * countryInfo.conversionRate);
-    countryInfo.convertedMedianHouseholdIncome = convertedMedianHouseholdIncome ? convertedMedianHouseholdIncome : "No data found ☹️";
+    countryInfo.convertedMedianHouseholdIncome = convertedMedianHouseholdIncome
+        ? convertedMedianHouseholdIncome
+        : "No data found ☹️";
 
     let salaryAnalysis = Math.floor((countryInfo.convertedSalary / countryInfo.convertedMedianHouseholdIncome) * 100);
     countryInfo.salaryAnalysis = salaryAnalysis;
@@ -213,26 +210,37 @@ function renderCountryInfo(countryInfo) {
     flagImgEmojiEl.textContent = countryInfo.countryFlag;
     flagImgEmojiEl.style.fontSize = "30px";
     flagImgEmojiEl.setAttribute("alt", `${countryInfo.countryName} flag`);
-    medianSalaryEl.innerHTML = `Median Annual Salary: <span class="figures text-color-gunmetal">${numberWithCommas(countryInfo.convertedSalary)} <span id="currency-code" class="text-color-gunmetal">${countryInfo.currencyCode}</span></span>`;
-    medianHouseholdIncomeEl.innerHTML = `Median Household Income: <span class="figures text-color-gunmetal">${numberWithCommas(countryInfo.convertedMedianHouseholdIncome)} ${countryInfo.currencyCode}</span>`;
-    switch(true) {
-        case countryInfo.salaryAnalysis > 100: {
-            salaryAnalysisEl.innerHTML = `Pays about <span class="text-green-600">${countryInfo.salaryAnalysis - 100}% above</span> median income`;
-        }
-        break;
-        case countryInfo.salaryAnalysis < 100: {
-            salaryAnalysisEl.innerHTML = `Pays about <span class="text-red-600">${100 - countryInfo.salaryAnalysis}% below</span> median income`;
-        }
-        break;
-        case countryInfo.salaryAnalysis == 100: {
-            salaryAnalysisEl.innerHTML = `Pays about equal to the median income`;
-        }
-        break;
+    medianSalaryEl.innerHTML = `Median Annual Salary: <span class="figures text-color-gunmetal">${numberWithCommas(
+        countryInfo.convertedSalary
+    )} <span id="currency-code" class="text-color-gunmetal">${countryInfo.currencyCode}</span></span>`;
+    medianHouseholdIncomeEl.innerHTML = `Median Household Income: <span class="figures text-color-gunmetal">${numberWithCommas(
+        countryInfo.convertedMedianHouseholdIncome
+    )} ${countryInfo.currencyCode}</span>`;
+    switch (true) {
+        case countryInfo.salaryAnalysis > 100:
+            {
+                salaryAnalysisEl.innerHTML = `Pays about <span class="text-green-600">${
+                    countryInfo.salaryAnalysis - 100
+                }% above</span> median income`;
+            }
+            break;
+        case countryInfo.salaryAnalysis < 100:
+            {
+                salaryAnalysisEl.innerHTML = `Pays about <span class="text-red-600">${
+                    100 - countryInfo.salaryAnalysis
+                }% below</span> median income`;
+            }
+            break;
+        case countryInfo.salaryAnalysis == 100:
+            {
+                salaryAnalysisEl.innerHTML = `Pays about equal to the median income`;
+            }
+            break;
         default: {
             salaryAnalysisEl.innerHTML = "";
         }
     }
-    countryInfoEl.scrollIntoView({behavior: "smooth"});
+    countryInfoEl.scrollIntoView({ behavior: "smooth" });
 }
 
 function convertButtonHandler(event) {
@@ -273,8 +281,22 @@ function loadSearchHistory() {
 
     for (let i = 0; i < searchHistory.length; i++) {
         let searchHistoryListItemEl = document.createElement("li");
-        searchHistoryListItemEl.classList.add("list-item", "cursor-pointer", "mb-3", "px-1", "py-2", "border", "border-solid", "border-color-sand", "rounded-lg", "bg-color-terracotta", "font-semibold");
-        searchHistoryListItemEl.textContent = `${searchHistory[i].split("-")[0].trim()} - ${searchHistory[i].split("-")[1].trim()}`;
+        searchHistoryListItemEl.classList.add(
+            "list-item",
+            "cursor-pointer",
+            "mb-3",
+            "px-1",
+            "py-2",
+            "border",
+            "border-solid",
+            "border-color-sand",
+            "rounded-lg",
+            "bg-color-terracotta",
+            "font-semibold"
+        );
+        searchHistoryListItemEl.textContent = `${searchHistory[i].split("-")[0].trim()} - ${searchHistory[i]
+            .split("-")[1]
+            .trim()}`;
 
         searchHistoryListEl.prepend(searchHistoryListItemEl);
     }

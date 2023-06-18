@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "sh start.sh",
-    "install": "cd server; npm i"
+    "install": "cd server && npm install",
+    "install-windows": "powershell -NoProfile -ExecutionPolicy ByPass -File Install.ps1",
+    "start-windows": "powershell -NoProfile -ExecutionPolicy ByPass -File Start.ps1",
+    "start-windows-dev": "powershell -NoProfile -ExecutionPolicy ByPass -File Start.ps1 -Dev"
   },
   "repository": {
     "type": "git",
